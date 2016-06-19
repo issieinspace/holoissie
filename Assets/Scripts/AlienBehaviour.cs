@@ -8,6 +8,10 @@ public class AlienBehaviour : MonoBehaviour {
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
 
+    private Animation animator;
+
+    private AnimationClip currentAnimation;
+
     void Start ()
     {
         // Add an AudioSource component and set up some defaults
@@ -19,6 +23,8 @@ public class AlienBehaviour : MonoBehaviour {
 
         landingSound = Resources.Load<AudioClip>("Explosion_Small");
         chatterSound = Resources.Load<AudioClip>("Chatter");
+        animator = this.GetComponent<Animation>();
+        currentAnimation = animator.GetClip("alien_idle");
     }
 	
 	// Update is called once per frame
@@ -30,14 +36,24 @@ public class AlienBehaviour : MonoBehaviour {
         {
             DestroyImmediate(rigidbody);
         }
-        
-    }
+        if(animator.isPlaying == false)
+        {
+            animator.Play(currentAnimation.name);
+        }
+   }
 
     public void OnDrop()
     {
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        currentAnimation = animator.GetClip("alien_walking");
+    }
 
+
+    public void run()
+    {
+        currentAnimation = animator.GetClip("alien_running");
+        this.transform.position = Vector3.left;
     }
 
     /*a nice idea, but found that he bounced like crazy
