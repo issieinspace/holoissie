@@ -9,12 +9,13 @@ public class TransporterBehaviour : MonoBehaviour
     AudioClip explosion = null;
     AudioClip achievement = null;
     AudioClip timeDone = null;
-     
+    AudioClip bleep = null;
+
     AudioSource audioSource = null;
 
-    Color downColor = Color.blue;
-    Color upColor = Color.green;
-    Color doneColor = Color.yellow;
+    Color downColor = Color.red;
+    Color upColor = Color.red;
+    Color doneColor = Color.green;
     Color originalColor;
 
     string triggeredDirection = "";
@@ -49,6 +50,7 @@ public class TransporterBehaviour : MonoBehaviour
         explosion = Resources.Load<AudioClip>("Explosion_Small");
         achievement = Resources.Load<AudioClip>("EtherealAccent");
         timeDone = Resources.Load<AudioClip>("SynthZap");
+        bleep = Resources.Load<AudioClip>("Computer04");
 
     }
 
@@ -68,7 +70,7 @@ public class TransporterBehaviour : MonoBehaviour
         {
             Debug.Log("Down triggered!" + triggeredDirection);
 
-            audioSource.clip = explosion;
+            audioSource.clip = bleep;
             audioSource.Play();
 
             Renderer rend = GetComponent<Renderer>();
@@ -89,7 +91,7 @@ public class TransporterBehaviour : MonoBehaviour
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = upColor;
 
-            audioSource.clip = explosion;
+            audioSource.clip = bleep;
             audioSource.Play();
 
             triggeredDirection = "up";
@@ -132,7 +134,7 @@ public class TransporterBehaviour : MonoBehaviour
         // Display some info about what you did
     }
 
-   /* public void OnReset()
+    public void OnReset()
     {
         TimeLeft = 500;
         MoveCount = 0;
@@ -141,7 +143,7 @@ public class TransporterBehaviour : MonoBehaviour
         TransporterComplete = false;
         Renderer rend = GetComponent<Renderer>();
         rend.material.color = originalColor;
-    }*/
+    }
 
 
 
