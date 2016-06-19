@@ -46,7 +46,11 @@ public class AlienBehaviour : MonoBehaviour {
     {
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        audioSource.clip = chatterSound;
+        audioSource.Play();
         currentAnimation = animator.GetClip("alien_walking");
+        transform.Rotate(Vector3.right * Time.deltaTime);
+        
     }
 
 
@@ -54,6 +58,13 @@ public class AlienBehaviour : MonoBehaviour {
     {
         currentAnimation = animator.GetClip("alien_running");
         this.transform.position = Vector3.left;
+    }
+
+
+    public void DanceParty()
+    {
+        
+
     }
 
     /*a nice idea, but found that he bounced like crazy
@@ -72,6 +83,7 @@ public class AlienBehaviour : MonoBehaviour {
     }
     */
 
+    
 }
 
 
