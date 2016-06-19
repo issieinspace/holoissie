@@ -22,6 +22,9 @@ public class TransporterBehaviour : MonoBehaviour
     string triggeredDirection = "";
 
     public float TimeLeft = 500;
+    public float SpawnTimer = 2;
+    public bool SpawnTimerOn = false;
+
     int MoveCount = 0;
     public int AchievementLevel = 5;
    
@@ -73,6 +76,11 @@ public class TransporterBehaviour : MonoBehaviour
             {
                 TimeDone();
             }
+
+            if (SpawnTimerOn)
+            {
+
+            }
         }
   
     }
@@ -84,6 +92,7 @@ public class TransporterBehaviour : MonoBehaviour
         alien.transform.localPosition = new Vector3(0, -5f, 0);
         alien.transform.Rotate(0, -180, 0);
         alien.GetComponent<AlienBehaviour>().Target = Camera;
+        alien.AddComponent<AlienScaleAnimation>();
 
         Aliens.Add(alien);
     }

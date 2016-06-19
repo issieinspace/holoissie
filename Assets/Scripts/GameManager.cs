@@ -4,12 +4,16 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public GameObject Transporter;
+    public bool RunIntro = true;
 
 	// Use this for initialization
 	void Start () {
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);
-       
+        if(RunIntro)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 
     // Update is called once per frame
