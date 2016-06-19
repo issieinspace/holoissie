@@ -8,6 +8,7 @@ public class AlienBehaviour : MonoBehaviour {
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
     public bool isdropped = false;
+    public bool partytime = false;
     public float Endwalk = 2.0f;
 
 
@@ -72,7 +73,7 @@ public class AlienBehaviour : MonoBehaviour {
            transform.Translate(Vector3.forward * Time.deltaTime, Space.Self);
         }
 
-        if (isdropped)
+        if (isdropped && !partytime)
         {
             Endwalk -= Endwalk;
 
@@ -82,6 +83,8 @@ public class AlienBehaviour : MonoBehaviour {
                 currentAnimation = animator.GetClip("alien_idle");
             }
         }
+
+
     }
 
 
@@ -103,6 +106,7 @@ public class AlienBehaviour : MonoBehaviour {
         alienwalking = true;
         countup += Time.deltaTime;
 
+
     }
 
     
@@ -117,7 +121,7 @@ public class AlienBehaviour : MonoBehaviour {
     {
         audioSource.clip = chatterSound;
         audioSource.Play();
-
+        partytime = true;
         currentAnimation = animator.GetClip("alien_jumping");
 
     }
