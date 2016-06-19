@@ -7,6 +7,8 @@ public class AlienBehaviour : MonoBehaviour {
     AudioSource audioSource = null;
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
+    bool isdropped = false;
+    public float Endwalk = 2.0f;
 
 
     bool alienwalking = false;
@@ -19,6 +21,7 @@ public class AlienBehaviour : MonoBehaviour {
     private Vector3 currentLocation;
     float speed = 1;
     public float countup;
+    
 
     void Start ()
     {
@@ -55,7 +58,7 @@ public class AlienBehaviour : MonoBehaviour {
 
         if (alienwalking)
         {
-            transform.Translate(Vector3.left * Time.deltaTime, Space.Self);
+            transform.Translate(Vector3.left * Endwalk, Space.Self);
         }
 
         if(alienjumping)
@@ -68,26 +71,37 @@ public class AlienBehaviour : MonoBehaviour {
            transform.Translate(Vector3.forward * Time.deltaTime, Space.Self);
         }
 
+        if (isdropped)
+        {
+            Endwalk -= Endwalk;
+
+            if (Endwalk == 0f)
+            {
+                alienwalking = false;
+                currentAnimation = animator.GetClip("alien_idle");
+            }
+        }
     }
 
     public void OnDrop()
     {
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        isdropped = true;
         audioSource.clip = chatterSound;
         audioSource.Play();
         currentAnimation = animator.GetClip("alien_walking");
         //transform.Rotate(Vector3.right * Time.deltaTime * speed);
-        alienwalking = true; 
-        
+        alienwalking = true;
+        countup += Time.deltaTime;
+
     }
 
-
+    
+   
     public void run()
     {
         currentAnimation = animator.GetClip("alien_running");
-        
-        
     }
 
 
@@ -95,27 +109,7 @@ public class AlienBehaviour : MonoBehaviour {
     {
         audioSource.clip = chatterSound;
         audioSource.Play();
-
-        var partytime = Time.deltaTime;
-
-        if(partytime > 1 && partytime < 3)
-        { 
-            currentAnimation = animator.GetClip("alien_running");
-            alienrunning = true;
-        }
-
-        if(partytime > 3 && partytime < 6)
-        {
-            currentAnimation = animator.GetClip("alien_jumping");
-            alienjumping = true;
-        }
-
-        if(partytime > 6 && partytime < 12)
-        {
-            currentAnimation = animator.GetClip("walking");
-            alienwalking = true;
-        }
-
+        currentAnimation = animator.GetClip("alien_jumping");
 
     }
 
