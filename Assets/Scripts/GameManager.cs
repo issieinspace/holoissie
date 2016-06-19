@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
         //Debug.Log("Camera " + camera.y + " Transporter " + transporter.y + " Difference " + yDifference.y);
         
 
-        if (!behaviour.TransporterComplete)
+        if (behaviour.TransporterActive)
         {
             if (yDifference.y > .5)
             {
@@ -45,6 +45,4 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    // ALIENS can look for gameplay manager
-    // 
 }

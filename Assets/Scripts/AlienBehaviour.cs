@@ -9,6 +9,7 @@ public class AlienBehaviour : MonoBehaviour {
     Vector3 originalPosition;
     Vector3 newposition;
     public GameObject AlienPrefab;
+    public Transform Target;
 
 
     void Start ()
@@ -19,20 +20,16 @@ public class AlienBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	
-	}
+	    transform.LookAt(Target);
+    }
 
-    public void Ondrop()
+    public void OnDrop()
     {
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
-    public void SpawnAliens()
-    {
-        Instantiate(AlienPrefab, originalPosition, transform.rotation);
-
-    }
+  
 
 
 

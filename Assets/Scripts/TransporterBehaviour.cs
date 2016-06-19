@@ -28,13 +28,26 @@ public class TransporterBehaviour : MonoBehaviour
 
     public bool AchievementAttained = false;
     public bool TransporterComplete = false;
+    public bool TransporterActive = false;
+    public Transform Camera;
+
+    public System.Collections.Generic.List<GameObject> Aliens;
 
     // Use this for initialization
     void Start()
     {
+        Aliens = new System.Collections.Generic.List<GameObject>();
+
         if (AlienPrefab != null)
         {
-            //GameObject alien = GameObject.Instantiate(AlienPrefab);
+            GameObject alien = GameObject.Instantiate(AlienPrefab);
+            alien.transform.SetParent(this.transform);
+            alien.transform.localPosition = new Vector3(0, -5f, 0);
+            alien.transform.Rotate(0, -180, 0);
+            alien.GetComponent<AlienBehaviour>().Target = Camera;
+
+            Aliens.Add(alien);
+            
         }
 
         Renderer rend = GetComponent<Renderer>();
@@ -57,11 +70,15 @@ public class TransporterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeLeft -= Time.deltaTime;
-        if(TimeLeft < 0)
+        if(TransporterActive)
         {
-            TimeDone();
+            TimeLeft -= Time.deltaTime;
+            if (TimeLeft < 0)
+            {
+                TimeDone();
+            }
         }
+  
     }
 
     public void TriggerDown()
@@ -114,8 +131,15 @@ public class TransporterBehaviour : MonoBehaviour
         audioSource.clip = achievement;
         audioSource.Play();
         AchievementAttained = true;
+        GameObject alien = getCurrentAlien();
+        alien.GetComponent<AlienBehaviour>().OnDrop();
         MoveCount = 0;
         AchievementCount++;
+    }
+
+    GameObject getCurrentAlien()
+    {
+        return Aliens[Aliens.Count-1];
     }
 
     public void TimeDone()
@@ -126,6 +150,7 @@ public class TransporterBehaviour : MonoBehaviour
             audioSource.clip = timeDone;
             audioSource.Play();
             TransporterComplete = true;
+            TransporterActive = false;
 
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = doneColor;
