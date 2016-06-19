@@ -10,6 +10,7 @@ public class TransporterBehaviour : MonoBehaviour
     AudioClip achievement = null;
     AudioClip timeDone = null;
     AudioClip bleep = null;
+    AudioClip partyMusic = null;
 
     AudioSource audioSource = null;
 
@@ -36,6 +37,10 @@ public class TransporterBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if(!TransporterActive)
+        {
+            return;
+        }
         Aliens = new System.Collections.Generic.List<GameObject>();
 
         SpawnAlien();       
@@ -54,6 +59,7 @@ public class TransporterBehaviour : MonoBehaviour
         achievement = Resources.Load<AudioClip>("EtherealAccent");
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
+        partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
 
     }
 
@@ -155,8 +161,11 @@ public class TransporterBehaviour : MonoBehaviour
         if (!TransporterComplete)
         {
             Debug.Log("TIME IS DONE. You got " + AchievementCount + " achievements");
-            audioSource.clip = timeDone;
+            audioSource.clip = partyMusic;
             audioSource.Play();
+           
+            HaveAParty();
+
             TransporterComplete = true;
             TransporterActive = false;
 
@@ -178,6 +187,16 @@ public class TransporterBehaviour : MonoBehaviour
         rend.material.color = originalColor;
     }
 
-
+    public void HaveAParty()
+    {
+                
+        foreach (GameObject alien in Aliens)
+        {
+            //This will now work because you've constrained the generic type V
+            Debug.Log("iterated thru alien");
+            alien.GetComponent<AlienBehaviour>().DanceParty();
+            
+        }
+    }
 
 }

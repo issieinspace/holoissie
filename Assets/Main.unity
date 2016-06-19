@@ -604,6 +604,11 @@ Prefab:
       propertyPath: AchievementLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f,
+        type: 2}
+      propertyPath: TimeLeft
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0

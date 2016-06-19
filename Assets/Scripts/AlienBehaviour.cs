@@ -11,7 +11,7 @@ public class AlienBehaviour : MonoBehaviour {
 
     bool alienwalking = false;
     bool alienjumping = false;
-    bool alienrunning = true;
+    bool alienrunning = false;
 
     private Animation animator;
 
@@ -65,7 +65,7 @@ public class AlienBehaviour : MonoBehaviour {
 
         if(alienrunning)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime, Space.Self);
+           transform.Translate(Vector3.forward * Time.deltaTime, Space.Self);
         }
 
     }
@@ -93,7 +93,10 @@ public class AlienBehaviour : MonoBehaviour {
 
     public void DanceParty()
     {
-        var partytime = Time.time;
+        audioSource.clip = chatterSound;
+        audioSource.Play();
+
+        var partytime = Time.deltaTime;
 
         if(partytime > 1 && partytime < 3)
         { 
