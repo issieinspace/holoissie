@@ -7,8 +7,9 @@ public class AlienBehaviour : MonoBehaviour {
     AudioSource audioSource = null;
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
-    bool isdropped = false;
+    public bool isdropped = false;
     public float Endwalk = 2.0f;
+
 
 
     bool alienwalking = false;
@@ -83,6 +84,13 @@ public class AlienBehaviour : MonoBehaviour {
         }
     }
 
+
+    public bool getisDropped()
+    {
+        return isdropped;
+    }
+
+
     public void OnDrop()
     {
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
@@ -109,6 +117,7 @@ public class AlienBehaviour : MonoBehaviour {
     {
         audioSource.clip = chatterSound;
         audioSource.Play();
+
         currentAnimation = animator.GetClip("alien_jumping");
 
     }
