@@ -582,6 +582,7 @@ GameObject:
   - 4: {fileID: 400076}
   - 111: {fileID: 11100000}
   - 114: {fileID: 114000013673676272}
+  - 65: {fileID: 65000012342508042}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -1249,6 +1250,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100076}
   m_IsPrefabParent: 1
+--- !u!65 &65000012342508042
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013673676272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1260,5 +1273,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a7c311ca370574aa8487e2c6ed6b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlienPrefab: {fileID: 0}
   Target: {fileID: 0}

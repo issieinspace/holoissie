@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
+        //SpatialMapping.Instance.gameObject.SetActive(false);
        
     }
 

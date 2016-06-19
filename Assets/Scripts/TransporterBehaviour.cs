@@ -89,6 +89,7 @@ public class TransporterBehaviour : MonoBehaviour
 
             audioSource.clip = bleep;
             audioSource.Play();
+           
 
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = downColor;
