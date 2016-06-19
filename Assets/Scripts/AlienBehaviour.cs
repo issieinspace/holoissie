@@ -3,15 +3,41 @@ using System.Collections;
 
 public class AlienBehaviour : MonoBehaviour {
 
-    public GameObject Wormhole;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+  
+
+    Vector3 originalPosition;
+    Vector3 newposition;
+    public GameObject AlienPrefab;
+
+
+    void Start ()
+    {
+    
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
+
+    public void Ondrop()
+    {
+        var rigidbody = this.gameObject.AddComponent<Rigidbody>();
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+    }
+
+    public void SpawnAliens()
+    {
+        Instantiate(AlienPrefab, originalPosition, transform.rotation);
+
+    }
+
+
+
 }
+
+
+
+
