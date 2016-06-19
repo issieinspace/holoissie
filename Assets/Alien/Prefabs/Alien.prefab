@@ -582,6 +582,7 @@ GameObject:
   - 4: {fileID: 400076}
   - 111: {fileID: 11100000}
   - 114: {fileID: 114000013673676272}
+  - 95: {fileID: 95000011258747420}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -1143,7 +1144,7 @@ Animation:
   m_GameObject: {fileID: 100076}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d14340b5cf203524cb65b6bacca4549e, type: 3}
+  m_Animation: {fileID: 7400004, guid: d14340b5cf203524cb65b6bacca4549e, type: 3}
   m_Animations:
   - {fileID: 7400000, guid: d14340b5cf203524cb65b6bacca4549e, type: 3}
   - {fileID: 7400002, guid: d14340b5cf203524cb65b6bacca4549e, type: 3}
@@ -1249,6 +1250,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100076}
   m_IsPrefabParent: 1
+--- !u!95 &95000011258747420
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100076}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000013673676272
 MonoBehaviour:
   m_ObjectHideFlags: 1

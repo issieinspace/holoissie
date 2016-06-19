@@ -543,7 +543,7 @@ Prefab:
         type: 2}
       propertyPath: AlienPrefab
       value: 
-      objectReference: {fileID: 100000, guid: d14340b5cf203524cb65b6bacca4549e, type: 3}
+      objectReference: {fileID: 100076, guid: aff7ce3bcbd2c554b9f735ffac448ee1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
