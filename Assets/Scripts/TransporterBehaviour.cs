@@ -38,17 +38,7 @@ public class TransporterBehaviour : MonoBehaviour
     {
         Aliens = new System.Collections.Generic.List<GameObject>();
 
-        if (AlienPrefab != null)
-        {
-            GameObject alien = GameObject.Instantiate(AlienPrefab);
-            alien.transform.SetParent(this.transform);
-            alien.transform.localPosition = new Vector3(0, -5f, 0);
-            alien.transform.Rotate(0, -180, 0);
-            alien.GetComponent<AlienBehaviour>().Target = Camera;
-
-            Aliens.Add(alien);
-            
-        }
+        SpawnAlien();       
 
         Renderer rend = GetComponent<Renderer>();
         originalColor = rend.material.color;
@@ -79,6 +69,17 @@ public class TransporterBehaviour : MonoBehaviour
             }
         }
   
+    }
+
+    void SpawnAlien()
+    {
+        GameObject alien = GameObject.Instantiate(AlienPrefab);
+        alien.transform.SetParent(this.transform);
+        alien.transform.localPosition = new Vector3(0, -5f, 0);
+        alien.transform.Rotate(0, -180, 0);
+        alien.GetComponent<AlienBehaviour>().Target = Camera;
+
+        Aliens.Add(alien);
     }
 
     public void TriggerDown()
@@ -132,8 +133,14 @@ public class TransporterBehaviour : MonoBehaviour
         audioSource.clip = achievement;
         audioSource.Play();
         AchievementAttained = true;
+        
+        // Release the current alien
         GameObject alien = getCurrentAlien();
         alien.GetComponent<AlienBehaviour>().OnDrop();
+
+        // Spawn a new alien
+        SpawnAlien();
+
         MoveCount = 0;
         AchievementCount++;
     }
