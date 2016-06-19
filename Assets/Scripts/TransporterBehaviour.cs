@@ -203,9 +203,17 @@ public class TransporterBehaviour : MonoBehaviour
         {
             //This will now work because you've constrained the generic type V
             Debug.Log("iterated thru alien");
+            if (!alien.GetComponent<AlienBehaviour>().isdropped)
+            {
+                alien.GetComponent<AlienBehaviour>().OnDrop();
+            }
+
             alien.GetComponent<AlienBehaviour>().DanceParty();
             
         }
     }
 
+
+    // To play one clip after another, use coroutines
+    //http://docs.unity3d.com/540/Documentation/Manual/Coroutines.html
 }
