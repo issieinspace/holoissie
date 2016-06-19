@@ -8,9 +8,17 @@ public class AlienBehaviour : MonoBehaviour {
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
 
+
+    bool alienwalking = false;
+    bool alienjumping = false;
+    bool alienrunning = true;
+
     private Animation animator;
 
     private AnimationClip currentAnimation;
+    private Vector3 currentLocation;
+    float speed = 1;
+    public float countup;
 
     void Start ()
     {
@@ -35,12 +43,32 @@ public class AlienBehaviour : MonoBehaviour {
         if(transform.position.y <= 0.0f && rigidbody !=null)
         {
             DestroyImmediate(rigidbody);
+            
         }
+
         if(animator.isPlaying == false)
         {
             animator.Play(currentAnimation.name);
         }
-   }
+
+        countup += Time.deltaTime;
+
+        if (alienwalking)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime, Space.Self);
+        }
+
+        if(alienjumping)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime, Space.Self);
+        }
+
+        if(alienrunning)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime, Space.Self);
+        }
+
+    }
 
     public void OnDrop()
     {
@@ -49,7 +77,8 @@ public class AlienBehaviour : MonoBehaviour {
         audioSource.clip = chatterSound;
         audioSource.Play();
         currentAnimation = animator.GetClip("alien_walking");
-        transform.Rotate(Vector3.right * Time.deltaTime);
+        //transform.Rotate(Vector3.right * Time.deltaTime * speed);
+        alienwalking = true; 
         
     }
 
@@ -57,13 +86,32 @@ public class AlienBehaviour : MonoBehaviour {
     public void run()
     {
         currentAnimation = animator.GetClip("alien_running");
-        this.transform.position = Vector3.left;
+        
     }
 
 
     public void DanceParty()
     {
-        
+        var partytime = Time.time;
+
+        if(partytime > 1 && partytime < 3)
+        { 
+            currentAnimation = animator.GetClip("alien_running");
+            alienrunning = true;
+        }
+
+        if(partytime > 3 && partytime < 6)
+        {
+            currentAnimation = animator.GetClip("alien_jumping");
+            alienjumping = true;
+        }
+
+        if(partytime > 6 && partytime < 12)
+        {
+            currentAnimation = animator.GetClip("walking");
+            alienwalking = true;
+        }
+
 
     }
 
