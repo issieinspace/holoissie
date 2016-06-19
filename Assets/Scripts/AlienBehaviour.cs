@@ -87,6 +87,7 @@ public class AlienBehaviour : MonoBehaviour {
     {
         currentAnimation = animator.GetClip("alien_running");
         
+        
     }
 
 
