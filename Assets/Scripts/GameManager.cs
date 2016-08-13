@@ -10,18 +10,25 @@ public class GameManager : MonoBehaviour {
     AudioClip almostThere = null;
     AudioClip firstAchievement = null;
     AudioClip completionCongrats = null;
- 
+
+    public GameObject GamePrefab; // this is the prefab from which we will spawn games
+    public GameObject CurrentGame; // this is the game in progress
+
+
     // Use this for initialization
     void Start () {
+        CurrentGame = Instantiate(GamePrefab);
+
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);
-        if(RunIntro)
+        if (RunIntro)
         {
             GetComponent<AudioSource>().Play();
         }
 
         firstAchievement  = Resources.Load<AudioClip>("NICEWORK1-Remix");
         almostThere = Resources.Load<AudioClip>("YourAlmostThere1-Remix");
+
     }
 
     // Update is called once per frame

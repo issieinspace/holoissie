@@ -5,6 +5,7 @@ public class TransporterBehaviour : MonoBehaviour
 {
 
     public GameObject AlienPrefab;
+    public GameObject ExercisePrefab;
 
     AudioClip explosion = null;
     AudioClip achievement = null;
