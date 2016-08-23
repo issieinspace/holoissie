@@ -14,11 +14,7 @@ public class GameScript : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        // add all the transporters to the ExerciseStations collection
-        // first create a TransportControl for each transporter and add
-        GameObject squats = Instantiate(SquatsPrefab);
-        GameObject blue = SetupExerciseStation(TransporterControlBlue);
-        ExerciseStations.Add(blue);
+      
 
     }
 
