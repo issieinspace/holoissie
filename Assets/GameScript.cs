@@ -4,14 +4,12 @@ using System;
 
 public class GameScript : MonoBehaviour {
     public System.Collections.Generic.List<GameObject> ExerciseStations;
-    public GameObject TransporterControlBlue;
-    public GameObject TransporterControlGreen;
-    public GameObject TransporterControlRed;
-    public GameObject TransporterControlPurple;
-    
+    public int gameID;
+    public int totalScore;
+    public GameObject Player;
+    public System.Collections.Generic.List<GameObject> ExerciseResults;
 
-    public GameObject SquatsPrefab;
-    
+
     // Use this for initialization
     void Start () {
       
@@ -19,18 +17,6 @@ public class GameScript : MonoBehaviour {
     }
 
   
-    private GameObject SetupExerciseStation(GameObject transporterControl)
-    {
-        // Create a TransportControl object and add as a child to the Transporter
-        
-        return transporterControl;
-    }
-
-    private GameObject CreateExercise(string v)
-    {
-        return null;
-    }
-
     // Update is called once per frame
     void Update () {
 	
