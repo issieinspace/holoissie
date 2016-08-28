@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -7,18 +8,25 @@ public class GameManager : MonoBehaviour {
     public bool RunIntro = true;
     public bool Played8SecRemaining = false;
     public bool PlayedFirstAchievement = false;
-    AudioClip almostThere = null;
-    AudioClip firstAchievement = null;
     AudioClip completionCongrats = null;
+    AudioClip partyMusic = null;
+
+    AudioSource audioSource;
 
     public GameObject GamePrefab; // this is the prefab from which we will spawn games
     public GameObject CurrentGame; // this is the game in progress
+    public GameObject[] exercises;
+    public int currentExerciseIndex = 0;
+
+    public Exercise CurrentExercise;
+    public bool ExerciseStageDone;
+    public bool GameOver;
+    public bool ReadyToRestart;
 
 
     // Use this for initialization
     void Start () {
-        CurrentGame = Instantiate(GamePrefab);
-
+        
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);
         if (RunIntro)
@@ -26,20 +34,94 @@ public class GameManager : MonoBehaviour {
             GetComponent<AudioSource>().Play();
         }
 
-        firstAchievement  = Resources.Load<AudioClip>("NICEWORK1-Remix");
-        almostThere = Resources.Load<AudioClip>("YourAlmostThere1-Remix");
+        // Setup some audio clips
+        partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
+
+        // We will have multiple game stages and move one to the next
+        CommenceExerciseStage();
+
 
     }
 
     // Update is called once per frame
     void Update () {
-         // Check if no wormhole abort
-        if (Transporter == null)
-        {
-            Debug.Log("No transporter. Please set!");
-            return;
-        }
+        RunExerciseStage();
+       
+    }
 
+   
+    private void RunExerciseStage()
+    {
+        if (!ExerciseStageDone)
+        {
+            //Check if the exercise is done
+            if (CurrentExercise.ExerciseComplete)
+            {
+                if(currentExerciseIndex + 1 >= exercises.Length)
+                {
+                    ExerciseStageDone = true;
+                }
+                else
+                {
+                    currentExerciseIndex++;
+                    CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
+                    CurrentExercise.PlayerIsReady = true;
+                    Debug.Log("Next exercise kicked of");
+                }
+            }
+           
+
+            // if all done, stage is done
+        }
+        else
+        {
+            if (!GameOver) //GameOver is set in HaveAParty()
+            {
+                HaveAParty();
+            }
+        }
+    }
+
+    void CommenceExerciseStage()
+    {
+        // Collect the exercises
+        exercises = GameObject.FindGameObjectsWithTag("Exercise");
+        Debug.Log("Found " + exercises.Length + " exercises.");
+        CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
+        CurrentExercise.PlayerIsReady = true;
+        Debug.Log("ExerciseStageStarted");   
+    }
+
+    void RestartGame()
+    {
+        // Tell the everyone to restart via broadcast
+        this.BroadcastMessage("OnReset");
+    }
+
+    void HaveAParty()
+    {
+        GameObject[] alienFriends = GameObject.FindGameObjectsWithTag("Alien");
+        Debug.Log("You got THIS many aliens rescued: " + alienFriends.Length);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = partyMusic;
+        audioSource.Play();
+
+        foreach (GameObject alien in alienFriends)
+        {
+            if (!alien.GetComponent<AlienBehaviour>().isdropped)
+            {
+                alien.GetComponent<AlienBehaviour>().OnDrop();
+            }
+
+            alien.GetComponent<AlienBehaviour>().DanceParty();
+        }
+        GameOver = true;
+    }
+
+
+/*
+    private void oldUpdateCode()
+    {
         // Get the position
         Vector3 transporter = Transporter.transform.position;
         Vector3 camera = Camera.main.transform.position;
@@ -82,8 +164,6 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-
-
     }
-
+    */
 }

@@ -5,13 +5,11 @@ public class TransporterBehaviour : MonoBehaviour
 {
 
     public GameObject AlienPrefab;
-    public GameObject ExercisePrefab;
-
+    
     AudioClip explosion = null;
     AudioClip achievement = null;
     AudioClip timeDone = null;
     AudioClip bleep = null;
-    AudioClip partyMusic = null;
 
     AudioSource audioSource = null;
 
@@ -19,19 +17,7 @@ public class TransporterBehaviour : MonoBehaviour
     Color upColor = Color.red;
     Color doneColor = Color.green;
     Color originalColor;
-
-    string triggeredDirection = "";
-
-    public float TimeLeft = 500;
-    public float SpawnTimer = 2;
-    public bool SpawnTimerOn = false;
-
-    int MoveCount = 0;
-    public int AchievementLevel = 5;
-   
-    public int AchievementCount = 0;
-
-    public bool AchievementAttained = false;
+    
     public bool TransporterComplete = false;
     public bool TransporterActive = false;
     public Transform Camera;
@@ -63,27 +49,14 @@ public class TransporterBehaviour : MonoBehaviour
         achievement = Resources.Load<AudioClip>("EtherealAccent");
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
-        partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(TransporterActive)
-        {
-            TimeLeft -= Time.deltaTime;
-            if (TimeLeft < 0)
-            {
-                TimeDone();
-            }
-
-            if (SpawnTimerOn)
-            {
-
-            }
-        }
-  
+    
     }
 
     void SpawnAlien()
@@ -100,55 +73,35 @@ public class TransporterBehaviour : MonoBehaviour
 
     public void TriggerDown()
     {
-        if(!System.String.Equals(triggeredDirection, "down"))
-        {
-            Debug.Log("Down triggered!" + triggeredDirection);
+            Debug.Log("Down triggered on Transporter!");
 
             audioSource.clip = bleep;
             audioSource.Play();
            
-
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = downColor;
-
-            triggeredDirection = "down";
-        }
-    }
+     }
 
 
     public void TriggerUp()
     {
-       
-        if (System.String.Equals(triggeredDirection, "down"))
-        {
-            Debug.Log(triggeredDirection);
 
-            Renderer rend = GetComponent<Renderer>();
+        Debug.Log("Up triggered on Transporter!");
+        //if (System.String.Equals(triggeredDirection, "down"))
+
+        Renderer rend = GetComponent<Renderer>();
             rend.material.color = upColor;
 
             audioSource.clip = bleep;
             audioSource.Play();
-
-            triggeredDirection = "up";
-            MoveCount++;
-
-            if(MoveCount >= AchievementLevel)
-            {
-                Debug.Log("Achieved!");
-                TriggerAchievement();
-            }
-            Debug.Log("Up triggered!" + triggeredDirection + "MoveCount" + MoveCount + " Achievement achieved" + AchievementAttained + " Level " + AchievementLevel);
-        }
-
     }
 
     public void TriggerAchievement()
     {
         // Achievement action happens!!
-        Debug.Log("you did good");
+        Debug.Log("Transporter now reacting to achievement");
         audioSource.clip = achievement;
         audioSource.Play();
-        AchievementAttained = true;
         
         // Release the current alien
         GameObject alien = getCurrentAlien();
@@ -156,9 +109,6 @@ public class TransporterBehaviour : MonoBehaviour
 
         // Spawn a new alien
         SpawnAlien();
-
-        MoveCount = 0;
-        AchievementCount++;
     }
 
     GameObject getCurrentAlien()
@@ -166,55 +116,37 @@ public class TransporterBehaviour : MonoBehaviour
         return Aliens[Aliens.Count-1];
     }
 
-    public void TimeDone()
-    {
-        if (!TransporterComplete)
-        {
-            Debug.Log("TIME IS DONE. You got " + AchievementCount + " achievements");
-            audioSource.clip = partyMusic;
-            audioSource.Play();
-           
-            HaveAParty();
 
+
+    public void OnReset()
+    {
+        TransporterComplete = false;
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+        foreach (GameObject alien in Aliens)
+        {
+            GameObject.DestroyImmediate(alien);
+        }
+    }
+
+    public void TriggerTimeDone()
+    {
+            Debug.Log("Transporter doing the timeDone thing");
             TransporterComplete = true;
             TransporterActive = false;
 
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = doneColor;
-        }
 
-        // Display some info about what you did
+        // Display some info about what you did and where to go next
     }
 
-    public void OnReset()
-    {
-        TimeLeft = 500;
-        MoveCount = 0;
-        AchievementCount = 0;
-        AchievementAttained = false;
-        TransporterComplete = false;
-        Renderer rend = GetComponent<Renderer>();
-        rend.material.color = originalColor;
-    }
 
-    public void HaveAParty()
-    {
-                
-        foreach (GameObject alien in Aliens)
-        {
-            //This will now work because you've constrained the generic type V
-            Debug.Log("iterated thru alien");
-            if (!alien.GetComponent<AlienBehaviour>().isdropped)
-            {
-                alien.GetComponent<AlienBehaviour>().OnDrop();
-            }
+}
 
-            alien.GetComponent<AlienBehaviour>().DanceParty();
-            
-        }
-    }
+
 
 
     // To play one clip after another, use coroutines
     //http://docs.unity3d.com/540/Documentation/Manual/Coroutines.html
-}
+

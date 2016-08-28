@@ -585,7 +585,7 @@ GameObject:
   - 65: {fileID: 65000012342508042}
   m_Layer: 0
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1274,3 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  isdropped: 0
+  partytime: 0
+  Endwalk: 2
+  countup: 0
