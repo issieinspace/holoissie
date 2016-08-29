@@ -68,9 +68,9 @@ public class ExerciseMove : MonoBehaviour {
         zDisplacement = displacement.z;
 
         // Test for movement
-        return (displacement.x >= targetXDisplacement 
-                && displacement.y >= targetYDisplacement 
-                && displacement.z >= targetZDisplacement);
+        return ((displacement.x >= targetXDisplacement || targetXDisplacement == 0)
+                && (displacement.y >= targetYDisplacement || targetYDisplacement == 0)
+                && (displacement.z >= targetZDisplacement || targetZDisplacement == 0));
   
     }
 
@@ -86,9 +86,9 @@ public class ExerciseMove : MonoBehaviour {
         zDisplacement = displacement.z;
         
         // Test for movement
-        return (displacement.x < wiggleRoom
-                && displacement.y < wiggleRoom
-                && displacement.z < wiggleRoom);
+        return ((displacement.x < wiggleRoom || targetXDisplacement == 0)
+                && (displacement.y < wiggleRoom || targetYDisplacement == 0)
+                && (displacement.z < wiggleRoom || targetZDisplacement == 0));
 
     }
 }

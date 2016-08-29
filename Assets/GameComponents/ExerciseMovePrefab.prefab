@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013196887412}
   - 114: {fileID: 114000012239445282}
   m_Layer: 0
-  m_Name: Pref_ExerciseMove
+  m_Name: ExerciseMovePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,3 +60,6 @@ MonoBehaviour:
   Complete: 0
   DisplacementAchieved: 0
   TimeElapsed: 0
+  xDisplacement: 0
+  yDisplacement: 0
+  zDisplacement: 0

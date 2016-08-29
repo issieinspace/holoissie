@@ -27,13 +27,7 @@ public class TransporterBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if(!TransporterActive)
-        {
-            return;
-        }
         Aliens = new System.Collections.Generic.List<GameObject>();
-
-        SpawnAlien();       
 
         Renderer rend = GetComponent<Renderer>();
         originalColor = rend.material.color;
@@ -116,7 +110,10 @@ public class TransporterBehaviour : MonoBehaviour
         return Aliens[Aliens.Count-1];
     }
 
-
+    public void OnStart()
+    {
+        SpawnAlien();
+    }
 
     public void OnReset()
     {

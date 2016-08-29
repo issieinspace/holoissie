@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012269300832}
+  m_RootGameObject: {fileID: 1000011498705890}
   m_IsPrefabParent: 1
---- !u!1 &1000012269300832
+--- !u!1 &1000011498705890
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012259088832}
-  - 114: {fileID: 114000010055067516}
+  - 4: {fileID: 4000013311624324}
+  - 114: {fileID: 114000010518343526}
   m_Layer: 0
-  m_Name: Pref_Game
-  m_TagString: Untagged
+  m_Name: ExercisePrefab
+  m_TagString: Exercise
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000012259088832
+--- !u!4 &4000013311624324
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012269300832}
+  m_GameObject: {fileID: 1000011498705890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,19 +40,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114000010055067516
+--- !u!114 &114000010518343526
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012269300832}
+  m_GameObject: {fileID: 1000011498705890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051d4f12ec9f94f4ea73fc889719c89b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f099eda0e4166640b512967b1a4ce79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExerciseStations: []
-  gameID: 0
-  totalScore: 0
-  Player: {fileID: 0}
-  ExerciseResults: []
+  TransporterControl: {fileID: 0}
+  TimeForExercise: 30
+  MovesForAchievement: 0
+  ExerciseMovePrefab: {fileID: 0}
+  Moves: []
+  achievementSoundName: EtherealAccent
+  timeDoneSoundName: SynthZap
+  encouragementSoundName: NICEWORK1-Remix
+  almostDoneSoundName: YourAlmostThere1-Remix
+  PlayerIsReady: 1
+  AchievementCount: 0
+  ExerciseComplete: 0
+  ExerciseInProgress: 0
+  TimeLeft: 0
+  MovesCompleted: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Exercise
   - Alien
+  - Diagnostics
   layers:
   - Default
   - TransparentFX

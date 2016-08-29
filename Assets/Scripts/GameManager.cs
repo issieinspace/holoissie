@@ -4,7 +4,6 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
-    public GameObject Transporter;
     public bool RunIntro = true;
     public bool Played8SecRemaining = false;
     public bool PlayedFirstAchievement = false;
@@ -23,6 +22,8 @@ public class GameManager : MonoBehaviour {
     public bool GameOver;
     public bool ReadyToRestart;
 
+    public GameObject Diagnostics;
+
 
     // Use this for initialization
     void Start () {
@@ -39,8 +40,7 @@ public class GameManager : MonoBehaviour {
 
         // We will have multiple game stages and move one to the next
         CommenceExerciseStage();
-
-
+        
     }
 
     // Update is called once per frame
@@ -66,11 +66,12 @@ public class GameManager : MonoBehaviour {
                     currentExerciseIndex++;
                     CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
                     CurrentExercise.PlayerIsReady = true;
-                    Debug.Log("Next exercise kicked of");
+                  
+                    Debug.Log("Next exercise kicked off");
                 }
             }
-           
 
+            OutputDiagnostics(CurrentExercise);
             // if all done, stage is done
         }
         else
@@ -80,6 +81,12 @@ public class GameManager : MonoBehaviour {
                 HaveAParty();
             }
         }
+    }
+
+    private void OutputDiagnostics(Exercise currentExercise)
+    {
+        Monitor monitor = Diagnostics.GetComponent<Monitor>();
+        monitor.DisplayMessage(currentExercise.getStatus());
     }
 
     void CommenceExerciseStage()

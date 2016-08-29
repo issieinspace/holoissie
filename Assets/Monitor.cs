@@ -9,7 +9,16 @@ public class Monitor : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Renderer rend = GetComponent<Renderer>();
 
+        if (Debug)
+        {
+            rend.enabled = true;
+        }
+        else
+        {
+            rend.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -18,16 +27,10 @@ public class Monitor : MonoBehaviour
 
     }
 
-    void OnGUI()
+    public void DisplayMessage(string message)
     {
-
-        if (Debug)
-        {
-            // Make a background box
-            GUI.Box(new Rect(10, 10, 400, 400), "Actions");
-
-
-        }
+        GetComponent<TextMesh>().text = message;
+  
     }
 }
 

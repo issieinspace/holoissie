@@ -7,11 +7,13 @@ public class Exercise : MonoBehaviour
 
     // --- Configuration
     public GameObject TransporterControl;
+    public string ExerciseName;
 
     // The time
     public float TimeForExercise = 30;
     public int MovesForAchievement;
-    
+    TransporterBehaviour TransporterBehaviour;
+   
     // The move for this exercise
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
@@ -35,11 +37,9 @@ public class Exercise : MonoBehaviour
     public bool ExerciseInProgress = false;
     bool TriggeredFirstAchievementAttained = false;
     public float TimeLeft;
-    int MovesCompleted = 0;
+    public int MovesCompleted = 0;
     ExerciseMove Move;
-    TransporterBehaviour TransporterBehaviour;
  
-
 
     // Use this for initialization
     void Start()
@@ -66,7 +66,7 @@ public class Exercise : MonoBehaviour
                 // Test for achievement unlocked
                 if (Moves.Count > 0 && (Moves.Count % MovesForAchievement == 0))
                 {
-                    Debug.Log("I GOT AN ACHIEVEMENT");
+                    Debug.Log(ExerciseName + "I GOT AN ACHIEVEMENT");
                     TransporterBehaviour.TriggerAchievement();
                     // If this is the first achievement do something special
                     // TriggerFirstAchievement
@@ -98,6 +98,22 @@ public class Exercise : MonoBehaviour
         }
     }
 
+    public string getStatus()
+    {
+        if(Move == null)
+        {
+            return ExerciseName + "No Move setup yet";
+        }
+        else
+        {
+            return ExerciseName + " " + Move.xDisplacement.ToString("N3") + ","
+                     + Move.yDisplacement.ToString("N3") + ","
+                     + Move.zDisplacement.ToString("N3") + "," + "|"
+                     + Move.DisplacementAchieved;
+
+        }
+    }
+
     // Start the exercise
     void StartExercise()
     {
@@ -106,7 +122,9 @@ public class Exercise : MonoBehaviour
         // Start the timer
         ExerciseInProgress = true;
         CreateNewMove();
-        Debug.Log("Started Exercise");
+        TransporterBehaviour.TransporterActive = true;
+        TransporterBehaviour.OnStart();
+        Debug.Log(ExerciseName + ": Started Exercise");
     }
 
   
@@ -117,14 +135,14 @@ public class Exercise : MonoBehaviour
 
         TransporterBehaviour.TriggerTimeDone();
 
-        Debug.Log("Stopped Exercise");
+        Debug.Log(ExerciseName + ": Stopped Exercise");
     }
 
     private void CreateNewMove()
     {
         Move = Instantiate(ExerciseMovePrefab).GetComponent<ExerciseMove>();
         Move.TransporterControl = TransporterControl;
-        Debug.Log("Move created");
+        Debug.Log(ExerciseName + "Move created");
     }
 
 }
