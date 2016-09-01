@@ -47,7 +47,7 @@ public class ExerciseMove : MonoBehaviour {
         else if (!Complete)
         {
             //test for return from displacement
-            Complete = checkForReturnFromDisplacement();
+            Complete = checkForCompletion();
             // Advance the clock
             TimeElapsed += Time.deltaTime;
         }
@@ -56,7 +56,7 @@ public class ExerciseMove : MonoBehaviour {
 
     }
 
-    bool checkForDisplacement()
+    protected virtual bool checkForDisplacement()
     {
         // Get the position
         Vector3 currentPosition = Camera.main.transform.position;
@@ -74,8 +74,9 @@ public class ExerciseMove : MonoBehaviour {
   
     }
 
-    bool checkForReturnFromDisplacement()
+    protected virtual bool checkForCompletion()
     {
+        // Test that we have returned from displacement
         // Get the position
         Vector3 currentPosition = Camera.main.transform.position;
         Vector3 displacement = originalPosition - currentPosition;
