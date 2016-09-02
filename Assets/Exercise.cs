@@ -8,6 +8,7 @@ public class Exercise : MonoBehaviour
     // --- Configuration
     public GameObject TransporterControl;
     public string ExerciseName;
+    public int Order;
 
     // The time
     public float TimeForExercise = 30;

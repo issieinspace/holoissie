@@ -128,13 +128,15 @@ public class TransporterBehaviour : MonoBehaviour
 
     public void TriggerTimeDone()
     {
-            Debug.Log("Transporter doing the timeDone thing");
-            TransporterComplete = true;
-            TransporterActive = false;
+        Debug.Log("Transporter doing the timeDone thing");
+        TransporterComplete = true;
+        TransporterActive = false;
 
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = doneColor;
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = doneColor;
 
+        audioSource.clip = timeDone;
+        audioSource.Play();
         // Display some info about what you did and where to go next
     }
 
