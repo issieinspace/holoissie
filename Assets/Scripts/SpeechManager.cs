@@ -11,21 +11,16 @@ public class SpeechManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        keywords.Add("Reset world", () =>
+        keywords.Add("Restart", () =>
         {
             // Call the OnReset method on every descendant object.
             this.BroadcastMessage("OnReset");
         });
 
-      /*  keywords.Add("Drop Sphere", () =>
+        keywords.Add("Go", () =>
         {
-            var focusObject = GazeGestureManager.Instance.FocusedObject;
-            if (focusObject != null)
-            {
-                // Call the OnDrop method on just the focused object.
-                focusObject.SendMessage("OnDrop");
-            }
-        });*/
+            this.BroadcastMessage("OnGo");
+        });
 
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());

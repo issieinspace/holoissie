@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public bool PlayedFirstAchievement = false;
     AudioClip completionCongrats = null;
     AudioClip partyMusic = null;
+    AudioClip intro = null;
 
     AudioSource audioSource;
 
@@ -21,8 +22,11 @@ public class GameManager : MonoBehaviour {
     public bool ExerciseStageDone;
     public bool GameOver;
     public bool ReadyToRestart;
+    public bool RestartCalled;
 
     public GameObject Diagnostics;
+
+    public string introClip = "OpeningDialogue_2_Remix";
 
 
     // Use this for initialization
@@ -30,26 +34,34 @@ public class GameManager : MonoBehaviour {
         
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);
-        if (RunIntro)
-        {
-            GetComponent<AudioSource>().Play();
-        }
-
+        
         // Setup some audio clips
         partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
+        intro = Resources.Load<AudioClip>(introClip);
 
-        // We will have multiple game stages and move one to the next
-        CommenceExerciseStage();
-        
+        StartGame();
     }
 
     // Update is called once per frame
     void Update () {
         RunExerciseStage();
-       
+        if(Input.GetAxis("Cancel") != 0.0f && !RestartCalled)
+        {
+            RestartGame();
+        }
     }
 
-   
+    private void StartGame()
+    {
+        // We will have multiple game stages and move one to the next
+        if (RunIntro)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        CommenceExerciseStage();
+        RestartCalled = false;
+    }
+
     private void RunExerciseStage()
     {
         if (!ExerciseStageDone)
@@ -93,7 +105,9 @@ public class GameManager : MonoBehaviour {
     {
         // Collect the exercises
         exercises = GameObject.FindGameObjectsWithTag("Exercise");
-       
+
+        currentExerciseIndex = 0;
+
         Debug.Log("Found " + exercises.Length + " exercises.");
 
         Array.Sort(exercises, delegate (GameObject ex1, GameObject ex2) {
@@ -107,8 +121,24 @@ public class GameManager : MonoBehaviour {
 
     void RestartGame()
     {
-        // Tell the everyone to restart via broadcast
+        // Ensure we don't trigger multiple times
+        RestartCalled = true;
+
+        // Stop the music
+        GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
+        Debug.Log("Found " + backgroundMusic.name);
+        AudioSource background = backgroundMusic.GetComponent<AudioSource>();
+        background.Stop();
+
+        // Stop whatever is playing
+        this.GetComponent<AudioSource>().Stop();
+        this.GetComponent<AudioSource>().clip = intro;
+
+        // Tell everyone to restart via broadcast
         this.BroadcastMessage("OnReset");
+
+        // Start Game
+        StartGame();
     }
 
     void HaveAParty()
@@ -130,53 +160,5 @@ public class GameManager : MonoBehaviour {
         }
         GameOver = true;
     }
-
-
-/*
-    private void oldUpdateCode()
-    {
-        // Get the position
-        Vector3 transporter = Transporter.transform.position;
-        Vector3 camera = Camera.main.transform.position;
-        Vector3 yDifference = transporter - camera;
-
-        TransporterBehaviour behaviour = Transporter.GetComponent<TransporterBehaviour>();
-        AudioSource audioSource = GetComponent<AudioSource>();
-
-        //Debug.Log("Camera " + camera.y + " Transporter " + transporter.y + " Difference " + yDifference.y);
-
-        // Test for movement
-        if (behaviour.TransporterActive)
-        {
-            if (yDifference.y > .5)
-            {
-                // Get Transporter behaviour script and call methods on it
-                behaviour.TriggerDown();
-            }
-            else
-            {
-                behaviour.TriggerUp();
-            }
-
-            // Test getting an achievement
-            if (behaviour.AchievementCount == 1 && !PlayedFirstAchievement)
-            {
-                Debug.Log("About to play achievement 1");
-                audioSource.clip = firstAchievement;
-                audioSource.Play();
-                PlayedFirstAchievement = true;
-            }
-
-            // Test for 8 seconds remaining
-            if (behaviour.TimeLeft < 8 && !Played8SecRemaining)
-            {
-                Debug.Log("About to 8 sec warning");
-                audioSource.clip = almostThere;
-                audioSource.Play();
-                Played8SecRemaining = true;
-            }
-        }
-
-    }
-    */
+    
 }

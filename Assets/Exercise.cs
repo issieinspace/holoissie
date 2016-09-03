@@ -146,4 +146,12 @@ public class Exercise : MonoBehaviour
         Debug.Log(ExerciseName + "Move created");
     }
 
+    public void OnReset()
+    {
+        Debug.Log("Resetting exercise: " + ExerciseName);
+        ExerciseComplete = false;
+        ExerciseInProgress = false;
+        PlayerIsReady = false;
+        TimeLeft = TimeForExercise;
+    }
 }

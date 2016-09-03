@@ -137,6 +137,9 @@ public class TransporterBehaviour : MonoBehaviour
 
         audioSource.clip = timeDone;
         audioSource.Play();
+
+        getCurrentAlien().GetComponent<AlienBehaviour>().OnDrop();
+
         // Display some info about what you did and where to go next
     }
 
