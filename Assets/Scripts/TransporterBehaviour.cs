@@ -20,6 +20,9 @@ public class TransporterBehaviour : MonoBehaviour
     
     public bool TransporterComplete = false;
     public bool TransporterActive = false;
+    public bool FlyInOnStart = false;
+    public bool FlyOutOnComplete = false;
+
     public Transform Camera;
 
     public System.Collections.Generic.List<GameObject> Aliens;
@@ -44,6 +47,10 @@ public class TransporterBehaviour : MonoBehaviour
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
         
+        if(FlyInOnStart)
+        {
+            transform.parent.gameObject.active = false;
+        }
 
     }
 
@@ -113,6 +120,10 @@ public class TransporterBehaviour : MonoBehaviour
     public void OnStart()
     {
         SpawnAlien();
+        if(FlyInOnStart)
+        {
+            transform.parent.gameObject.active = true;
+        }
     }
 
     public void OnReset()
@@ -140,6 +151,13 @@ public class TransporterBehaviour : MonoBehaviour
 
         getCurrentAlien().GetComponent<AlienBehaviour>().OnDrop();
 
+        if(FlyOutOnComplete)
+        {
+            Debug.Log("going to Fly");
+            GameObject parent = transform.parent.gameObject;
+            parent.AddComponent<TransporterFlyOutAnimation>();
+            Debug.Log("adding Fly");
+        }
         // Display some info about what you did and where to go next
     }
 

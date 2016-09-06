@@ -10,9 +10,7 @@ public class AlienBehaviour : MonoBehaviour {
     public bool isdropped = false;
     public bool partytime = false;
     public float Endwalk = 2.0f;
-
-
-
+    
     bool alienwalking = false;
     bool alienjumping = false;
     bool alienrunning = false;
@@ -106,7 +104,7 @@ public class AlienBehaviour : MonoBehaviour {
         alienwalking = true;
         countup += Time.deltaTime;
 
-
+        transform.parent = null;
     }
 
     
