@@ -121,11 +121,9 @@ public class AlienBehaviour : MonoBehaviour {
         audioSource.Play();
         partytime = true;
         currentAnimation = animator.GetClip("alien_jumping");
-
     }
 
-    /*a nice idea, but found that he bounced like crazy
-     * void OnTriggerEnter(Collider other)
+   /* void OnTriggerEnter(Collider other)
     {
         Debug.Log("alien collision detected");
 
@@ -137,8 +135,8 @@ public class AlienBehaviour : MonoBehaviour {
             audioSource.Play();
             Debug.Log("Finished handling collision with spatial map");
         } 
-    }
-    */
+    }*/
+    
 
     
 }

@@ -83,6 +83,29 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
+            // Should move this elsewhere
+            if(CurrentExercise.AchievementCount == 1 && !CurrentExercise.TriggeredFirstAchievementAttained)
+            {
+                Debug.Log("Gamemanager sees you got an achievement");
+                CurrentExercise.TriggeredFirstAchievementAttained = true;
+
+                audioSource = GetComponent<AudioSource>();
+                audioSource.clip = CurrentExercise.firstAchievementSound;
+                audioSource.Play();
+                Debug.Log("Gamemanager played sound");
+            }
+
+            if (CurrentExercise.TimeLeft < 8 && !CurrentExercise.TriggeredAlmostDone)
+            {
+                Debug.Log("Gamemanager sees you are almost done");
+                CurrentExercise.TriggeredAlmostDone = true;
+
+                audioSource = GetComponent<AudioSource>();
+                audioSource.clip = CurrentExercise.almostDoneSound;
+                audioSource.Play();
+                Debug.Log("Gamemanager played almost done sound");
+            }
+
             OutputDiagnostics(CurrentExercise);
             // if all done, stage is done
         }

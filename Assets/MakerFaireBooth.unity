@@ -247,6 +247,11 @@ Prefab:
       propertyPath: FlyOutOnComplete
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f,
+        type: 2}
+      propertyPath: FlyInOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
@@ -776,6 +781,11 @@ Prefab:
       propertyPath: FlyOutOnComplete
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f,
+        type: 2}
+      propertyPath: FlyInOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
@@ -808,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 1
+  RunIntro: 0
   Played8SecRemaining: 0
   PlayedFirstAchievement: 0
   GamePrefab: {fileID: 1000012269300832, guid: 64f100d687ba30740b7d6462d0743b56, type: 2}
@@ -1023,6 +1033,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 129632, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
   m_IsPrefabParent: 0
@@ -1181,6 +1195,11 @@ Prefab:
       propertyPath: FlyOutOnComplete
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f,
+        type: 2}
+      propertyPath: FlyInOnStart
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
@@ -1251,7 +1270,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: MovesForAchievement
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}

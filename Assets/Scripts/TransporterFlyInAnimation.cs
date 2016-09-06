@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TransporterFlyOutAnimation : MonoBehaviour {
+public class TransporterFlyInAnimation : MonoBehaviour {
 
     private Vector3 target;
     private Vector3 starting;
@@ -13,16 +13,15 @@ public class TransporterFlyOutAnimation : MonoBehaviour {
     {
         Debug.Log("Started the thing");
         starting = transform.position;
-        target = transform.position + transform.up * -3;
-        
+        target = transform.position + transform.forward * -2;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Doing update the thing");
         float ratio = totalFrames / targetFrames;
-        
+
         transform.position = Vector3.Lerp(starting, target, ratio);
         if (ratio >= 1)
         {

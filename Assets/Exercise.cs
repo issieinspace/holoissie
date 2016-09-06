@@ -22,21 +22,23 @@ public class Exercise : MonoBehaviour
     // AudioClips to use for marking progress
     public string achievementSoundName = "EtherealAccent";
     public string timeDoneSoundName = "SynthZap";
-    public string encouragementSoundName = "NICEWORK1-Remix";
+    public string firstAchievementSoundName = "NICEWORK1-Remix";
     public string almostDoneSoundName = "YourAlmostThere1-Remix"; 
     // ---
 
     // State related info
     AudioClip achievementSound = null;
     AudioClip timeDoneSound = null;
-    AudioClip encouragementSound = null;
-    AudioClip almostDoneSound = null;
+    public AudioClip firstAchievementSound = null;
+    public AudioClip almostDoneSound = null;
 
     public bool PlayerIsReady = true;
     public int AchievementCount = 0;
     public bool ExerciseComplete = false;
     public bool ExerciseInProgress = false;
-    bool TriggeredFirstAchievementAttained = false;
+    public bool TriggeredFirstAchievementAttained = false;
+    public bool TriggeredAlmostDone = false;
+    
     public float TimeLeft;
     public int MovesCompleted = 0;
     ExerciseMove Move;
@@ -47,8 +49,9 @@ public class Exercise : MonoBehaviour
     {
         achievementSound = Resources.Load<AudioClip>(achievementSoundName);
         timeDoneSound = Resources.Load<AudioClip>(timeDoneSoundName);
-        encouragementSound = Resources.Load<AudioClip>(encouragementSoundName); ;
+        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementSoundName);
         almostDoneSound = Resources.Load<AudioClip>(almostDoneSoundName);
+
         TimeLeft = TimeForExercise;
         TransporterBehaviour = TransporterControl.GetComponent<TransporterBehaviour>();
     }
@@ -69,6 +72,7 @@ public class Exercise : MonoBehaviour
                 {
                     Debug.Log(ExerciseName + "I GOT AN ACHIEVEMENT");
                     TransporterBehaviour.TriggerAchievement();
+                    AchievementCount++;
                     // If this is the first achievement do something special
                     // TriggerFirstAchievement
                 }
@@ -79,6 +83,7 @@ public class Exercise : MonoBehaviour
             {
                 TransporterBehaviour.TriggerDown();
                 Move.TriggeredDisplacementAchieved = true;
+            
             }
             
  
@@ -153,5 +158,9 @@ public class Exercise : MonoBehaviour
         ExerciseInProgress = false;
         PlayerIsReady = false;
         TimeLeft = TimeForExercise;
+        TriggeredFirstAchievementAttained = false;
+        TriggeredAlmostDone = false;
+        AchievementCount = 0;
+        Moves.Clear();
     }
 }

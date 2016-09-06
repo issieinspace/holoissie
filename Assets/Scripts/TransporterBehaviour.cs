@@ -86,24 +86,17 @@ public class TransporterBehaviour : MonoBehaviour
 
     public void TriggerUp()
     {
-
         Debug.Log("Up triggered on Transporter!");
-        //if (System.String.Equals(triggeredDirection, "down"))
 
         Renderer rend = GetComponent<Renderer>();
-            rend.material.color = upColor;
+        rend.material.color = upColor;
 
-            audioSource.clip = bleep;
-            audioSource.Play();
+        audioSource.clip = bleep;
+        audioSource.Play();
     }
 
     public void TriggerAchievement()
     {
-        // Achievement action happens!!
-        Debug.Log("Transporter now reacting to achievement");
-        audioSource.clip = achievement;
-        audioSource.Play();
-        
         // Release the current alien
         GameObject alien = getCurrentAlien();
         alien.GetComponent<AlienBehaviour>().OnDrop();
@@ -122,7 +115,11 @@ public class TransporterBehaviour : MonoBehaviour
         SpawnAlien();
         if(FlyInOnStart)
         {
-            transform.parent.gameObject.active = true;
+            Debug.Log("going to Fly");
+            GameObject parent = transform.parent.gameObject;
+            parent.SetActive(true);
+            parent.AddComponent<TransporterFlyInAnimation>();
+            Debug.Log("adding Fly");
         }
     }
 
@@ -153,10 +150,8 @@ public class TransporterBehaviour : MonoBehaviour
 
         if(FlyOutOnComplete)
         {
-            Debug.Log("going to Fly");
             GameObject parent = transform.parent.gameObject;
             parent.AddComponent<TransporterFlyOutAnimation>();
-            Debug.Log("adding Fly");
         }
         // Display some info about what you did and where to go next
     }
