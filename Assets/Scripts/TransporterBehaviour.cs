@@ -22,7 +22,7 @@ public class TransporterBehaviour : MonoBehaviour
     public bool TransporterActive = false;
     public bool FlyInOnStart = false;
     public bool FlyOutOnComplete = false;
-
+    Vector3 originalTransporterPosition;
     public Transform Camera;
 
     public System.Collections.Generic.List<GameObject> Aliens;
@@ -46,8 +46,10 @@ public class TransporterBehaviour : MonoBehaviour
         achievement = Resources.Load<AudioClip>("EtherealAccent");
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
-        
-        if(FlyInOnStart)
+
+        originalTransporterPosition = transform.parent.transform.position;
+
+        if (FlyInOnStart)
         {
             transform.parent.gameObject.active = false;
         }
@@ -132,6 +134,8 @@ public class TransporterBehaviour : MonoBehaviour
         {
             GameObject.DestroyImmediate(alien);
         }
+        GameObject parent = transform.parent.gameObject;
+        parent.transform.position = originalTransporterPosition;
     }
 
     public void TriggerTimeDone()

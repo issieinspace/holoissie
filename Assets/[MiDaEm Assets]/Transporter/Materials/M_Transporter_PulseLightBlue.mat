@@ -7,14 +7,20 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: M_Transporter_PulseLightBlue
-  m_Shader: {fileID: 4800000, guid: 8dbbd855709ac6b45be8d314d619a790, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
+    - first:
+        name: _Alpha
+      second:
+        m_Texture: {fileID: 2800000, guid: 1b5764c754036ec45887628911ddb4bb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -52,6 +58,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _MaskBorder
+      second:
+        m_Texture: {fileID: 2800000, guid: 8124c598dc2c5944b8462249bebb156d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
@@ -65,6 +77,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _RandomBlinkTexture
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -107,6 +125,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _BlinkSpeed
+      second: 5
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -119,14 +140,35 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
         name: _Gloss_Power
       second: 0.8
     - first:
         name: _Glossiness
       second: 0.5
     - first:
+        name: _GlossyReflections
+      second: 1
+    - first:
+        name: _HardnessScanLines
+      second: 1
+    - first:
+        name: _MaxAlphaBlink
+      second: 1
+    - first:
+        name: _MaxAlphaScanLines
+      second: 1
+    - first:
         name: _Metallic
       second: 0
+    - first:
+        name: _MinAlphaBlink
+      second: 0.5
+    - first:
+        name: _MinAlphaScanLines
+      second: 0.6
     - first:
         name: _Mode
       second: 0
@@ -137,14 +179,32 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _ScanLines
+      second: 20
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
+    - first:
         name: _Speed
       second: 90
+    - first:
+        name: _SpeedScanLines
+      second: 5
     - first:
         name: _SrcBlend
       second: 1
     - first:
+        name: _USpeed
+      second: 0
+    - first:
         name: _UVSec
       second: 0
+    - first:
+        name: _VSpeed
+      second: 1
     - first:
         name: _ZWrite
       second: 1

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour {
     public bool GameOver;
     public bool ReadyToRestart;
     public bool RestartCalled;
+    public int RestartCounter = 0;
+    public string StartScene = "MakerFaireBooth";
 
     public GameObject Diagnostics;
 
@@ -45,10 +48,12 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         RunExerciseStage();
-        if(Input.GetAxis("Cancel") != 0.0f && !RestartCalled)
+        if(Input.GetAxis("Cancel") != 0.0f)
         {
             RestartGame();
         }
+      
+
     }
 
     private void StartGame()
@@ -59,11 +64,12 @@ public class GameManager : MonoBehaviour {
             GetComponent<AudioSource>().Play();
         }
         CommenceExerciseStage();
-        RestartCalled = false;
+
     }
 
     private void RunExerciseStage()
     {
+        
         if (!ExerciseStageDone)
         {
             //Check if the exercise is done
@@ -144,24 +150,26 @@ public class GameManager : MonoBehaviour {
 
     void RestartGame()
     {
-        // Ensure we don't trigger multiple times
-        RestartCalled = true;
 
-        // Stop the music
-        GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
-        Debug.Log("Found " + backgroundMusic.name);
-        AudioSource background = backgroundMusic.GetComponent<AudioSource>();
-        background.Stop();
+        /* // Stop the music
+         GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
+         Debug.Log("Found " + backgroundMusic.name);
+         AudioSource background = backgroundMusic.GetComponent<AudioSource>();
+         background.Stop();
 
-        // Stop whatever is playing
-        this.GetComponent<AudioSource>().Stop();
-        this.GetComponent<AudioSource>().clip = intro;
+         // Stop whatever is playing
+         this.GetComponent<AudioSource>().Stop();
+         this.GetComponent<AudioSource>().clip = intro;
 
-        // Tell everyone to restart via broadcast
-        this.BroadcastMessage("OnReset");
+         // Tell everyone to restart via broadcast
+         this.BroadcastMessage("OnReset");
 
-        // Start Game
-        StartGame();
+         // Maybe all we need is
+         // SceneManager.LoadScene(StartScene);
+         */
+
+        SceneManager.LoadScene(StartScene);
+        
     }
 
     void HaveAParty()
