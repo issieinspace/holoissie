@@ -12,8 +12,8 @@ public class TransporterFlyInAnimation : MonoBehaviour {
     void Start()
     {
         Debug.Log("Started the thing");
-        starting = transform.position;
-        target = transform.position + transform.forward * -2;
+        starting = transform.localPosition;
+        target = new Vector3(1f, 2.5f, 2f);//transform.position + transform.forward * -2;
 
     }
 
@@ -22,7 +22,7 @@ public class TransporterFlyInAnimation : MonoBehaviour {
     {
         float ratio = totalFrames / targetFrames;
 
-        transform.position = Vector3.Lerp(starting, target, ratio);
+        transform.localPosition = Vector3.Lerp(starting, target, ratio);
         if (ratio >= 1)
         {
             Destroy(this);

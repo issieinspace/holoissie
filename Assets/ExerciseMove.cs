@@ -60,7 +60,7 @@ public class ExerciseMove : MonoBehaviour {
     {
         // Get the position
         Vector3 currentPosition = Camera.main.transform.position;
-        Vector3 displacement = originalPosition - currentPosition;
+        Vector3 displacement = currentPosition - originalPosition;
 
         //Debug.Log("Testing for displacement" + displacement.ToString());
         xDisplacement = displacement.x;
@@ -68,10 +68,33 @@ public class ExerciseMove : MonoBehaviour {
         zDisplacement = displacement.z;
 
         // Test for movement
-        return ((displacement.x >= targetXDisplacement || targetXDisplacement == 0)
-                && (displacement.y >= targetYDisplacement || targetYDisplacement == 0)
-                && (displacement.z >= targetZDisplacement || targetZDisplacement == 0));
+        return checkDisplacementAxis(displacement.x, targetXDisplacement)
+                && checkDisplacementAxis(displacement.y, targetYDisplacement)
+                && checkDisplacementAxis(displacement.z, targetZDisplacement);
   
+    }
+
+    private bool checkDisplacementAxis(float displacement, float targetDisplacement)
+    {
+        bool val = false;
+         
+        if (targetDisplacement < 0)
+        {
+            val = displacement <= targetDisplacement;
+            //Debug.Log("Target is a negative number so displacement " + displacement + " <= target " + targetDisplacement + " is " + val);
+        }
+        else if (targetDisplacement > 0)
+        {
+            val = displacement >= targetDisplacement;
+            //Debug.Log("Target is a positive number so displacement " + displacement + " >= target " + targetDisplacement + " is " + val);
+        }
+        else
+        {
+            //target displacement == 0
+            val = true;
+        }
+
+        return val;
     }
 
     protected virtual bool checkForCompletion()
@@ -79,17 +102,52 @@ public class ExerciseMove : MonoBehaviour {
         // Test that we have returned from displacement
         // Get the position
         Vector3 currentPosition = Camera.main.transform.position;
-        Vector3 displacement = originalPosition - currentPosition;
+        Vector3 displacement = currentPosition - originalPosition;
 
-        //Debug.Log("Testing for return" + displacement.ToString());
+        Debug.Log("Testing for return" + displacement.ToString());
         xDisplacement = displacement.x;
         yDisplacement = displacement.y;
         zDisplacement = displacement.z;
-        
+
+        return checkCompletionAxis(displacement.x, targetXDisplacement, wiggleRoom)
+                && checkCompletionAxis(displacement.y, targetYDisplacement, wiggleRoom)
+                && checkCompletionAxis(displacement.z, targetZDisplacement, wiggleRoom);
+                
+
+        /*Debug.Log(" displacement " + yDisplacement + " < wiggleroom " + wiggleRoom + " is " + (displacement.x < wiggleRoom));
         // Test for movement
         return ((displacement.x < wiggleRoom || targetXDisplacement == 0)
                 && (displacement.y < wiggleRoom || targetYDisplacement == 0)
                 && (displacement.z < wiggleRoom || targetZDisplacement == 0));
+        */
+    }
 
+    private bool checkCompletionAxis(float displacement, float targetDisplacement, float wiggleRoom)
+    {
+
+        if(targetDisplacement == 0)
+        {
+            return true;
+        }
+
+        bool val = false;
+
+        if (wiggleRoom <= 0)
+        {
+            val = displacement > wiggleRoom;
+            Debug.Log("Wiggle is a negative number so displacement " + displacement + " <= target " + wiggleRoom + " is " + val);
+        }
+        else if (wiggleRoom > 0)
+        {
+            val = displacement < wiggleRoom;
+            Debug.Log("Wiggle is a positive number so displacement " + displacement + " >= target " + wiggleRoom + " is " + val);
+        }
+        else
+        {
+            //perfect return or we don't care == 0
+            val = true;
+        }
+
+        return val;
     }
 }

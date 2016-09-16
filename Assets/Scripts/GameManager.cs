@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     public bool ReadyToRestart;
     public bool RestartCalled;
     public int RestartCounter = 0;
-    public string StartScene = "MakerFaireBooth";
+    public string StartScene;
 
     public GameObject Diagnostics;
 
@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        StartScene = SceneManager.GetActiveScene().name;
+
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);
         
@@ -92,24 +93,24 @@ public class GameManager : MonoBehaviour {
             // Should move this elsewhere
             if(CurrentExercise.AchievementCount == 1 && !CurrentExercise.TriggeredFirstAchievementAttained)
             {
-                Debug.Log("Gamemanager sees you got an achievement");
+               // Debug.Log("Gamemanager sees you got an achievement");
                 CurrentExercise.TriggeredFirstAchievementAttained = true;
 
                 audioSource = GetComponent<AudioSource>();
                 audioSource.clip = CurrentExercise.firstAchievementSound;
                 audioSource.Play();
-                Debug.Log("Gamemanager played sound");
+               // Debug.Log("Gamemanager played sound");
             }
 
             if (CurrentExercise.TimeLeft < 8 && !CurrentExercise.TriggeredAlmostDone)
             {
-                Debug.Log("Gamemanager sees you are almost done");
+               // Debug.Log("Gamemanager sees you are almost done");
                 CurrentExercise.TriggeredAlmostDone = true;
 
                 audioSource = GetComponent<AudioSource>();
                 audioSource.clip = CurrentExercise.almostDoneSound;
                 audioSource.Play();
-                Debug.Log("Gamemanager played almost done sound");
+               // Debug.Log("Gamemanager played almost done sound");
             }
 
             OutputDiagnostics(CurrentExercise);

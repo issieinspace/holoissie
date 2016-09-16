@@ -26,6 +26,7 @@ public class TransporterFlyOutAnimation : MonoBehaviour {
         transform.position = Vector3.Lerp(starting, target, ratio);
         if (ratio >= 1)
         {
+            
             Destroy(this);
         }
         totalFrames++;

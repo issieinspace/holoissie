@@ -7,6 +7,7 @@ public class CEVISExerciseMove : ExerciseMove {
 
     protected override bool checkForDisplacement()
     {
+
         return (Input.GetAxis("Jump") != 0.0f);
     }
 

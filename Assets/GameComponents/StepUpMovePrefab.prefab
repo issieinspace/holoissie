@@ -56,7 +56,7 @@ MonoBehaviour:
   targetXDisplacement: 0
   targetYDisplacement: 0.14
   targetZDisplacement: 0
-  wiggleRoom: 0.04
+  wiggleRoom: 0.02
   Complete: 0
   DisplacementAchieved: 0
   TimeElapsed: 0

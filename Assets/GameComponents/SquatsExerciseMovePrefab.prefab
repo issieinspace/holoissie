@@ -54,9 +54,9 @@ MonoBehaviour:
   moveName: 
   TransporterControl: {fileID: 0}
   targetXDisplacement: 0
-  targetYDisplacement: 0.25
+  targetYDisplacement: -0.25
   targetZDisplacement: 0
-  wiggleRoom: 0.1
+  wiggleRoom: -0.08
   Complete: 0
   DisplacementAchieved: 0
   TimeElapsed: 0

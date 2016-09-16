@@ -507,7 +507,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_Name
-      value: More Squats
+      value: Squats
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -532,7 +532,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -574,7 +574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &628603569
 Transform:
   m_ObjectHideFlags: 0
@@ -662,7 +662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &733573631
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,13 +1252,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_Name
-      value: Squats
+      value: CEVIS
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: ExerciseMovePrefab
       value: 
-      objectReference: {fileID: 1000011260312850, guid: f1f684cdbebfd62449758940af7fd5bc,
+      objectReference: {fileID: 1000011260312850, guid: ba978edd548b4304e84d7af3ae7aa3f5,
         type: 2}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -1293,7 +1293,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 31
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
@@ -1423,7 +1423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1247893048
 Transform:
   m_ObjectHideFlags: 0
@@ -1667,6 +1667,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 172142, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
   m_IsPrefabParent: 0
@@ -1695,7 +1699,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1853138657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.321}
+  m_LocalPosition: {x: -0.349, y: -0.043, z: -0.162}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1762,7 +1766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ccb427561868a44b50783a6a3ae14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug: 0
+  Debug: 1
 --- !u!1001 &2007238957
 Prefab:
   m_ObjectHideFlags: 0
@@ -1952,7 +1956,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 31
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
