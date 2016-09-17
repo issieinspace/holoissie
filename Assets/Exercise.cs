@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Timers;
 
 public class Exercise : MonoBehaviour
 {
@@ -38,12 +39,17 @@ public class Exercise : MonoBehaviour
     public bool ExerciseInProgress = false;
     public bool TriggeredFirstAchievementAttained = false;
     public bool TriggeredAlmostDone = false;
-    
+    public bool CountDownDone = false;
+    public bool CountDownStarted = false;
+
+
     public float TimeLeft;
     public int MovesCompleted = 0;
     ExerciseMove Move;
- 
 
+    public float CountDown = 10;
+
+ 
     // Use this for initialization
     void Start()
     {
@@ -54,6 +60,8 @@ public class Exercise : MonoBehaviour
 
         TimeLeft = TimeForExercise;
         TransporterBehaviour = TransporterControl.GetComponent<TransporterBehaviour>();
+
+        
     }
 
     // Update is called once per frame
@@ -70,7 +78,7 @@ public class Exercise : MonoBehaviour
                 // Test for achievement unlocked
                 if (Moves.Count > 0 && (Moves.Count % MovesForAchievement == 0))
                 {
-                    Debug.Log(ExerciseName + "I GOT AN ACHIEVEMENT");
+                    Debug.Log(ExerciseName + "GOT AN ACHIEVEMENT");
                     TransporterBehaviour.TriggerAchievement();
                     AchievementCount++;
                     // If this is the first achievement do something special
@@ -83,11 +91,9 @@ public class Exercise : MonoBehaviour
             {
                 TransporterBehaviour.TriggerDown();
                 Move.TriggeredDisplacementAchieved = true;
-            
             }
             
- 
-            // Test for time up
+             // Test for time up
             TimeLeft -= Time.deltaTime;
 
             if (TimeLeft < 0)
@@ -97,10 +103,31 @@ public class Exercise : MonoBehaviour
         }
         else
         {
-            if (!ExerciseComplete && PlayerIsReady)
+            if (PlayerIsReady)
             {
-                StartExercise();
+                if (!CountDownStarted)
+                {
+                    ReadyExercise();
+                    
+                }
+
+                if (!CountDownDone)
+                {
+                    // run the countdown
+                    Debug.Log("This much left: " + TimersManager.RemainingTime(StartExercise) + " elapsed: " + TimersManager.ElapsedTime(StartExercise));
+                }
+                else
+                {
+                    if (!ExerciseComplete)
+                    {
+                        TransporterBehaviour.OnStart();
+                        StartExercise();
+                    }
+                }
+
             }
+
+           
         }
     }
 
@@ -120,15 +147,32 @@ public class Exercise : MonoBehaviour
         }
     }
 
-    // Start the exercise
-    void StartExercise()
+    // Ready exercise
+    void ReadyExercise()
     {
         // Clear previous moves
         Moves = new System.Collections.Generic.List<ExerciseMove>();
-        // Start the timer
+        // Activate transporter
+        TransporterBehaviour.TransporterActive = true;
+        // Start countdown
+        TransporterBehaviour.TriggerStart(CountDown);
+
+        // Count down started
+        TimersManager.SetTimer(this, CountDown, StartExercise);
+        
+
+        CountDownStarted = true;
+        
+        Debug.Log(ExerciseName + ": Ready Exercise");
+    }
+
+
+    // Start the exercise
+    void StartExercise()
+    {
+        CountDownDone = true;
         ExerciseInProgress = true;
         CreateNewMove();
-        TransporterBehaviour.TransporterActive = true;
         TransporterBehaviour.OnStart();
         Debug.Log(ExerciseName + ": Started Exercise");
     }
@@ -151,7 +195,7 @@ public class Exercise : MonoBehaviour
         Debug.Log(ExerciseName + "Move created");
     }
 
-    public void OnReset()
+   /* public void OnReset()
     {
         Debug.Log("Resetting exercise: " + ExerciseName);
         ExerciseComplete = false;
@@ -162,5 +206,5 @@ public class Exercise : MonoBehaviour
         TriggeredAlmostDone = false;
         AchievementCount = 0;
         Moves.Clear();
-    }
+    }*/
 }

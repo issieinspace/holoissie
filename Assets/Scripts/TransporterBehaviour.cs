@@ -24,6 +24,8 @@ public class TransporterBehaviour : MonoBehaviour
     public bool FlyOutOnComplete = false;
     Vector3 originalTransporterPosition;
     public Transform Camera;
+    public int CountDownFrom = 10;
+    float CountDown;
 
     public System.Collections.Generic.List<GameObject> Aliens;
 
@@ -54,6 +56,7 @@ public class TransporterBehaviour : MonoBehaviour
             transform.parent.gameObject.active = false;
         }
 
+        CountDown = CountDownFrom;
     }
 
     // Update is called once per frame
@@ -112,18 +115,29 @@ public class TransporterBehaviour : MonoBehaviour
         return Aliens[Aliens.Count-1];
     }
 
+    // Called when exercise starts
     public void OnStart()
     {
         SpawnAlien();
-        if(FlyInOnStart)
+        
+    }
+
+    public void TriggerStart(float countDown)
+    {
+        CountDown = countDown;
+
+        if (FlyInOnStart)
         {
-            Debug.Log("going to Fly");
             GameObject parent = transform.parent.gameObject;
             parent.SetActive(true);
             parent.AddComponent<TransporterFlyInAnimation>();
-            Debug.Log("adding Fly");
         }
+
+        // countdown
+        
     }
+
+    
 
     public void OnReset()
     {
