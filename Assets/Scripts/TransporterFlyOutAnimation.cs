@@ -11,7 +11,7 @@ public class TransporterFlyOutAnimation : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Started the thing");
+        Debug.Log("Started FLYOUT");
         starting = transform.position;
         target = transform.position + transform.up * -3;
         
@@ -20,7 +20,6 @@ public class TransporterFlyOutAnimation : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Doing update the thing");
         float ratio = totalFrames / targetFrames;
         
         transform.position = Vector3.Lerp(starting, target, ratio);

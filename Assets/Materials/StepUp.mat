@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ScreenContent_01
+  m_Name: StepUp
   m_Shader: {fileID: 4800000, guid: 3896b783cb2a20943af2f6f3eb4a4238, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5

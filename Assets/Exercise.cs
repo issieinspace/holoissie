@@ -11,6 +11,8 @@ public class Exercise : MonoBehaviour
     public string ExerciseName;
     public int Order;
 
+    
+
     // The time
     public float TimeForExercise = 30;
     public int MovesForAchievement;
@@ -19,6 +21,7 @@ public class Exercise : MonoBehaviour
     // The move for this exercise
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
+    public GameObject[] Triggerables;
 
     // AudioClips to use for marking progress
     public string achievementSoundName = "EtherealAccent";
@@ -61,7 +64,7 @@ public class Exercise : MonoBehaviour
         TimeLeft = TimeForExercise;
         TransporterBehaviour = TransporterControl.GetComponent<TransporterBehaviour>();
 
-        
+        Triggerables = GameObject.FindGameObjectsWithTag("Triggerable");
     }
 
     // Update is called once per frame
@@ -114,13 +117,12 @@ public class Exercise : MonoBehaviour
                 if (!CountDownDone)
                 {
                     // run the countdown
-                    Debug.Log("This much left: " + TimersManager.RemainingTime(StartExercise) + " elapsed: " + TimersManager.ElapsedTime(StartExercise));
+                    //Debug.Log("This much left: " + TimersManager.RemainingTime(StartExercise) + " elapsed: " + TimersManager.ElapsedTime(StartExercise));
                 }
                 else
                 {
                     if (!ExerciseComplete)
                     {
-                        TransporterBehaviour.OnStart();
                         StartExercise();
                     }
                 }
@@ -152,20 +154,16 @@ public class Exercise : MonoBehaviour
     {
         // Clear previous moves
         Moves = new System.Collections.Generic.List<ExerciseMove>();
+
         // Activate transporter
-        TransporterBehaviour.TransporterActive = true;
-        // Start countdown
-        TransporterBehaviour.TriggerStart(CountDown);
+        TransporterBehaviour.TriggerReady();
 
-        // Count down started
         TimersManager.SetTimer(this, CountDown, StartExercise);
-        
-
+ 
         CountDownStarted = true;
         
         Debug.Log(ExerciseName + ": Ready Exercise");
     }
-
 
     // Start the exercise
     void StartExercise()
@@ -173,7 +171,7 @@ public class Exercise : MonoBehaviour
         CountDownDone = true;
         ExerciseInProgress = true;
         CreateNewMove();
-        TransporterBehaviour.OnStart();
+        TransporterBehaviour.TriggerStart();
         Debug.Log(ExerciseName + ": Started Exercise");
     }
 

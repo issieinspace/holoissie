@@ -11,7 +11,7 @@ public class TransporterFlyInAnimation : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Started the thing");
+        Debug.Log("Started FLYIN thing");
         starting = transform.localPosition;
         target = new Vector3(1f, 2.5f, 2f);//transform.position + transform.forward * -2;
 

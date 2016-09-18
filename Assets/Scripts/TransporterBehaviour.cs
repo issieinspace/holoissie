@@ -116,21 +116,21 @@ public class TransporterBehaviour : MonoBehaviour
     }
 
     // Called when exercise starts
-    public void OnStart()
+    public void TriggerStart()
     {
         SpawnAlien();
         
     }
 
-    public void TriggerStart(float countDown)
+    public void TriggerReady()
     {
-        CountDown = countDown;
-
         if (FlyInOnStart)
         {
+            Debug.Log("FLYING IN");
             GameObject parent = transform.parent.gameObject;
             parent.SetActive(true);
             parent.AddComponent<TransporterFlyInAnimation>();
+            Debug.Log("FLEW IN " + parent.name);
         }
 
         // countdown
@@ -139,7 +139,7 @@ public class TransporterBehaviour : MonoBehaviour
 
     
 
-    public void OnReset()
+    /*public void OnReset()
     {
         TransporterComplete = false;
         Renderer rend = GetComponent<Renderer>();
@@ -150,13 +150,13 @@ public class TransporterBehaviour : MonoBehaviour
         }
         GameObject parent = transform.parent.gameObject;
         parent.transform.position = originalTransporterPosition;
-    }
+    }*/
 
     public void TriggerTimeDone()
     {
         Debug.Log("Transporter doing the timeDone thing");
-        TransporterComplete = true;
-        TransporterActive = false;
+        //TransporterComplete = true;
+        //TransporterActive = false;
 
         Renderer rend = GetComponent<Renderer>();
         rend.material.color = doneColor;
@@ -170,6 +170,8 @@ public class TransporterBehaviour : MonoBehaviour
         {
             GameObject parent = transform.parent.gameObject;
             parent.AddComponent<TransporterFlyOutAnimation>();
+           
+
         }
         // Display some info about what you did and where to go next
     }
