@@ -13,7 +13,7 @@ public class TransporterFlyInAnimation : MonoBehaviour {
     {
         Debug.Log("Started FLYIN thing");
         starting = transform.localPosition;
-        target = new Vector3(1f, 2.5f, 2f);//transform.position + transform.forward * -2;
+        target = new Vector3(1f, 2.5f, -.5f);//transform.position + transform.forward * -2;
 
     }
 

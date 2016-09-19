@@ -177,7 +177,10 @@ public class GameManager : MonoBehaviour {
     {
         GameObject[] alienFriends = GameObject.FindGameObjectsWithTag("Alien");
         Debug.Log("You got THIS many aliens rescued: " + alienFriends.Length);
-        audioSource = GetComponent<AudioSource>();
+        GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
+
+        audioSource = backgroundMusic.GetComponent<AudioSource>();
+        audioSource.Stop();
         audioSource.clip = partyMusic;
         audioSource.Play();
 

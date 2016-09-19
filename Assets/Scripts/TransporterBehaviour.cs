@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Timers;
 
 public class TransporterBehaviour : MonoBehaviour
 {
@@ -24,8 +25,9 @@ public class TransporterBehaviour : MonoBehaviour
     public bool FlyOutOnComplete = false;
     Vector3 originalTransporterPosition;
     public Transform Camera;
-    public int CountDownFrom = 10;
-    float CountDown;
+  
+    public DoorBehavior Door;
+
 
     public System.Collections.Generic.List<GameObject> Aliens;
 
@@ -53,10 +55,9 @@ public class TransporterBehaviour : MonoBehaviour
 
         if (FlyInOnStart)
         {
-            transform.parent.gameObject.active = false;
+            transform.parent.gameObject.SetActive(false);
         }
-
-        CountDown = CountDownFrom;
+        Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
     }
 
     // Update is called once per frame
@@ -126,18 +127,24 @@ public class TransporterBehaviour : MonoBehaviour
     {
         if (FlyInOnStart)
         {
-            Debug.Log("FLYING IN");
-            GameObject parent = transform.parent.gameObject;
-            parent.SetActive(true);
-            parent.AddComponent<TransporterFlyInAnimation>();
-            Debug.Log("FLEW IN " + parent.name);
+            Door.TriggerReady();
+            TimersManager.SetTimer(this, .5f, FlyIn);
         }
 
         // countdown
         
     }
 
-    
+    void FlyIn()
+    {
+        Debug.Log("FLYING IN");
+        GameObject parent = transform.parent.gameObject;
+        parent.SetActive(true);
+        parent.AddComponent<TransporterFlyInAnimation>();
+        Debug.Log("FLEW IN " + parent.name);
+
+    }
+
 
     /*public void OnReset()
     {

@@ -21,7 +21,6 @@ public class Exercise : MonoBehaviour
     // The move for this exercise
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
-    public GameObject[] Triggerables;
 
     // AudioClips to use for marking progress
     public string achievementSoundName = "EtherealAccent";
@@ -64,7 +63,7 @@ public class Exercise : MonoBehaviour
         TimeLeft = TimeForExercise;
         TransporterBehaviour = TransporterControl.GetComponent<TransporterBehaviour>();
 
-        Triggerables = GameObject.FindGameObjectsWithTag("Triggerable");
+        
     }
 
     // Update is called once per frame
@@ -165,6 +164,7 @@ public class Exercise : MonoBehaviour
         Debug.Log(ExerciseName + ": Ready Exercise");
     }
 
+  
     // Start the exercise
     void StartExercise()
     {

@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 11265759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.5, z: -1}
+  m_LocalPosition: {x: 1, y: 1.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -397,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198251329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: 3}
+  m_LocalPosition: {x: 1.5, y: 1.5, z: 3.1}
   m_LocalScale: {x: 3, y: 3, z: 0.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -429,7 +429,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282642934}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.2, y: 0, z: -1}
+  m_LocalPosition: {x: 0.2, y: -2.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children:
@@ -1087,7 +1087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc6f80547d24c0f4597c0fd470705003, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.49999997
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc6f80547d24c0f4597c0fd470705003, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1119,7 +1119,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc6f80547d24c0f4597c0fd470705003, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.30000007
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc6f80547d24c0f4597c0fd470705003, type: 2}
       propertyPath: m_LocalScale.z
@@ -1400,7 +1400,7 @@ Prefab:
     - target: {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f,
         type: 2}
       propertyPath: FlyInOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
@@ -1492,6 +1492,11 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
+        type: 2}
+      propertyPath: CountDown
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
