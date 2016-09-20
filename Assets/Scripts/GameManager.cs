@@ -2,12 +2,11 @@
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
+using Timers;
 
 public class GameManager : MonoBehaviour {
 
     public bool RunIntro = true;
-    public bool Played8SecRemaining = false;
-    public bool PlayedFirstAchievement = false;
     AudioClip completionCongrats = null;
     AudioClip partyMusic = null;
     AudioClip intro = null;
@@ -20,16 +19,19 @@ public class GameManager : MonoBehaviour {
     public int currentExerciseIndex = 0;
 
     public Exercise CurrentExercise;
+    public bool ExerciseStageInProgress;
     public bool ExerciseStageDone;
     public bool GameOver;
-    public bool ReadyToRestart;
-    public bool RestartCalled;
-    public int RestartCounter = 0;
     public string StartScene;
 
     public GameObject Diagnostics;
 
     public string introClip = "OpeningDialogue_2_Remix";
+
+    internal void OnGo()
+    {
+        throw new NotImplementedException();
+    }
 
 
     // Use this for initialization
@@ -48,7 +50,11 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        RunExerciseStage();
+        if (ExerciseStageInProgress)
+        {
+            RunExerciseStage();
+        }
+       
         if(Input.GetAxis("Cancel") != 0.0f)
         {
             RestartGame();
@@ -62,10 +68,16 @@ public class GameManager : MonoBehaviour {
         // We will have multiple game stages and move one to the next
         if (RunIntro)
         {
-            GetComponent<AudioSource>().Play();
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
+            
+            TimersManager.SetTimer(this, audio.clip.length - 5, CommenceExerciseStage);
         }
-        CommenceExerciseStage();
-
+        else
+        {
+            CommenceExerciseStage();
+        }
+      
     }
 
     private void RunExerciseStage()
@@ -78,7 +90,9 @@ public class GameManager : MonoBehaviour {
             {
                 if(currentExerciseIndex + 1 >= exercises.Length)
                 {
+                   
                     ExerciseStageDone = true;
+                    
                 }
                 else
                 {
@@ -118,6 +132,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
+            ExerciseStageInProgress = false;
             if (!GameOver) //GameOver is set in HaveAParty()
             {
                 HaveAParty();
@@ -144,33 +159,16 @@ public class GameManager : MonoBehaviour {
             return ex1.GetComponent<Exercise>().Order.CompareTo(ex2.GetComponent<Exercise>().Order);
         });
 
+        ExerciseStageInProgress = true;
+
         CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
         CurrentExercise.PlayerIsReady = true;
         Debug.Log("ExerciseStageStarted");   
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
-
-        /* // Stop the music
-         GameObject backgroundMusic = GameObject.Find("BackgroundMusic");
-         Debug.Log("Found " + backgroundMusic.name);
-         AudioSource background = backgroundMusic.GetComponent<AudioSource>();
-         background.Stop();
-
-         // Stop whatever is playing
-         this.GetComponent<AudioSource>().Stop();
-         this.GetComponent<AudioSource>().clip = intro;
-
-         // Tell everyone to restart via broadcast
-         this.BroadcastMessage("OnReset");
-
-         // Maybe all we need is
-         // SceneManager.LoadScene(StartScene);
-         */
-
-        SceneManager.LoadScene(StartScene);
-        
+        SceneManager.LoadScene(StartScene);        
     }
 
     void HaveAParty()
@@ -182,6 +180,7 @@ public class GameManager : MonoBehaviour {
         audioSource = backgroundMusic.GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.clip = partyMusic;
+        audioSource.loop = false;
         audioSource.Play();
 
         foreach (GameObject alien in alienFriends)

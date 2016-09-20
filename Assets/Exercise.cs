@@ -49,9 +49,10 @@ public class Exercise : MonoBehaviour
     public int MovesCompleted = 0;
     ExerciseMove Move;
 
-    public float CountDown = 10;
+    public uint TicksToCountDown = 6;
+    public uint CountDown;
+    public ExerciseTimer ExerciseTimer;
 
- 
     // Use this for initialization
     void Start()
     {
@@ -63,7 +64,9 @@ public class Exercise : MonoBehaviour
         TimeLeft = TimeForExercise;
         TransporterBehaviour = TransporterControl.GetComponent<TransporterBehaviour>();
 
-        
+        CountDown = TicksToCountDown;
+       
+
     }
 
     // Update is called once per frame
@@ -156,15 +159,21 @@ public class Exercise : MonoBehaviour
 
         // Activate transporter
         TransporterBehaviour.TriggerReady();
-
-        TimersManager.SetTimer(this, CountDown, StartExercise);
+        TimersManager.SetTimer(this, 1f, TicksToCountDown, TriggerTick);
+        TimersManager.SetTimer(this, TicksToCountDown, StartExercise);
  
         CountDownStarted = true;
         
         Debug.Log(ExerciseName + ": Ready Exercise");
     }
 
-  
+    void TriggerTick()
+    {
+        CountDown--;
+        TransporterBehaviour.TriggerTick(CountDown);
+    }
+
+
     // Start the exercise
     void StartExercise()
     {
@@ -172,6 +181,8 @@ public class Exercise : MonoBehaviour
         ExerciseInProgress = true;
         CreateNewMove();
         TransporterBehaviour.TriggerStart();
+        ExerciseTimer = GameObject.Find("ExerciseTimer").GetComponent<ExerciseTimer>();
+        ExerciseTimer.TriggerStart(TimeForExercise);
         Debug.Log(ExerciseName + ": Started Exercise");
     }
 

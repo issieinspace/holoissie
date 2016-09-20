@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010518343526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,17 +52,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransporterControl: {fileID: 0}
+  ExerciseName: 
+  Order: 0
   TimeForExercise: 30
   MovesForAchievement: 0
   ExerciseMovePrefab: {fileID: 0}
   Moves: []
   achievementSoundName: EtherealAccent
   timeDoneSoundName: SynthZap
-  encouragementSoundName: NICEWORK1-Remix
+  firstAchievementSoundName: NICEWORK1-Remix
   almostDoneSoundName: YourAlmostThere1-Remix
+  firstAchievementSound: {fileID: 0}
+  almostDoneSound: {fileID: 0}
   PlayerIsReady: 1
   AchievementCount: 0
   ExerciseComplete: 0
   ExerciseInProgress: 0
+  TriggeredFirstAchievementAttained: 0
+  TriggeredAlmostDone: 0
+  CountDownDone: 0
+  CountDownStarted: 0
   TimeLeft: 0
   MovesCompleted: 0
+  TicksToCountDown: 6
+  CountDown: 0

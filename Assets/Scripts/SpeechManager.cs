@@ -7,19 +7,25 @@ public class SpeechManager : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+    GameManager GameManager;
 
     // Use this for initialization
     void Start()
     {
+        GameManager = this.GetComponent<GameManager>();
+
         keywords.Add("Restart", () =>
         {
             // Call the OnReset method on every descendant object.
-            this.BroadcastMessage("OnReset");
+            Debug.Log("Yo did someone say Restart?");
+            //this.BroadcastMessage("OnReset");
+            GameManager.RestartGame();
         });
 
         keywords.Add("Go", () =>
         {
-            this.BroadcastMessage("OnGo");
+            Debug.Log("Yo did someone say Go?");
+            GameManager.OnGo();
         });
 
         // Tell the KeywordRecognizer about our keywords.

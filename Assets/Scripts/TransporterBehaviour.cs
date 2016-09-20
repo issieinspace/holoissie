@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Timers;
+using System;
 
 public class TransporterBehaviour : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class TransporterBehaviour : MonoBehaviour
     public GameObject AlienPrefab;
     
     AudioClip explosion = null;
-    AudioClip achievement = null;
+    AudioClip startTransporter = null;
     AudioClip timeDone = null;
     AudioClip bleep = null;
 
@@ -27,6 +28,8 @@ public class TransporterBehaviour : MonoBehaviour
     public Transform Camera;
   
     public DoorBehavior Door;
+    public CountDownDisplay CountDown;
+    public ExerciseTimer ExerciseTimer;
 
 
     public System.Collections.Generic.List<GameObject> Aliens;
@@ -47,7 +50,7 @@ public class TransporterBehaviour : MonoBehaviour
         audioSource.dopplerLevel = 0.0f;
 
         explosion = Resources.Load<AudioClip>("Explosion_Small");
-        achievement = Resources.Load<AudioClip>("EtherealAccent");
+        startTransporter = Resources.Load<AudioClip>("EtherealAccent");
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
 
@@ -58,12 +61,7 @@ public class TransporterBehaviour : MonoBehaviour
             transform.parent.gameObject.SetActive(false);
         }
         Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
+        CountDown = GameObject.Find("Countdown").GetComponent<CountDownDisplay>();
     }
 
     void SpawnAlien()
@@ -119,6 +117,9 @@ public class TransporterBehaviour : MonoBehaviour
     // Called when exercise starts
     public void TriggerStart()
     {
+        audioSource.clip = startTransporter;
+        audioSource.Play();
+
         SpawnAlien();
         
     }
@@ -130,9 +131,6 @@ public class TransporterBehaviour : MonoBehaviour
             Door.TriggerReady();
             TimersManager.SetTimer(this, .5f, FlyIn);
         }
-
-        // countdown
-        
     }
 
     void FlyIn()
@@ -146,19 +144,7 @@ public class TransporterBehaviour : MonoBehaviour
     }
 
 
-    /*public void OnReset()
-    {
-        TransporterComplete = false;
-        Renderer rend = GetComponent<Renderer>();
-        rend.material.color = originalColor;
-        foreach (GameObject alien in Aliens)
-        {
-            GameObject.DestroyImmediate(alien);
-        }
-        GameObject parent = transform.parent.gameObject;
-        parent.transform.position = originalTransporterPosition;
-    }*/
-
+  
     public void TriggerTimeDone()
     {
         Debug.Log("Transporter doing the timeDone thing");
@@ -183,7 +169,10 @@ public class TransporterBehaviour : MonoBehaviour
         // Display some info about what you did and where to go next
     }
 
-
+    internal void TriggerTick(uint countDown)
+    {
+        CountDown.TriggerTick(countDown);
+    }
 }
 
 
