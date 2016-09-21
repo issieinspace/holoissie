@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 0
+  RunIntro: 1
   GamePrefab: {fileID: 1000012269300832, guid: 64f100d687ba30740b7d6462d0743b56, type: 2}
   CurrentGame: {fileID: 0}
   exercises: []
@@ -2693,7 +2693,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: ExerciseName
-      value: 3rd
+      value: Third
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
