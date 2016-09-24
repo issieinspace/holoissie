@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public bool ExerciseStageDone;
     public bool GameOver;
     public string StartScene;
+    public string ExerciseScene;
 
     public GameObject Diagnostics;
 
@@ -30,7 +31,10 @@ public class GameManager : MonoBehaviour {
 
     internal void OnGo()
     {
-        throw new NotImplementedException();
+        if(SceneManager.GetActiveScene().name == StartScene)
+        {
+            SceneManager.LoadScene(ExerciseScene);
+        }
     }
 
 

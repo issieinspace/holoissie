@@ -1040,7 +1040,8 @@ MonoBehaviour:
   ExerciseStageInProgress: 0
   ExerciseStageDone: 0
   GameOver: 0
-  StartScene: MakerFaireBooth
+  StartScene: Launch
+  ExerciseScene: MakerFaireBooth
   Diagnostics: {fileID: 1853138657}
   introClip: OpeningDialogue_2_Remix
 --- !u!4 &769925908
