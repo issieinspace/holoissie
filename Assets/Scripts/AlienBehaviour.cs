@@ -7,6 +7,7 @@ public class AlienBehaviour : MonoBehaviour {
     AudioSource audioSource = null;
     AudioClip landingSound = null;
     AudioClip chatterSound = null;
+    AudioClip yay = null;
     public bool isdropped = false;
     public bool partytime = false;
     public float Endwalk = 2.0f;
@@ -36,6 +37,7 @@ public class AlienBehaviour : MonoBehaviour {
         chatterSound = Resources.Load<AudioClip>("Chatter");
         animator = this.GetComponent<Animation>();
         currentAnimation = animator.GetClip("alien_idle");
+        yay = Resources.Load<AudioClip>("AlienYAY2");
     }
 	
 	// Update is called once per frame
@@ -117,7 +119,7 @@ public class AlienBehaviour : MonoBehaviour {
 
     public void DanceParty()
     {
-        audioSource.clip = chatterSound;
+        audioSource.clip = yay;
         audioSource.Play();
         partytime = true;
         currentAnimation = animator.GetClip("alien_jumping");

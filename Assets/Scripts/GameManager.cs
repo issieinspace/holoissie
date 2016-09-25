@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public string ExerciseScene;
 
     public GameObject Diagnostics;
+    public GameObject Score;
 
     public string introClip = "OpeningDialogue_2_Remix";
 
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour {
         // Setup some audio clips
         partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
         intro = Resources.Load<AudioClip>(introClip);
+
+        Score = GameObject.Find("Score");
+        Score.GetComponent<TextMesh>().text = "";
 
         StartGame();
     }
@@ -188,6 +192,10 @@ public class GameManager : MonoBehaviour {
 
             alien.GetComponent<AlienBehaviour>().DanceParty();
         }
+
+        GameObject.Find("Countdown").GetComponent<TextMesh>().text = "Game Over";
+        Score.GetComponent<TextMesh>().text = "You rescued " + alienFriends.Length + " aliens!";
+
         GameOver = true;
     }
     

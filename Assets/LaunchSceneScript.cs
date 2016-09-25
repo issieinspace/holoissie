@@ -9,14 +9,19 @@ public class LaunchSceneScript : MonoBehaviour {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     public string ExerciseScene;
+    public GameObject Loading;
 
     // Use this for initialization
     void Start()
     {
-   
+        Loading = GameObject.Find("Loading");
+        Loading.GetComponent<TextMesh>().text = "";
+
         keywords.Add("Go", () =>
         {
             Debug.Log("Yo did someone say Go?");
+            Loading.GetComponent<TextMesh>().text = "";
+
             SceneManager.LoadScene(ExerciseScene);
         });
 
