@@ -29,18 +29,10 @@ public class GameManager : MonoBehaviour {
 
     public string introClip = "OpeningDialogue_2_Remix";
 
-    internal void OnGo()
-    {
-        if(SceneManager.GetActiveScene().name == StartScene)
-        {
-            SceneManager.LoadScene(ExerciseScene);
-        }
-    }
-
-
+   
     // Use this for initialization
     void Start () {
-        StartScene = SceneManager.GetActiveScene().name;
+        //StartScene = SceneManager.GetActiveScene().name;
 
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.gameObject.SetActive(false);

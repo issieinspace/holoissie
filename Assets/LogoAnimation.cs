@@ -1,0 +1,16 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class LogoAnimation : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        Debug.Log("rotatin");
+        transform.Rotate(new Vector3(0, 15, 0) * Time.deltaTime);
+	}
+}

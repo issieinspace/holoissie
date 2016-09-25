@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main.unity
   - enabled: 1
+    path: Assets/Launch.unity
+  - enabled: 1
     path: Assets/MakerFaireBooth.unity
   - enabled: 0
     path: Assets/NoCEVISDemo.unity

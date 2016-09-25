@@ -181,7 +181,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 7f3b166b9aa2eea43a37c4de26cd1790, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
@@ -356,7 +356,7 @@ PlayerSettings:
   wsaImages:
     65636: 
     2031716: 
-  metroTileShortName: Origami
+  metroTileShortName: ISSIE
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

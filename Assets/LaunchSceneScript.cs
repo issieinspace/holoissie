@@ -2,32 +2,24 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using UnityEngine.SceneManagement;
 
-public class SpeechManager : MonoBehaviour
-{
+public class LaunchSceneScript : MonoBehaviour {
+
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-    GameManager GameManager;
+    public string ExerciseScene;
 
     // Use this for initialization
     void Start()
     {
-        GameManager = this.GetComponent<GameManager>();
-
-        keywords.Add("Restart", () =>
-        {
-            // Call the OnReset method on every descendant object.
-            Debug.Log("Yo did someone say Restart?");
-            //this.BroadcastMessage("OnReset");
-            GameManager.RestartGame();
-        });
-
-      /*  keywords.Add("Go", () =>
+   
+        keywords.Add("Go", () =>
         {
             Debug.Log("Yo did someone say Go?");
-            GameManager.OnGo();
+            SceneManager.LoadScene(ExerciseScene);
         });
-*/
+
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
