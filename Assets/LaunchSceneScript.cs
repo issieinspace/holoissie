@@ -15,14 +15,12 @@ public class LaunchSceneScript : MonoBehaviour {
     void Start()
     {
         Loading = GameObject.Find("Loading");
-        Loading.GetComponent<TextMesh>().text = "";
+        //Loading.GetComponent<TextMesh>().text = "Multiverse Rescue";
 
         keywords.Add("Go", () =>
         {
             Debug.Log("Yo did someone say Go?");
-            Loading.GetComponent<TextMesh>().text = "";
-
-            SceneManager.LoadScene(ExerciseScene);
+            OnGo();
         });
 
         // Tell the KeywordRecognizer about our keywords.
@@ -40,5 +38,19 @@ public class LaunchSceneScript : MonoBehaviour {
         {
             keywordAction.Invoke();
         }
+    }
+
+    void Update()
+    {
+        if (Input.GetAxis("Jump") != 0.0f)
+        {
+            OnGo();
+        }
+    }
+
+    public void OnGo()
+    {
+        Loading.GetComponent<TextMesh>().text = "Loading";
+        SceneManager.LoadScene(ExerciseScene);
     }
 }

@@ -5,7 +5,7 @@ using System;
 public class CountDownDisplay : MonoBehaviour {
 
     uint Tick;
-    string[] ReadySetGo = new string[6] { "", "GO!", "Set", "Set", "Ready", "Ready"};
+    string[] ReadySetGo = new string[6] { "", "GO", "Set", "Set", "Ready", "Ready"};
 
 	// Use this for initialization
 	void Start () {

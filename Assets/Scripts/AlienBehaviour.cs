@@ -103,7 +103,7 @@ public class AlienBehaviour : MonoBehaviour {
         audioSource.Play();
         currentAnimation = animator.GetClip("alien_walking");
         //transform.Rotate(Vector3.right * Time.deltaTime * speed);
-        alienwalking = true;
+        //alienwalking = true;
         countup += Time.deltaTime;
 
         transform.parent = null;

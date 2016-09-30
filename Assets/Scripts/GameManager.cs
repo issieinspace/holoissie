@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject Diagnostics;
     public GameObject Score;
+    public GameObject Credits;
 
     public string introClip = "OpeningDialogue_2_Remix";
 
@@ -44,6 +45,9 @@ public class GameManager : MonoBehaviour {
 
         Score = GameObject.Find("Score");
         Score.GetComponent<TextMesh>().text = "";
+
+        Credits = GameObject.Find("Credits");
+        Credits.SetActive(false);
 
         StartGame();
     }
@@ -195,6 +199,10 @@ public class GameManager : MonoBehaviour {
 
         GameObject.Find("Countdown").GetComponent<TextMesh>().text = "Game Over";
         Score.GetComponent<TextMesh>().text = "You rescued " + alienFriends.Length + " aliens!";
+        
+        
+        TimersManager.SetTimer(this, 5, delegate { Credits.SetActive(true); Credits.AddComponent<CreditsAnimation>(); });
+        
 
         GameOver = true;
     }

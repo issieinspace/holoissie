@@ -18,7 +18,7 @@ public class ExerciseMove : MonoBehaviour {
     public float targetZDisplacement;
     public float wiggleRoom = .1f; // the amount of room it is permissible to be off when you return from displacement
 
-    Vector3 originalPosition;
+    public Vector3 originalPosition;
  
     public bool Complete = false;
     public bool DisplacementAchieved = false;
@@ -33,7 +33,7 @@ public class ExerciseMove : MonoBehaviour {
     void Start () {
        bleep = Resources.Load<AudioClip>("Computer04");
        // get the initial position of the player
-       originalPosition = Camera.main.transform.position;
+       //originalPosition = Camera.main.transform.position;
        // Exercise is required to set a transporter on us 
        Debug.Log("Exercise move is setup");
     }

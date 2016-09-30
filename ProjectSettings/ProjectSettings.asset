@@ -345,7 +345,7 @@ PlayerSettings:
   spritePackerPolicy: 
   scriptingDefineSymbols:
     14: 
-  metroPackageName: Origami
+  metroPackageName: ISSIE
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 

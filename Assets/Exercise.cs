@@ -11,8 +11,6 @@ public class Exercise : MonoBehaviour
     public string ExerciseName;
     public int Order;
 
-    
-
     // The time
     public float TimeForExercise = 30;
     public int MovesForAchievement;
@@ -21,6 +19,7 @@ public class Exercise : MonoBehaviour
     // The move for this exercise
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
+    public bool ReckonStartPositionFromReadyPositions;
 
     // AudioClips to use for marking progress
     public string achievementSoundName = "EtherealAccent";
@@ -199,8 +198,19 @@ public class Exercise : MonoBehaviour
 
     private void CreateNewMove()
     {
+        Vector3 originalPosition = Camera.main.transform.position;
         Move = Instantiate(ExerciseMovePrefab).GetComponent<ExerciseMove>();
         Move.TransporterControl = TransporterControl;
+
+        if(ReckonStartPositionFromReadyPositions)
+        {
+            Move.originalPosition = originalPosition;
+        }
+        else
+        {
+            Move.originalPosition = Camera.main.transform.position;
+        }
+        
         Debug.Log(ExerciseName + "Move created");
     }
 
