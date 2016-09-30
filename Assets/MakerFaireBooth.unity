@@ -838,7 +838,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -1792,7 +1792,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -2804,7 +2804,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 2
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
