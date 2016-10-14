@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AlienScaleAnimation : MonoBehaviour {
 
@@ -10,10 +11,10 @@ public class AlienScaleAnimation : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Debug.Log("Starting scale up for " + transform.gameObject.GetInstanceID().ToString());
         targetScale = transform.localScale;
         transform.localScale = targetScale * .01f;
         startingScale = targetScale * .01f;
-
     }
 	
 	// Update is called once per frame
@@ -22,8 +23,16 @@ public class AlienScaleAnimation : MonoBehaviour {
         transform.localScale = Vector3.Lerp(startingScale, targetScale, ratio);
         if(ratio >= 1)
         {
-            Destroy(this);
+            Complete();
         }
         totalFrames++;
 	}
+
+    internal void Complete()
+    {
+        Debug.Log("Completing scale up for " + transform.gameObject.GetInstanceID().ToString());
+
+        transform.localScale = targetScale;
+        Destroy(this);
+    }
 }

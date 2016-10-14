@@ -21,7 +21,6 @@ public class AlienBehaviour : MonoBehaviour {
     private AnimationClip currentAnimation;
     private Vector3 currentLocation;
     float speed = 1;
-    public float countup;
     
 
     void Start ()
@@ -55,8 +54,6 @@ public class AlienBehaviour : MonoBehaviour {
         {
             animator.Play(currentAnimation.name);
         }
-
-        countup += Time.deltaTime;
 
         if (alienwalking)
         {
@@ -96,6 +93,14 @@ public class AlienBehaviour : MonoBehaviour {
 
     public void OnDrop()
     {
+        Debug.Log("Dropping " + transform.gameObject.GetInstanceID().ToString());
+        AlienScaleAnimation scaleup = this.gameObject.GetComponent<AlienScaleAnimation>();
+
+        if (scaleup != null)
+        {
+            scaleup.Complete();
+        }
+
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         isdropped = true;
@@ -104,9 +109,10 @@ public class AlienBehaviour : MonoBehaviour {
         currentAnimation = animator.GetClip("alien_walking");
         //transform.Rotate(Vector3.right * Time.deltaTime * speed);
         //alienwalking = true;
-        countup += Time.deltaTime;
+        // why is this even here? countup += Time.deltaTime;
 
         transform.parent = null;
+        Debug.Log("Finished dropping " + transform.gameObject.GetInstanceID().ToString());
     }
 
     
