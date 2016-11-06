@@ -7,7 +7,7 @@ public class AlienScaleAnimation : MonoBehaviour {
     private Vector3 targetScale;
     private Vector3 startingScale;
     private float totalFrames = 0;
-    private float targetFrames = 60;
+    private float targetFrames = 30;
 
     // Use this for initialization
     void Start () {

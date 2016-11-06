@@ -17,5 +17,7 @@ EditorBuildSettings:
     path: Assets/Launch-Menu.unity
   - enabled: 1
     path: Assets/Warmup.unity
+  - enabled: 0
+    path: Assets/Cycle-Old.unity
   - enabled: 1
     path: Assets/Cycle.unity
