@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: StepUp
+  m_Name: RightLunge-Purple
   m_Shader: {fileID: 4800000, guid: 3896b783cb2a20943af2f6f3eb4a4238, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -18,11 +18,11 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 50b4f9e3352bb0c4f9135c1736aa7f26, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8e489c81d90b8e34bb9c699c97aec593, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0.2}
     m_Floats: []
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.6392157, g: 1, b: 0.7058824, a: 0.7529412}
+      second: {r: 0.909804, g: 0.5921569, b: 0.9960785, a: 0.7529412}

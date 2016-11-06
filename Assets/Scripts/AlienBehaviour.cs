@@ -49,7 +49,7 @@ public class AlienBehaviour : MonoBehaviour {
             DestroyImmediate(rigidbody);
             
         }
-
+    
         if(animator.isPlaying == false)
         {
             animator.Play(currentAnimation.name);
@@ -81,7 +81,7 @@ public class AlienBehaviour : MonoBehaviour {
             }
         }
 
-
+        
     }
 
 
@@ -102,7 +102,7 @@ public class AlienBehaviour : MonoBehaviour {
         }
 
         var rigidbody = this.gameObject.AddComponent<Rigidbody>();
-        rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        //drigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         isdropped = true;
         audioSource.clip = chatterSound;
         audioSource.Play();

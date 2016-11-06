@@ -10,7 +10,6 @@ public class LogoAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("rotatin");
         transform.Rotate(new Vector3(0, 15, 0) * Time.deltaTime);
 	}
 }

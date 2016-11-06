@@ -9,54 +9,54 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000011260312850}
+  m_RootGameObject: {fileID: 1000014273782596}
   m_IsPrefabParent: 1
---- !u!1 &1000011260312850
+--- !u!1 &1000014273782596
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013196887412}
-  - 114: {fileID: 114000011711241856}
+  - 4: {fileID: 4000011136239674}
+  - 114: {fileID: 114000013922345732}
   m_Layer: 0
-  m_Name: StepUpMovePrefab
+  m_Name: LateralLungesPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013196887412
+--- !u!4 &4000011136239674
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011260312850}
+  m_GameObject: {fileID: 1000014273782596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.4477596, y: 0.59838986, z: 4.0532665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000011711241856
+--- !u!114 &114000013922345732
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011260312850}
+  m_GameObject: {fileID: 1000014273782596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eabf966941f5874b96c90a3aff5d3bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3878f01f70e05514b8257c580accd7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: StepUp
+  moveName: LateralLunges
   TransporterControl: {fileID: 0}
   targetXDisplacement: 0
-  targetYDisplacement: 0.14
+  targetYDisplacement: 0
   targetZDisplacement: 0
-  wiggleRoom: 0.02
+  wiggleRoom: 0.1
   originalPosition: {x: 0, y: 0, z: 0}
   Complete: 0
   DisplacementAchieved: 0
@@ -64,3 +64,6 @@ MonoBehaviour:
   xDisplacement: 0
   yDisplacement: 0
   zDisplacement: 0
+  Moves:
+  - {fileID: 1000011635785916, guid: 99ddbe6b52004f84f8eef16e684aa7d5, type: 2}
+  - {fileID: 1000010444503652, guid: 70c800500f150b542984d168b2459dc7, type: 2}

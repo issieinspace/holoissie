@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LaunchSceneScript : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class LaunchSceneScript : MonoBehaviour {
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     public string ExerciseScene;
     public GameObject Loading;
+
+    Color selectedColor = Color.yellow;
 
     // Use this for initialization
     void Start()
@@ -23,12 +26,28 @@ public class LaunchSceneScript : MonoBehaviour {
             OnGo();
         });
 
+        keywords.Add("Cycle", () =>
+        {
+            StartGame("Cycle");
+        });
+
+        keywords.Add("Warmup", () =>
+        {
+            StartGame("Warmup");
+        });
+
+
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
         // Register a callback for the KeywordRecognizer and start recognizing!
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
         keywordRecognizer.Start();
+    }
+
+    private void SetSelectedColor(string selectedRoutine)
+    {
+        GameObject.Find(selectedRoutine).GetComponent<Renderer>().material.color = selectedColor;
     }
 
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
@@ -46,11 +65,30 @@ public class LaunchSceneScript : MonoBehaviour {
         {
             OnGo();
         }
+
+        if(Input.GetKey("1"))
+        {
+            StartGame("Cycle");
+        }
+
+        if (Input.GetKey("2"))
+        {
+            StartGame("Warmup");
+        }
+
     }
 
     public void OnGo()
     {
-        Loading.GetComponent<TextMesh>().text = "Loading";
+        Loading.GetComponent<TextMesh>().text = "Loading ";// + ExerciseScene;
         SceneManager.LoadScene(ExerciseScene);
     }
+
+    public void StartGame(String selectedRoutine)
+    {
+        SetSelectedColor(selectedRoutine);
+        ExerciseScene = selectedRoutine;
+        OnGo();
+    }
+     
 }

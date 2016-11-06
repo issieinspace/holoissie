@@ -68,7 +68,6 @@ public class Exercise : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (ExerciseInProgress)
@@ -142,10 +141,12 @@ public class Exercise : MonoBehaviour
         }
         else
         {
-            return ExerciseName + " " + Move.xDisplacement.ToString("N3") + ","
-                     + Move.yDisplacement.ToString("N3") + ","
-                     + Move.zDisplacement.ToString("N3") + "," + "|"
-                     + Move.DisplacementAchieved;
+            return ExerciseName + " - " + Move.getMoveName() + "\n\r"
+                     + Move.getXDisplacement().ToString("N3") + ","
+                     + Move.getYDisplacement().ToString("N3") + ","
+                     + Move.getZDisplacement().ToString("N3") + "," + "|" + "\n\r" 
+                     + "Displaced? " + Move.getDisplacementAchieved() + "\n\r" 
+                     + "Targets: " + Move.getTargetXDisplacement() + ", " + Move.getTargetYDisplacement() + ", " + Move.getTargetZDisplacement();
 
         }
     }
@@ -200,8 +201,7 @@ public class Exercise : MonoBehaviour
     {
         Vector3 originalPosition = Camera.main.transform.position;
         Move = Instantiate(ExerciseMovePrefab).GetComponent<ExerciseMove>();
-        Move.TransporterControl = TransporterControl;
-
+       
         if(ReckonStartPositionFromReadyPositions)
         {
             Move.originalPosition = originalPosition;
@@ -214,16 +214,4 @@ public class Exercise : MonoBehaviour
         Debug.Log(ExerciseName + "Move created");
     }
 
-   /* public void OnReset()
-    {
-        Debug.Log("Resetting exercise: " + ExerciseName);
-        ExerciseComplete = false;
-        ExerciseInProgress = false;
-        PlayerIsReady = false;
-        TimeLeft = TimeForExercise;
-        TriggeredFirstAchievementAttained = false;
-        TriggeredAlmostDone = false;
-        AchievementCount = 0;
-        Moves.Clear();
-    }*/
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ExerciseMove : MonoBehaviour {
 
@@ -7,10 +8,10 @@ public class ExerciseMove : MonoBehaviour {
 
     public string moveName;
 
-    // target displacements must be calculated relative to the height of the user. This is especially true for moves that require negative y displacements
-    // this option allows you to calculate a displacement that is fixed off of the distance between the transporter and the user
-    //public bool CalculateDisplacementFromTransporter;
-    public GameObject TransporterControl;
+    internal void Run()
+    {
+        Update();
+    }
 
     // The x,y,z distances you are required to move 
     public float targetXDisplacement;
@@ -32,10 +33,7 @@ public class ExerciseMove : MonoBehaviour {
 
     void Start () {
        bleep = Resources.Load<AudioClip>("Computer04");
-       // get the initial position of the player
-       //originalPosition = Camera.main.transform.position;
-       // Exercise is required to set a transporter on us 
-       Debug.Log("Exercise move is setup");
+        Debug.Log("Exercise move " + getMoveName() + " is setup");
     }
 
     void Update () {
@@ -51,9 +49,6 @@ public class ExerciseMove : MonoBehaviour {
             // Advance the clock
             TimeElapsed += Time.deltaTime;
         }
-
-     
-
     }
 
     protected virtual bool checkForDisplacement()
@@ -62,7 +57,7 @@ public class ExerciseMove : MonoBehaviour {
         Vector3 currentPosition = Camera.main.transform.position;
         Vector3 displacement = currentPosition - originalPosition;
 
-        //Debug.Log("Testing for displacement" + displacement.ToString());
+       // Debug.Log("Testing for displacement" + displacement.ToString());
         xDisplacement = displacement.x;
         yDisplacement = displacement.y;
         zDisplacement = displacement.z;
@@ -104,7 +99,7 @@ public class ExerciseMove : MonoBehaviour {
         Vector3 currentPosition = Camera.main.transform.position;
         Vector3 displacement = currentPosition - originalPosition;
 
-        Debug.Log("Testing for return" + displacement.ToString());
+        //Debug.Log("Testing for return" + displacement.ToString());
         xDisplacement = displacement.x;
         yDisplacement = displacement.y;
         zDisplacement = displacement.z;
@@ -122,6 +117,48 @@ public class ExerciseMove : MonoBehaviour {
         */
     }
 
+    public virtual string getMoveName()
+    {
+        return moveName;
+    }
+
+    public virtual float getXDisplacement()
+    {
+        return xDisplacement;
+    }
+
+    public virtual float getYDisplacement()
+    {
+        return yDisplacement;
+    }
+
+    public virtual float getZDisplacement()
+    {
+        return zDisplacement;
+    }
+
+    public virtual float getTargetYDisplacement()
+    {
+        return targetYDisplacement;
+    }
+
+    public virtual float getTargetZDisplacement()
+    {
+        return targetZDisplacement;
+    }
+
+    public virtual float getTargetXDisplacement()
+    {
+        return targetXDisplacement;
+    }
+
+
+    public virtual bool getDisplacementAchieved()
+    {
+        return DisplacementAchieved;
+    }
+
+ 
     private bool checkCompletionAxis(float displacement, float targetDisplacement, float wiggleRoom)
     {
 
@@ -132,15 +169,18 @@ public class ExerciseMove : MonoBehaviour {
 
         bool val = false;
 
+        // Wiggle room allows us to say how far off a return from displacement we are allowed to get and still be "good enough"
+        // 
+
         if (wiggleRoom <= 0)
         {
             val = displacement > wiggleRoom;
-            Debug.Log("Wiggle is a negative number so displacement " + displacement + " <= target " + wiggleRoom + " is " + val);
+            //Debug.Log("Wiggle is a negative number so displacement " + displacement + " <= target " + wiggleRoom + " is " + val);
         }
         else if (wiggleRoom > 0)
         {
             val = displacement < wiggleRoom;
-            Debug.Log("Wiggle is a positive number so displacement " + displacement + " >= target " + wiggleRoom + " is " + val);
+            //Debug.Log("Wiggle is a positive number so displacement " + displacement + " >= target " + wiggleRoom + " is " + val);
         }
         else
         {

@@ -68,7 +68,7 @@ public class TransporterBehaviour : MonoBehaviour
     {
         GameObject alien = GameObject.Instantiate(AlienPrefab);
         alien.transform.SetParent(this.transform);
-        alien.transform.localPosition = new Vector3(0, -5f, 0);
+        alien.transform.localPosition = new Vector3(0, -7.5f, 0);
         alien.transform.Rotate(0, -180, 0);
         alien.GetComponent<AlienBehaviour>().Target = Camera;
         alien.AddComponent<AlienScaleAnimation>();
@@ -78,7 +78,7 @@ public class TransporterBehaviour : MonoBehaviour
 
     public void TriggerDown()
     {
-            Debug.Log("Down triggered on Transporter!");
+            //Debug.Log("Down triggered on Transporter!");
 
             audioSource.clip = bleep;
             audioSource.Play();

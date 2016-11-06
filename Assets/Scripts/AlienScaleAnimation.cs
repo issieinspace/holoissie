@@ -11,7 +11,7 @@ public class AlienScaleAnimation : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log("Starting scale up for " + transform.gameObject.GetInstanceID().ToString());
+        //Debug.Log("Starting scale up for " + transform.gameObject.GetInstanceID().ToString());
         targetScale = transform.localScale;
         transform.localScale = targetScale * .01f;
         startingScale = targetScale * .01f;
@@ -30,7 +30,7 @@ public class AlienScaleAnimation : MonoBehaviour {
 
     internal void Complete()
     {
-        Debug.Log("Completing scale up for " + transform.gameObject.GetInstanceID().ToString());
+        //Debug.Log("Completing scale up for " + transform.gameObject.GetInstanceID().ToString());
 
         transform.localScale = targetScale;
         Destroy(this);

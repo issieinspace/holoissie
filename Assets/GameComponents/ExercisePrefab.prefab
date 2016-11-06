@@ -58,13 +58,14 @@ MonoBehaviour:
   MovesForAchievement: 0
   ExerciseMovePrefab: {fileID: 0}
   Moves: []
+  ReckonStartPositionFromReadyPositions: 0
   achievementSoundName: EtherealAccent
   timeDoneSoundName: SynthZap
   firstAchievementSoundName: NICEWORK1-Remix
   almostDoneSoundName: YourAlmostThere1-Remix
   firstAchievementSound: {fileID: 0}
   almostDoneSound: {fileID: 0}
-  PlayerIsReady: 1
+  PlayerIsReady: 0
   AchievementCount: 0
   ExerciseComplete: 0
   ExerciseInProgress: 0
@@ -76,3 +77,4 @@ MonoBehaviour:
   MovesCompleted: 0
   TicksToCountDown: 6
   CountDown: 0
+  ExerciseTimer: {fileID: 0}
