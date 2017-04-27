@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 0
+  RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 8
   exercises: []
   currentExerciseIndex: 0
@@ -2473,7 +2473,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 019fb7534604ce747a47124c389aa874, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.082
   m_Pitch: 1
   Loop: 1
   Mute: 0
