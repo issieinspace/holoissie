@@ -18,17 +18,7 @@ public class Exercise : MonoBehaviour
     public System.Collections.Generic.List<ExerciseMove> Moves;
     public bool ReckonStartPositionFromReadyPositions;
 
-    // AudioClips to use for marking progress
-    public string achievementSoundName = "EtherealAccent";
-    public string timeDoneSoundName = "SynthZap";
-    public string firstAchievementSoundName = "NICEWORK1-Remix";
-    public string almostDoneSoundName = "YourAlmostThere1-Remix"; 
-    // ---
-
-    // State related info
-    public AudioClip firstAchievementSound = null;
-    public AudioClip almostDoneSound = null;
-
+ 
     public bool PlayerIsReady = true;
     public int AchievementCount = 0;
     public bool ExerciseComplete = false;
@@ -50,9 +40,7 @@ public class Exercise : MonoBehaviour
     void Start()
     {
         ExerciseName = this.name;
-        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementSoundName);
-        almostDoneSound = Resources.Load<AudioClip>(almostDoneSoundName);
-
+        
         TimeLeft = TimeForExercise;
 
         CountDown = TicksToCountDown;
@@ -74,6 +62,12 @@ public class Exercise : MonoBehaviour
             
              // Test for time up
             TimeLeft -= Time.deltaTime;
+
+            if (TimeLeft < 8 && !TriggeredAlmostDone)
+            {
+                TriggeredAlmostDone = true;
+                BroadcastAlmostDone();
+            }
 
             if (TimeLeft < 0)
             {
@@ -107,11 +101,16 @@ public class Exercise : MonoBehaviour
         BroadcastMoveComplete();
         Moves.Add(Move);
         MovesCompleted++;
+             
         // Test for achievement unlocked
         if (Moves.Count > 0 && (Moves.Count % MovesForAchievement == 0))
         {
             Debug.Log(ExerciseName + "GOT AN ACHIEVEMENT");
             BroadcastAchievement();
+            if(AchievementCount == 0)
+            {
+                BroadcastFirstAchievement();
+            }
             AchievementCount++;
         }
 
@@ -221,9 +220,21 @@ public class Exercise : MonoBehaviour
         SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnAchievement"), SendMessageOptions.DontRequireReceiver);
     }
 
+    void BroadcastFirstAchievement()
+    {
+        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnFirstAchievement"), SendMessageOptions.DontRequireReceiver);
+    }
+
     void BroadcastExerciseReady()
     {
         Hashtable args = packArgs(null, "methodName", "OnReady");
+        args = packArgs(args, "exerciseName", ExerciseName);
+        SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
+    }
+
+    void BroadcastAlmostDone()
+    {
+        Hashtable args = packArgs(null, "methodName", "OnAlmostDone");
         args = packArgs(args, "exerciseName", ExerciseName);
         SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
     }

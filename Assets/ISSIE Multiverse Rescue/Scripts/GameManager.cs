@@ -7,15 +7,10 @@ using Timers;
 public class GameManager : MonoBehaviour {
 
     public bool RunIntro = true;
+    public int TimeToWaitBeforeCommencingExercise = 0;
 
-    AudioClip partyMusic = null;
-
-    AudioSource audioSource;
-
-    public GameObject GamePrefab; // this is the prefab from which we will spawn games
-    public GameObject CurrentGame; // this is the game in progress
     public GameObject[] exercises;
-    public GameObject[] listeners;
+    private GameObject[] listeners;
     public int currentExerciseIndex = 0;
 
     public Exercise CurrentExercise;
@@ -27,25 +22,21 @@ public class GameManager : MonoBehaviour {
     public GameObject Diagnostics;
     public GameObject Score;
     public GameObject Credits;
-
-    public string introClip = "OpeningDialogue_2_Remix";
-
    
     // Use this for initialization
     void Start () {
-        //StartScene = SceneManager.GetActiveScene().name;
 
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
-        //SpatialMapping.Instance.gameObject.SetActive(false);
+        //SpatialMapping.Instance.Object.SetActive(false);
         
-        // Setup some audio clips
-        partyMusic = Resources.Load<AudioClip>("ISSIE Game Loop - Continuous Drums");
-
         Score = GameObject.Find("Score");
         Score.GetComponent<TextMesh>().text = "";
 
         Credits = GameObject.Find("Credits");
         Credits.SetActive(false);
+
+        listeners = GameObject.FindGameObjectsWithTag("Triggerable");
+
 
         StartGame();
     }
@@ -67,10 +58,14 @@ public class GameManager : MonoBehaviour {
     {
         if (RunIntro)
         {
-            AudioSource audio = GetComponent<AudioSource>();
-            audio.Play();
-            
-            TimersManager.SetTimer(this, audio.clip.length - 5, CommenceExerciseStage);
+            // Send a message to play the intro
+            Hashtable args = new Hashtable();
+            args.Add("methodName", "OnIntro");
+            HandleEvent(args);
+           
+            // Wait for the appropriate time before starting
+            TimersManager.SetTimer(this, TimeToWaitBeforeCommencingExercise, CommenceExerciseStage);
+            RunIntro = false;
         }
         else
         {
@@ -101,28 +96,6 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
-            // Should move this elsewhere
-            if(CurrentExercise.AchievementCount == 1 && !CurrentExercise.TriggeredFirstAchievementAttained)
-            {
-               // Debug.Log("Gamemanager sees you got an achievement");
-                CurrentExercise.TriggeredFirstAchievementAttained = true;
-
-                audioSource = GetComponent<AudioSource>();
-                audioSource.clip = CurrentExercise.firstAchievementSound;
-                audioSource.Play();
-               // Debug.Log("Gamemanager played sound");
-            }
-
-            if (CurrentExercise.TimeLeft < 8 && !CurrentExercise.TriggeredAlmostDone)
-            {
-               // Debug.Log("Gamemanager sees you are almost done");
-                CurrentExercise.TriggeredAlmostDone = true;
-
-                audioSource = GetComponent<AudioSource>();
-                audioSource.clip = CurrentExercise.almostDoneSound;
-                audioSource.Play();
-               // Debug.Log("Gamemanager played almost done sound");
-            }
 
             OutputDiagnostics(CurrentExercise);
             // if all done, stage is done
@@ -130,13 +103,17 @@ public class GameManager : MonoBehaviour {
         else
         {
             ExerciseStageInProgress = false;
-            if (!GameOver) //GameOver is set in HaveAParty()
+            if (!GameOver)
             {
-                HaveAParty();
+                // Game is over now
+                Hashtable args = new Hashtable();
+                args.Add("methodName", "OnGameOver");
+                HandleEvent(args);
                 GameOver = true;
             }
         }
     }
+    
 
     private void OutputDiagnostics(Exercise currentExercise)
     {
@@ -170,7 +147,6 @@ public class GameManager : MonoBehaviour {
 
     public void HandleEvent(Hashtable args)
     {
-        listeners = GameObject.FindGameObjectsWithTag("Triggerable");
         String methodName = (String)args["methodName"];
         Debug.Log("About to execute " + methodName);
 
@@ -181,35 +157,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void HaveAParty()
-    {
-        GameObject[] alienFriends = GameObject.FindGameObjectsWithTag("Alien");
-        Debug.Log("You got THIS many aliens rescued: " + alienFriends.Length);
-        GameObject backgroundMusic = GameObject.Find("AudioManager");
-
-        audioSource = backgroundMusic.GetComponent<AudioSource>();
-        audioSource.Stop();
-        audioSource.clip = partyMusic;
-        audioSource.loop = false;
-        audioSource.Play();
-
-        foreach (GameObject alien in alienFriends)
-        {
-            if (!alien.GetComponent<AlienBehaviour>().isdropped)
-            {
-                alien.GetComponent<AlienBehaviour>().OnDrop();
-            }
-
-            alien.GetComponent<AlienBehaviour>().DanceParty();
-        }
-
-        GameObject.Find("Countdown").GetComponent<TextMesh>().text = "Game Over";
-        Score.GetComponent<TextMesh>().text = "You rescued " + alienFriends.Length + " aliens!";
-        
-        
-        TimersManager.SetTimer(this, 5, delegate { Credits.SetActive(true); Credits.AddComponent<CreditsAnimation>(); });
-        
-
-    }
+   
     
 }
