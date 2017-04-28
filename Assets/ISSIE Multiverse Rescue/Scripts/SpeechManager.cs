@@ -16,18 +16,18 @@ public class SpeechManager : MonoBehaviour
 
         keywords.Add("Restart", () =>
         {
-            // Call the OnReset method on every descendant object.
             Debug.Log("Yo did someone say Restart?");
-            //this.BroadcastMessage("OnReset");
             GameManager.RestartGame();
         });
-
-      /*  keywords.Add("Go", () =>
+            
+        keywords.Add("Monitor", () =>
         {
-            Debug.Log("Yo did someone say Go?");
-            GameManager.OnGo();
+            Debug.Log("Yo did someone say Monitor?");
+            GameManager.Diagnostics.GetComponent<Monitor>().Debug = !(GameManager.Diagnostics.GetComponent<Monitor>().Debug);
         });
-*/
+
+      
+
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 

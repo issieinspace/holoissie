@@ -4,6 +4,7 @@ using Timers;
 
 public class MultiverseRescueEventManager : MonoBehaviour {
 
+    AudioSource backgroundMusic = null;
     AudioSource audioSource = null;
 
     // AudioClips to use for marking progress
@@ -13,28 +14,28 @@ public class MultiverseRescueEventManager : MonoBehaviour {
     public string almostDoneName = "YourAlmostThere1-Remix";
     public string introClipName = "OpeningDialogue_2_Remix";
     public string partyMusicName = "ISSIE Game Loop - Continuous Drums";
+    public string backgroundMusicName = "ISSIE open";
 
-    // State related info
     AudioClip achievementSound = null;
     AudioClip almostDoneSound = null;
-    AudioClip firstAchievement = null;
+    AudioClip firstAchievementSound = null;
     AudioClip intro = null;
     AudioClip partyMusic = null;
-    AudioClip timeDoneSound = null;
-
-    // Use this for initialization
+   
     void Start ()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.loop = false;
-
         achievementSound = Resources.Load<AudioClip>(achievementSoundName);
         almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
-        firstAchievement = Resources.Load<AudioClip>(firstAchievementName);
+        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementName);
         intro = Resources.Load<AudioClip>(introClipName);
         partyMusic = Resources.Load<AudioClip>(partyMusicName);
-        timeDoneSound = Resources.Load<AudioClip>(timeDoneSoundName);
 
+        AudioSource[] audioSources = gameObject.GetComponents<AudioSource>();
+        audioSource = audioSources[1];
+        audioSource.loop = false;
+
+        backgroundMusic = audioSources[2];
+        backgroundMusic.loop = true;
     }
 
     public void OnIntro()
@@ -46,7 +47,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnFirstAchievement()
     {
-        audioSource.clip = firstAchievement;
+        audioSource.clip = firstAchievementSound;
         audioSource.Play();
     }
 
@@ -57,7 +58,8 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnAlmostDone(Hashtable args)
     {
-
+        audioSource.clip = almostDoneSound;
+        audioSource.Play();
     }
 
     void playClip(AudioClip clip)
@@ -70,11 +72,10 @@ public class MultiverseRescueEventManager : MonoBehaviour {
         GameObject[] alienFriends = GameObject.FindGameObjectsWithTag("Alien");
         Debug.Log("You got THIS many aliens rescued: " + alienFriends.Length);
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.Stop();
-        audioSource.clip = partyMusic;
-        audioSource.loop = false;
-        audioSource.Play();
+        backgroundMusic.Stop();
+        backgroundMusic.clip = partyMusic;
+        backgroundMusic.loop = false;
+        backgroundMusic.Play();
 
         foreach (GameObject alien in alienFriends)
         {
