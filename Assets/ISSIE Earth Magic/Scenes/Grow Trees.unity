@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 396320388}
   - component: {fileID: 396320387}
   - component: {fileID: 396320386}
+  - component: {fileID: 396320389}
   m_Layer: 0
   m_Name: SpatialProcessing
   m_TagString: Untagged
@@ -415,7 +416,7 @@ MonoBehaviour:
   SurfacePlanePrefab: {fileID: 1000010593991404, guid: 184d6e9ce2d89844489583805253eb83,
     type: 2}
   MinArea: 0.025
-  drawPlanesMask: 11
+  drawPlanesMask: 10
   destroyPlanesMask: 16
 --- !u!4 &396320388
 Transform:
@@ -430,6 +431,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &396320389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 396320385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9928a5c6ca5439548ba3c740bf929eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limitScanningByTime: 1
+  scanTime: 3
+  defaultMaterial: {fileID: 2100000, guid: 969e4200cbdb3604a855515bb57713c9, type: 2}
+  secondaryMaterial: {fileID: 2100000, guid: 3b3f8f571210a1f4e88997eb069cae7a, type: 2}
+  minimumFloors: 1
+  minimumWalls: 0
+  HorizontalPlanes: []
+  VerticalPlanes: []
 --- !u!1 &431092347
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +677,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010641181420, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
+        type: 2}
+      propertyPath: roomModel
+      value: 
+      objectReference: {fileID: 100006, guid: 797982fb08d4cba45b0d6c72bff7e8e2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
@@ -1204,22 +1229,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223757499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a023e3afa2d709f43878b518ddaa03f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c79483f9e1162a478dc773bd748b07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  achievementSoundName: 457468657265616c416363656e74
-  timeDoneSoundName: 53796e74685a6170
-  firstAchievementName: 4e494345574f524b312d52656d6978
-  almostDoneName: 596f7572416c6d6f73745468657265312d52656d6978
-  introClipName: 4f70656e696e674469616c6f6775655f325f52656d6978
-  partyMusicName: 49535349452047616d65204c6f6f70202d20436f6e74696e756f7573204472756d73
-  achievementSound: {fileID: 0}
-  almostDoneSound: {fileID: 0}
-  firstAchievement: {fileID: 0}
-  intro: {fileID: 0}
-  partyMusic: {fileID: 0}
-  timeDoneSound: {fileID: 0}
+  achievementSoundName: EtherealAccent
+  timeDoneSoundName: SynthZap
+  firstAchievementName: NICEWORK1-Remix
+  almostDoneName: YourAlmostThere1-Remix
+  introClipName: OpeningDialogue_2_Remix
+  partyMusicName: ISSIE Game Loop - Continuous Drums
 --- !u!82 &1223757503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1412,7 +1430,7 @@ GameObject:
   - component: {fileID: 1390147433}
   m_Layer: 0
   m_Name: TreeGrower
-  m_TagString: Untagged
+  m_TagString: Triggerable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1441,8 +1459,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a9738d8d68fa64b900a4873ee8bd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TreeModel: {fileID: 199518, guid: 17de3c1426f928b4e97bb2feeeb4d11e, type: 2}
+  PropModel: {fileID: 199518, guid: 17de3c1426f928b4e97bb2feeeb4d11e, type: 2}
   ExerciseName: 
+--- !u!1 &1507871143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1507871145}
+  - component: {fileID: 1507871144}
+  m_Layer: 0
+  m_Name: SpaceCollection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1507871144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507871143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4947f75e9b5644297c3963905a6b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1507871145
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507871143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.225, y: 0.391, z: 0.125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595548248
 GameObject:
   m_ObjectHideFlags: 0

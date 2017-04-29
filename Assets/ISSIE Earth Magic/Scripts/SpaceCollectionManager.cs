@@ -20,15 +20,15 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
         List<GameObject> horizontalObjects = new List<GameObject>();
         List<GameObject> verticalObjects = new List<GameObject>();
 
-        Placeable placeable = placeableObject.GetComponent<Placeable>();
-        if (placeable.PlacementSurface == PlacementSurfaces.Horizontal)
-        {
+        //Placeable placeable = placeableObject.GetComponent<Placeable>();
+        //if (placeable.PlacementSurface == PlacementSurfaces.Horizontal)
+        //{
             horizontalObjects.Add(placeableObject);
-        }
-        else
-        {
-            verticalObjects.Add(placeableObject);
-        }
+        //}
+        //else
+        //{
+            //verticalObjects.Add(placeableObject);
+        //}
 
         if (horizontalObjects.Count > 0)
         {
