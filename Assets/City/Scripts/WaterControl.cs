@@ -11,6 +11,8 @@ public class WaterControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        water.transform.position = new Vector3(water.transform.position.x, water.transform.position.y+0.001f, water.transform.position.z);
+        if (water.transform.position.y<5f) {
+            water.transform.position = new Vector3(water.transform.position.x, water.transform.position.y + 0.001f, water.transform.position.z);
+        }   
     }
 }
