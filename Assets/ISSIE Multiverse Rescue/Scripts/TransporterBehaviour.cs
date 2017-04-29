@@ -36,6 +36,7 @@ public class TransporterBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         Aliens = new System.Collections.Generic.List<GameObject>();
 
         // Add an AudioSource component and set up some defaults
@@ -49,15 +50,9 @@ public class TransporterBehaviour : MonoBehaviour
         timeDone = Resources.Load<AudioClip>("SynthZap");
         bleep = Resources.Load<AudioClip>("Computer04");
 
-        /* This kept us safe in the past from having the wrong transporter fly in. But now it takes the transporter offline and messages can't reach it.
-       
-        if (FlyInOnStart)
-        {
-            transform.parent.gameObject.SetActive(false);
-        } */
-
         Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
         CountDown = GameObject.Find("Countdown").GetComponent<CountDownDisplay>();
+
     }
 
     public void OnReady(Hashtable args)
@@ -151,11 +146,11 @@ public class TransporterBehaviour : MonoBehaviour
     void FlyIn()
     {
         Debug.Log("FLYING IN");
-        GameObject parent = transform.parent.gameObject;
-        parent.SetActive(true);
-        parent.AddComponent<TransporterFlyInAnimation>();
-        Debug.Log("FLEW IN " + parent.name);
 
+        GameObject parent = transform.parent.gameObject;
+        parent.AddComponent<TransporterFlyInAnimation>();
+
+        Debug.Log("FLEW IN " + parent.name);
     }
 
     public void OnTimeDone()

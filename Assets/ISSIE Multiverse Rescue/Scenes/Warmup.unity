@@ -2293,11 +2293,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 019fb7534604ce747a47124c389aa874, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -2388,6 +2388,7 @@ MonoBehaviour:
   almostDoneName: YourAlmostThere1-Remix
   introClipName: OpeningDialogue_2_Remix
   partyMusicName: ISSIE Game Loop - Continuous Drums
+  backgroundMusicName: ISSIE open
 --- !u!82 &1223757503
 AudioSource:
   m_ObjectHideFlags: 0
