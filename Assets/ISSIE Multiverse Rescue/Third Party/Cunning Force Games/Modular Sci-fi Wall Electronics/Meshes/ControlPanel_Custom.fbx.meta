@@ -3,8 +3,19 @@ guid: 83daaea24faadce4a841be5bea9fd013
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: Control_Panel_Custom
+    100002: Control_Panel_Screen
+    100004: //RootNode
+    400000: Control_Panel_Custom
+    400002: Control_Panel_Screen
+    400004: //RootNode
+    2300000: Control_Panel_Custom
+    2300002: Control_Panel_Screen
+    3300000: Control_Panel_Custom
+    3300002: Control_Panel_Screen
     4300000: Control_Panel_Screen
     4300002: Control_Panel_Custom
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -15,6 +26,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -51,6 +64,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -61,7 +75,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 1
   humanoidOversampling: 1
