@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropGrowAnimation : MonoBehaviour {
+
+public class PropGrowAnimation : MonoBehaviour, IGrowable
+{
 
     public Vector3 StartSize = new Vector3(0,0,0);
     public Vector3 FinalSize = new Vector3(0.5f,0.5f,0.5f);
@@ -47,7 +49,7 @@ public class PropGrowAnimation : MonoBehaviour {
         nextScale = transform.localScale + growthAmount;
         while (true)
         {
-            Vector3 newScale = this.transform.localScale;
+            Vector3 newScale = transform.localScale;
             float frameGrowth = GrowthSpeed * Time.deltaTime;
             newScale.x += frameGrowth;
             newScale.y += frameGrowth;
@@ -65,5 +67,15 @@ public class PropGrowAnimation : MonoBehaviour {
         {
             MessageKit.removeObserver(MessageType.OnMoveComplete, Grow);
         }
+    }
+
+    public void Activate()
+    {
+        MessageKit.addObserver(MessageType.OnMoveComplete, Grow);
+    }
+
+    public void Deactivate()
+    {
+        MessageKit.removeObserver(MessageType.OnMoveComplete, Grow);
     }
 }

@@ -24,7 +24,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
         spawnedLocations = new List<Vector3>();
     }
 
-    /*void Update()
+    void Update()
     {
         Ray camRay = cam.ViewportPointToRay(viewCenter);
         camRay.origin = new Vector3(camRay.origin.x, 0, camRay.origin.z);
@@ -45,7 +45,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
 
         }
         Debug.DrawRay(camRay.origin, camRay.direction * 4, Color.blue);
-    }*/
+    }
 
     void CreateProp()
     {
@@ -56,12 +56,15 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
         camRay.direction = FindNearbyUnobstructedDirection(camRay);
 
         Vector3 spawnPoint = GetPointAlongRayWithinBounds(camRay);
-        spawnPoint.y = 0;
+        spawnedLocations.Add(spawnPoint);
+
+        spawnPoint.y = GameManager.spacialFloorHeight;
 
         GameObject prop = Instantiate(propPrefab,
             spawnPoint,
             Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.up));
 
+        prop.GetComponent<PropActivator>().exerciseName = GetComponent<PropActivator>().exerciseName;
         // Compare dot products of view and camera->trees
         //    try random ray offset
         // Choose a point
@@ -71,8 +74,6 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
         //SpaceCollectionManager.Instance.GenerateItemsInWorld(PlaySpaceManager.Instance.HorizontalPlanes,
         //    PlaySpaceManager.Instance.VerticalPlanes, propPrefab);
 
-
-        spawnedLocations.Add(prop.transform.position);
     }
 
     public void Activate()
@@ -101,7 +102,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
 
         // Get -1 or 1 randomly
         int randomDir = (Random.Range(0, 2) * 2) - 1;
-        int maxIterations = 10;
+        int maxIterations = 15;
 
         for(int iter = 0; iter < maxIterations; iter++)
         {
@@ -122,7 +123,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
             }
             else
             {
-                testDir = Quaternion.Euler(0, 2 * randomDir, 0) * testDir;
+                testDir = Quaternion.Euler(0, 4.2f * randomDir, 0) * testDir;
             }
         }
         return camRay.direction;

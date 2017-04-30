@@ -6,6 +6,7 @@ using Prime31.MessageKit;
 public class WaterGrower : MonoBehaviour, IGrowable
 {
     public float expectedHeightChange = 1f;
+    public float maxHeightChange = 1.35f;
     public int numOfSteps = 5;
     public float speed = 0.15f;
 
@@ -17,6 +18,7 @@ public class WaterGrower : MonoBehaviour, IGrowable
     public void Activate()
     {
         MessageKit.addObserver(MessageType.OnMoveComplete, Raise);
+        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Setup);
     }
 
     public void Deactivate()
@@ -29,14 +31,26 @@ public class WaterGrower : MonoBehaviour, IGrowable
         heightChange = expectedHeightChange / numOfSteps;
     }
 
+    void Setup()
+    {
+        startingHeight = transform.position.y;
+    }
+
     void Raise()
     {
-        StartCoroutine(RaiseOverTime());
+        if (transform.position.y < startingHeight + maxHeightChange)
+        {
+            StartCoroutine(RaiseOverTime());
+        }
+        
     }
 
     IEnumerator RaiseOverTime()
     {
-        nextHeight = transform.position.y + heightChange;
+
+        nextHeight = Mathf.Clamp(transform.position.y + heightChange,
+                                 float.MinValue,
+                                 startingHeight + maxHeightChange);
         while (true)
         {
             Vector3 newPosition = transform.position;

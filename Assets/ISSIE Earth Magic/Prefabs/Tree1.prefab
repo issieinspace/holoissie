@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 402220}
   - component: {fileID: 13657630}
   - component: {fileID: 114336992815138866}
+  - component: {fileID: 114195814855387914}
   m_Layer: 0
   m_Name: Tree1
   m_TagString: Untagged
@@ -194,6 +195,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 199518}
   m_IsPrefabParent: 1
+--- !u!114 &114195814855387914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: 
 --- !u!114 &114336992815138866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,5 +220,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartSize: {x: 0, y: 0, z: 0}
   FinalSize: {x: 0.6, y: 0.4, z: 0.4}
-  GrowthSpeed: 0.15
+  GrowthSpeed: 0.2
   numberOfSteps: 4

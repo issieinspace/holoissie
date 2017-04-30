@@ -4,6 +4,7 @@ using System;
 using UnityEngine.SceneManagement;
 using Timers;
 using Prime31.MessageKit;
+using Academy.HoloToolkit.Unity;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public GameObject Diagnostics;
     public GameObject Score;
     public GameObject Credits;
+    public SurfaceMeshesToPlanes hololensPlanes;
+    [HideInInspector]
+    public static float spacialFloorHeight = 0;
    
     // Use this for initialization
     void Start () {
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour {
 
 
         StartGame();
+        hololensPlanes.MakePlanesComplete += MoveWorldToSpacialFloor;
+        //MessageKit<string>.addObserver(MessageType.OnReady, (name) => MoveWorldToSpacialFloor());
     }
 
     // Update is called once per frame
@@ -59,6 +65,7 @@ public class GameManager : MonoBehaviour {
     {
         if (RunIntro)
         {
+            MoveWorldToSpacialFloor(null, null);
             // Send a message to play the intro
             //Hashtable args = new Hashtable();
             //args.Add("methodName", "OnIntro");
@@ -160,6 +167,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-   
+    public void MoveWorldToSpacialFloor(object source, EventArgs args)
+    {
+        
+#if UNITY_EDITOR
+        transform.position = new Vector3(0, -1.8f, 0);
+        spacialFloorHeight = -1.8f;
+#else
+        transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);
+        spacialFloorHeight = hololensPlanes.FloorYPosition;
+#endif
+        MessageKit.post(MessageType.OnSpacialMappingComplete);
+    }
     
 }
