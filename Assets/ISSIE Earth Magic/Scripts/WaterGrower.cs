@@ -5,10 +5,11 @@ using Prime31.MessageKit;
 
 public class WaterGrower : MonoBehaviour, IGrowable
 {
-    public float finalHeight = 1f;
+    public float expectedHeightChange = 1f;
     public int numOfSteps = 5;
     public float speed = 0.15f;
 
+    private float startingHeight;
     private float heightChange;
     private float nextHeight;
 
@@ -25,7 +26,7 @@ public class WaterGrower : MonoBehaviour, IGrowable
 
     void Start()
     {
-        heightChange = (finalHeight - transform.position.y) / numOfSteps;
+        heightChange = expectedHeightChange / numOfSteps;
     }
 
     void Raise()

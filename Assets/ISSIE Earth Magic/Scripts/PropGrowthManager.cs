@@ -10,6 +10,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
     public GameObject propPrefab;
     public float minimumSpawnDistance = 2.0f;
     public float maximumSpawnDistance = 9.0f;
+    //public Transform
     private List<GameObject> horizontalSurfaces;
     private List<GameObject> verticalSurfaces;
     private List<Vector3> spawnedLocations;
@@ -100,8 +101,9 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
 
         // Get -1 or 1 randomly
         int randomDir = (Random.Range(0, 2) * 2) - 1;
+        int maxIterations = 10;
 
-        while (true)
+        for(int iter = 0; iter < maxIterations; iter++)
         {
             goodDirectionFound = true;
             for (int i = 0; i < spawnedLocations.Count; i++)
@@ -123,5 +125,6 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
                 testDir = Quaternion.Euler(0, 2 * randomDir, 0) * testDir;
             }
         }
+        return camRay.direction;
     }
 }
