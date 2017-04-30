@@ -14,9 +14,11 @@ public class PropGrowAnimation : MonoBehaviour, IGrowable
 
     private Vector3 growthAmount;
     private Vector3 nextScale;
+    private AudioSource audioSource;
 	
 	void Start()
 	{
+        audioSource = GetComponent<AudioSource>();
 	    this.transform.localScale = StartSize;
         FinalSize = FinalSize * (1 + Random.Range(-0.05f, 0.05f));
         growthAmount = (FinalSize - StartSize) / numberOfSteps;
@@ -41,6 +43,7 @@ public class PropGrowAnimation : MonoBehaviour, IGrowable
     void Grow()
     {
         StartCoroutine(GrowOverTime());
+        audioSource.Play();
     }
 
     IEnumerator GrowOverTime()
@@ -72,10 +75,12 @@ public class PropGrowAnimation : MonoBehaviour, IGrowable
     public void Activate()
     {
         MessageKit.addObserver(MessageType.OnMoveComplete, Grow);
+        audioSource.Play();
     }
 
     public void Deactivate()
     {
         MessageKit.removeObserver(MessageType.OnMoveComplete, Grow);
     }
+    
 }

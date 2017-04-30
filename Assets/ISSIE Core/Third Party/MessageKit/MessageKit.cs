@@ -1,6 +1,6 @@
 ﻿// uncomment this line to enable the MessageKitManager. It provides a single clearAllMessageTables method that
 // will clear every single observer that was ever added
-//#define ENABLE_MESSAGE_KIT_MANAGER
+#define ENABLE_MESSAGE_KIT_MANAGER
 
 using UnityEngine;
 using System;

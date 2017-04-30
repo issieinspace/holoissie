@@ -13,27 +13,33 @@ public class WaterGrower : MonoBehaviour, IGrowable
     private float startingHeight;
     private float heightChange;
     private float nextHeight;
+    private AudioSource audioSource;
 
 
     public void Activate()
     {
         MessageKit.addObserver(MessageType.OnMoveComplete, Raise);
-        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Setup);
+        
+        audioSource.Play();
     }
 
     public void Deactivate()
     {
         MessageKit.removeObserver(MessageType.OnMoveComplete, Raise);
+        StartCoroutine(AudioOff());
     }
 
     void Start()
     {
         heightChange = expectedHeightChange / numOfSteps;
+        audioSource = GetComponent<AudioSource>();
+        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Setup);
     }
 
     void Setup()
     {
         startingHeight = transform.position.y;
+        MessageKit.removeObserver(MessageType.OnSpacialMappingComplete, Setup);
     }
 
     void Raise()
@@ -41,6 +47,7 @@ public class WaterGrower : MonoBehaviour, IGrowable
         if (transform.position.y < startingHeight + maxHeightChange)
         {
             StartCoroutine(RaiseOverTime());
+            
         }
         
     }
@@ -48,9 +55,12 @@ public class WaterGrower : MonoBehaviour, IGrowable
     IEnumerator RaiseOverTime()
     {
 
-        nextHeight = Mathf.Clamp(transform.position.y + heightChange,
-                                 float.MinValue,
-                                 startingHeight + maxHeightChange);
+        nextHeight = transform.position.y + heightChange;
+        if (nextHeight > startingHeight + maxHeightChange)
+        {
+            nextHeight = startingHeight + maxHeightChange;
+        }
+
         while (true)
         {
             Vector3 newPosition = transform.position;
@@ -62,6 +72,21 @@ public class WaterGrower : MonoBehaviour, IGrowable
                 newPosition.y = nextHeight;
                 transform.position = newPosition;
                 break;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator AudioOff()
+    {
+        float speed = 0.4f;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= speed * Time.deltaTime;
+            if (audioSource.volume < 0)
+            {
+                audioSource.volume = 0;
+                audioSource.Stop();
             }
             yield return null;
         }

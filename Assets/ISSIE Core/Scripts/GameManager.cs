@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour {
         //SpatialMapping.Instance.Object.SetActive(false);
         
         Score = GameObject.Find("Score");
-        Score.GetComponent<TextMesh>().text = "";
+        //Score.GetComponent<TextMesh>().text = "";
 
         Credits = GameObject.Find("Credits");
-        Credits.SetActive(false);
+        //Credits.SetActive(false);
 
         listeners = GameObject.FindGameObjectsWithTag("Triggerable");
 
@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour {
 
     public void RestartGame()
     {
+        MessageKitManager.clearAllMessageTables();
         SceneManager.LoadScene(StartScene);        
     }
 

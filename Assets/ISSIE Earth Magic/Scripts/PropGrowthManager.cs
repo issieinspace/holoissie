@@ -16,12 +16,14 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
     private List<Vector3> spawnedLocations;
     private Camera cam;
     private Vector3 viewCenter = new Vector3(0.5f, 0.5f, 0);
+    private float randomDir;
 
     void Start()
     {
-        Random.InitState(29);
+        //Random.InitState(29);
         cam = Camera.main;
         spawnedLocations = new List<Vector3>();
+        randomDir = (Random.Range(0, 1) * 2) - 1;
     }
 
     void Update()
@@ -96,16 +98,29 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
 
     private Vector3 FindNearbyUnobstructedDirection(Ray camRay)
     {
+        Vector3 avoidDir = new Vector3(-1, 0, -1);
+        avoidDir.Normalize();
         Vector3 testDir = camRay.direction;
+        if (Vector3.Dot(testDir, avoidDir) > 0.54f)
+        {
+            testDir = testDir * -1f;
+        }
         Vector3 dirToSpawn;
         bool goodDirectionFound;
 
         // Get -1 or 1 randomly
-        int randomDir = (Random.Range(0, 2) * 2) - 1;
-        int maxIterations = 15;
+        randomDir = randomDir * -1f;
+        int maxIterations = 23;
 
         for(int iter = 0; iter < maxIterations; iter++)
         {
+            // Avoid the river portion of the map
+            if (Vector3.Dot(testDir, avoidDir) > 0.54f)
+            {
+                testDir = camRay.direction;
+                randomDir = randomDir * -1;
+            }
+
             goodDirectionFound = true;
             for (int i = 0; i < spawnedLocations.Count; i++)
             {
@@ -123,7 +138,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
             }
             else
             {
-                testDir = Quaternion.Euler(0, 4.2f * randomDir, 0) * testDir;
+                testDir = Quaternion.Euler(0, 4.3f * randomDir, 0) * testDir;
             }
         }
         return camRay.direction;
