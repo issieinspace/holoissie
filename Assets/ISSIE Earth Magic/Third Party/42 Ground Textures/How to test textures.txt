@@ -1,0 +1,6 @@
+You may want to test the textures in the package before use in your game.
+
+
+1. Double-Click the scene file "test_scene" if it is not already open.
+
+2. Drag any material from the “…Materials” directories onto the 3D plane already in the scene.

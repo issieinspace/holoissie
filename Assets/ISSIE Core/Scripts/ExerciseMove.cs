@@ -177,7 +177,7 @@ public class ExerciseMove : MonoBehaviour {
         else if (wiggleRoom > 0)
         {
             val = displacement < wiggleRoom;
-            //Debug.Log("Wiggle is a positive number so displacement " + displacement + " >= target " + wiggleRoom + " is " + val);
+           // Debug.Log("Wiggle is a positive number so displacement " + displacement + " >= target " + wiggleRoom + " is " + val);
         }
         else
         {
