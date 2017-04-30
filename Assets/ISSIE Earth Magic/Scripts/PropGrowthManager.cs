@@ -3,26 +3,75 @@ using System.Collections.Generic;
 using Academy.HoloToolkit.Unity;
 using UnityEngine;
 using Prime31.MessageKit;
-using System;
 
 public class PropGrowthManager : MonoBehaviour, IGrowable
 {
 
-    public GameObject PropModel;
+    public GameObject propPrefab;
+    public float minimumSpawnDistance = 2.0f;
+    public float maximumSpawnDistance = 9.0f;
     private List<GameObject> horizontalSurfaces;
     private List<GameObject> verticalSurfaces;
+    private List<Vector3> spawnedLocations;
+    private Camera cam;
+    private Vector3 viewCenter = new Vector3(0.5f, 0.5f, 0);
 
-    public string ExerciseName;
+    void Start()
+    {
+        Random.InitState(29);
+        cam = Camera.main;
+        spawnedLocations = new List<Vector3>();
+    }
+
+    /*void Update()
+    {
+        Ray camRay = cam.ViewportPointToRay(viewCenter);
+        camRay.origin = new Vector3(camRay.origin.x, 0, camRay.origin.z);
+        camRay.direction = new Vector3(camRay.direction.x, 0, camRay.direction.z);
+
+        for (int i = 0; i < spawnedLocations.Count; i++)
+        {
+            Vector3 dirToSpawn = (spawnedLocations[i] - camRay.origin).normalized;
+            Debug.DrawRay(camRay.origin,
+                          dirToSpawn * 10,
+                          Color.red);
+            if (Vector3.Dot(camRay.direction, dirToSpawn) > 0.966f)
+            {
+                Debug.DrawRay(camRay.origin,
+                          dirToSpawn * 10,
+                          Color.green);
+            }
+
+        }
+        Debug.DrawRay(camRay.origin, camRay.direction * 4, Color.blue);
+    }*/
 
     void CreateProp()
     {
-        //TODO: Remove Magic string
-        //string exerciseReady = unpackArgs(args, "exerciseName");
-        //if (exerciseReady != ExerciseName)
-        //    return;
+        Ray camRay = cam.ViewportPointToRay(viewCenter);
+        camRay.origin = new Vector3(camRay.origin.x, 0, camRay.origin.z);
+        camRay.direction = new Vector3(camRay.direction.x, 0, camRay.direction.z);
 
-        SpaceCollectionManager.Instance.GenerateItemsInWorld(PlaySpaceManager.Instance.HorizontalPlanes,
-            PlaySpaceManager.Instance.VerticalPlanes, PropModel);
+        camRay.direction = FindNearbyUnobstructedDirection(camRay);
+
+        Vector3 spawnPoint = GetPointAlongRayWithinBounds(camRay);
+        spawnPoint.y = 0;
+
+        GameObject prop = Instantiate(propPrefab,
+            spawnPoint,
+            Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.up));
+
+        // Compare dot products of view and camera->trees
+        //    try random ray offset
+        // Choose a point
+        // Place prop
+        // Save prop pos to list
+
+        //SpaceCollectionManager.Instance.GenerateItemsInWorld(PlaySpaceManager.Instance.HorizontalPlanes,
+        //    PlaySpaceManager.Instance.VerticalPlanes, propPrefab);
+
+
+        spawnedLocations.Add(prop.transform.position);
     }
 
     public void Activate()
@@ -35,5 +84,44 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
     {
         MessageKit.removeObserver(MessageType.OnStart, CreateProp);
         MessageKit.removeObserver(MessageType.OnAchievement, CreateProp);
+    }
+
+    private Vector3 GetPointAlongRayWithinBounds(Ray camRay)
+    {
+        float spawnDistance = Random.Range(minimumSpawnDistance, maximumSpawnDistance);
+        return camRay.origin + (camRay.direction * spawnDistance);
+    }
+
+    private Vector3 FindNearbyUnobstructedDirection(Ray camRay)
+    {
+        Vector3 testDir = camRay.direction;
+        Vector3 dirToSpawn;
+        bool goodDirectionFound;
+
+        // Get -1 or 1 randomly
+        int randomDir = (Random.Range(0, 2) * 2) - 1;
+
+        while (true)
+        {
+            goodDirectionFound = true;
+            for (int i = 0; i < spawnedLocations.Count; i++)
+            {
+                dirToSpawn = (spawnedLocations[i] - camRay.origin).normalized;
+                var v = Vector3.Dot(testDir, dirToSpawn);
+                if (Vector3.Dot(testDir, dirToSpawn) > 0.966f)
+                {
+                    goodDirectionFound = false;
+                    break;
+                }
+            }
+            if (goodDirectionFound)
+            {
+                return testDir;
+            }
+            else
+            {
+                testDir = Quaternion.Euler(0, 2 * randomDir, 0) * testDir;
+            }
+        }
     }
 }

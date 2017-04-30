@@ -8,14 +8,16 @@ public class PropGrowAnimation : MonoBehaviour {
     public Vector3 StartSize = new Vector3(0,0,0);
     public Vector3 FinalSize = new Vector3(0.5f,0.5f,0.5f);
     public float GrowthSpeed = 0.15f;
+    public int numberOfSteps = 5;
 
     private Vector3 growthAmount;
     private Vector3 nextScale;
 	
-	void Start ()
+	void Start()
 	{
 	    this.transform.localScale = StartSize;
-        growthAmount = (FinalSize - StartSize) * 0.2f;
+        FinalSize = FinalSize * (1 + Random.Range(-0.05f, 0.05f));
+        growthAmount = (FinalSize - StartSize) / numberOfSteps;
         MessageKit.addObserver(MessageType.OnMoveComplete, Grow);
 	}
 	
