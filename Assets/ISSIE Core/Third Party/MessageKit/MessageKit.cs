@@ -90,7 +90,7 @@ namespace Prime31.MessageKit
 			for (var i = 0; i < _messageTable[messageType].Count; i++)
 			{
 				Action action = _messageTable[messageType][i];
-				sb.AppendLine("Target: " + action.Target + "\t Method: " + action.Method);
+				//sb.AppendLine("Target: " + action.Target + "\t Method: " + action.Method);
 			}
 
 			Debug.Log(sb.ToString());
@@ -174,7 +174,7 @@ namespace Prime31.MessageKit
 			for( var i = 0; i < _messageTable[messageType].Count; i++ )
 			{
 				var action = _messageTable[messageType][i];
-				sb.AppendLine( "Target: " + action.Target + "\t Method: " + action.Method );
+				//sb.AppendLine( "Target: " + action.Target + "\t Method: " + action.Method );
 			}
 
 			Debug.Log( sb.ToString() );
@@ -258,7 +258,7 @@ namespace Prime31.MessageKit
 			for( var i = 0; i < _messageTable[messageType].Count; i++ )
 			{
 				Action<U,V> action = _messageTable[messageType][i];
-				sb.AppendLine( "Target: " + action.Target + "\t Method: " + action.Method );
+				//sb.AppendLine( "Target: " + action.Target + "\t Method: " + action.Method );
 			}
 
 			Debug.Log( sb.ToString() );

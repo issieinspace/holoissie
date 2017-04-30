@@ -7,19 +7,34 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Deprecated/Main.unity
+    guid: ec65d43043e107946a0d21d1ca62f4f4
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Deprecated/Launch-Pedal.unity
+    guid: fcf43dab6a1d30941b091f656b83f070
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Deprecated/MakerFaireBooth.unity
+    guid: 7e5e7bc0b184a1d46995a588948e9b45
   - enabled: 0
     path: Assets/NoCEVISDemo.unity
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Launch-Menu.unity
-  - enabled: 1
+    guid: 5030db347157ddc419bf3f039f58f9f6
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Warmup.unity
+    guid: b2a97c9e32397364a8251f3fce243a2d
   - enabled: 0
     path: Assets/Cycle-Old.unity
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Cycle.unity
+    guid: 1906664e558192d49bbc33b1ec0db8c9
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Deprecated/ISSIE-Video.unity
+    guid: f3c5f66e259fd904c873ec98fb021638
+  - enabled: 1
+    path: Assets/ISSIE Earth Magic/Scenes/Earth-Magic-Launch-Menu.unity
+    guid: 9cc655653ffd7144da6a6975a1d2ac07
+  - enabled: 1
+    path: Assets/ISSIE Earth Magic/Scenes/Warmup.unity
+    guid: 97920a8083d40f14592c2d8819753fdf

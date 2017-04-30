@@ -18,8 +18,9 @@ public class Exercise : MonoBehaviour
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
     public bool ReckonStartPositionFromReadyPositions;
+    public Vector3 OriginalPosition;
 
- 
+
     public bool PlayerIsReady = true;
     public int AchievementCount = 0;
     public bool ExerciseComplete = false;
@@ -152,9 +153,11 @@ public class Exercise : MonoBehaviour
     {
         CountDownDone = true;
         ExerciseInProgress = true;
+        OriginalPosition = Camera.main.transform.position;
+
         CreateNewMove();
         BroadcastExerciseStart();
-        //TransporterBehaviour.OnStart();
+        
 
         ExerciseTimer = GameObject.Find("ExerciseTimer").GetComponent<ExerciseTimer>();
         ExerciseTimer.OnStart(TimeForExercise);
@@ -173,15 +176,16 @@ public class Exercise : MonoBehaviour
 
     private void CreateNewMove()
     {
-        Vector3 originalPosition = Camera.main.transform.position;
         Move = Instantiate(ExerciseMovePrefab).GetComponent<ExerciseMove>();
        
         if(ReckonStartPositionFromReadyPositions)
         {
-            Move.originalPosition = originalPosition;
+            Debug.Log("Using original position - " + Move.originalPosition.x +"," + Move.originalPosition.x + ","+ Move.originalPosition.x);
+            Move.originalPosition = OriginalPosition;
         }
         else
         {
+            Debug.Log("Using camera position");
             Move.originalPosition = Camera.main.transform.position;
         }
         
@@ -196,7 +200,7 @@ public class Exercise : MonoBehaviour
         }
         else
         {
-            return ExerciseName + " - " + Move.getMoveName() + "\n\r"
+            return ExerciseName + " - " + Move.getMoveName() + "\n\rDisplacement "
                      + Move.getXDisplacement().ToString("N3") + ","
                      + Move.getYDisplacement().ToString("N3") + ","
                      + Move.getZDisplacement().ToString("N3") + "," + "|" + "\n\r"
