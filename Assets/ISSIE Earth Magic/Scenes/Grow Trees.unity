@@ -580,7 +580,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013311624324, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_Name
@@ -791,7 +791,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013311624324, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013311624324, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_LocalScale.y
@@ -824,7 +824,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: MovesForAchievement
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -1045,7 +1045,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013311624324, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_Name
@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223757499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c79483f9e1162a478dc773bd748b07e, type: 3}
+  m_Script: {fileID: 11500000, guid: fe498056b8b33014589f8cafed79994f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   achievementSoundName: EtherealAccent
@@ -1428,6 +1428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390147432}
   - component: {fileID: 1390147433}
+  - component: {fileID: 1390147434}
   m_Layer: 0
   m_Name: TreeGrower
   m_TagString: Triggerable
@@ -1460,7 +1461,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PropModel: {fileID: 199518, guid: 17de3c1426f928b4e97bb2feeeb4d11e, type: 2}
-  ExerciseName: 
+  ExerciseName: Squats
+--- !u!114 &1390147434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1390147431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: Squats
 --- !u!1 &1507871143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1896,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013311624324, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_Name
