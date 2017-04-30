@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
 using Timers;
+using Prime31.MessageKit;
 
 public class GameManager : MonoBehaviour {
 
@@ -59,9 +60,10 @@ public class GameManager : MonoBehaviour {
         if (RunIntro)
         {
             // Send a message to play the intro
-            Hashtable args = new Hashtable();
-            args.Add("methodName", "OnIntro");
-            HandleEvent(args);
+            //Hashtable args = new Hashtable();
+            //args.Add("methodName", "OnIntro");
+            //HandleEvent(args);
+            MessageKit.post(MessageType.OnIntro);
            
             // Wait for the appropriate time before starting
             TimersManager.SetTimer(this, TimeToWaitBeforeCommencingExercise, CommenceExerciseStage);
@@ -106,9 +108,10 @@ public class GameManager : MonoBehaviour {
             if (!GameOver)
             {
                 // Game is over now
-                Hashtable args = new Hashtable();
-                args.Add("methodName", "OnGameOver");
-                HandleEvent(args);
+                //Hashtable args = new Hashtable();
+                //args.Add("methodName", "OnGameOver");
+                //HandleEvent(args);
+                MessageKit.post(MessageType.OnGameOver);
                 GameOver = true;
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Prime31.MessageKit;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,19 +7,21 @@ public class PropGrowAnimation : MonoBehaviour {
 
     public Vector3 StartSize = new Vector3(0,0,0);
     public Vector3 FinalSize = new Vector3(0.5f,0.5f,0.5f);
-    public float GrothSpeed = 0.05f;
+    public float GrowthSpeed = 0.15f;
 
-    private bool isGrowing = false;
-	// Use this for initialization
+    private Vector3 growthAmount;
+    private Vector3 nextScale;
+	
 	void Start ()
 	{
 	    this.transform.localScale = StartSize;
-	    this.isGrowing = true;
+        growthAmount = (FinalSize - StartSize) * 0.2f;
+        MessageKit.addObserver(MessageType.OnMoveComplete, Grow);
 	}
 	
 
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 	    if (isGrowing)
 	    {
 	        Vector3 newScale = this.transform.localScale;
@@ -29,5 +32,35 @@ public class PropGrowAnimation : MonoBehaviour {
 	        if (newScale.magnitude >= FinalSize.magnitude)
 	            isGrowing = false;
 	    }
-	}
+	}*/
+
+    void Grow()
+    {
+        StartCoroutine(GrowOverTime());
+    }
+
+    IEnumerator GrowOverTime()
+    {
+        
+        nextScale = transform.localScale + growthAmount;
+        while (true)
+        {
+            Vector3 newScale = this.transform.localScale;
+            float frameGrowth = GrowthSpeed * Time.deltaTime;
+            newScale.x += frameGrowth;
+            newScale.y += frameGrowth;
+            newScale.z += frameGrowth;
+            transform.localScale = newScale;
+            if (newScale.magnitude >= nextScale.magnitude)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        if (transform.localScale.magnitude >= FinalSize.magnitude)
+        {
+            MessageKit.removeObserver(MessageType.OnMoveComplete, Grow);
+        }
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using Timers;
+using Prime31.MessageKit;
 
 public class Exercise : MonoBehaviour
 {
@@ -207,53 +208,62 @@ public class Exercise : MonoBehaviour
 
     void BroadcastDisplacementAchieved()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnDisplacementAchieved"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnDisplacementAchieved);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnDisplacementAchieved"), SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastMoveComplete()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnMoveComplete"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnMoveComplete);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnMoveComplete"), SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastAchievement()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnAchievement"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnAchievement);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnAchievement"), SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastFirstAchievement()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnFirstAchievement"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnFirstAchievement);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnFirstAchievement"), SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastExerciseReady()
     {
-        Hashtable args = packArgs(null, "methodName", "OnReady");
-        args = packArgs(args, "exerciseName", ExerciseName);
-        SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
+        MessageKit<string>.post(MessageType.OnReady, ExerciseName);
+        //Hashtable args = packArgs(null, "methodName", "OnReady");
+        //args = packArgs(args, "exerciseName", ExerciseName);
+        //SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastAlmostDone()
     {
-        Hashtable args = packArgs(null, "methodName", "OnAlmostDone");
-        args = packArgs(args, "exerciseName", ExerciseName);
-        SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnAlmostDone);
+        //Hashtable args = packArgs(null, "methodName", "OnAlmostDone");
+        //args = packArgs(args, "exerciseName", ExerciseName);
+        //SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastExerciseStart()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnStart"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnStart);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnStart"), SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastTriggerTick(uint countDown)
     {
-        Hashtable args = packArgs(null, "methodName", "OnTick");
-        args = packArgs(args, "countDown", countDown);
-        SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
+        MessageKit<uint>.post(MessageType.OnTick, countDown);
+        //Hashtable args = packArgs(null, "methodName", "OnTick");
+        //args = packArgs(args, "countDown", countDown);
+        //SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
     }
 
     void BroadcastTimeDone()
     {
-        SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnTimeDone"), SendMessageOptions.DontRequireReceiver);
+        MessageKit.post(MessageType.OnTimeDone);
+        //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnTimeDone"), SendMessageOptions.DontRequireReceiver);
     }
 
     Hashtable packArgs(Hashtable args, String key, object value)

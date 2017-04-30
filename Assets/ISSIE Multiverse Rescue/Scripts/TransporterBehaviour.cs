@@ -2,6 +2,7 @@
 using System.Collections;
 using Timers;
 using System;
+using Prime31.MessageKit;
 
 public class TransporterBehaviour : MonoBehaviour
 {
@@ -53,13 +54,21 @@ public class TransporterBehaviour : MonoBehaviour
         Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
         CountDown = GameObject.Find("Countdown").GetComponent<CountDownDisplay>();
 
+        MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
+        MessageKit.addObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
+        MessageKit.addObserver(MessageType.OnMoveComplete, OnMoveComplete);
+        MessageKit.addObserver(MessageType.OnAchievement, OnAchievement);
+        MessageKit.addObserver(MessageType.OnStart, OnStart);
+        MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
+        MessageKit<uint>.addObserver(MessageType.OnTick, (countDown) => OnTick(countDown));
     }
 
-    public void OnReady(Hashtable args)
+    public void OnReady(string exerciseName)
     {
-        setTransporterActiveByExercise((string)args["exerciseName"]);
+        //setTransporterActiveByExercise((string)args["exerciseName"]);
 
-        if ((string)args["exerciseName"] == MyExercise)
+        //if ((string)args["exerciseName"] == MyExercise)
+        if (exerciseName == MyExercise)
         {
             if (FlyInOnStart)
             {
@@ -175,11 +184,12 @@ public class TransporterBehaviour : MonoBehaviour
         }
     }
 
-    internal void OnTick(Hashtable args)
+    internal void OnTick(uint countDown)
     {
         if (TransporterActive)
         {
-            CountDown.TriggerTick((uint)args["countDown"]);
+            //CountDown.TriggerTick((uint)args["countDown"]);
+            CountDown.TriggerTick(countDown);
         }
     }
 

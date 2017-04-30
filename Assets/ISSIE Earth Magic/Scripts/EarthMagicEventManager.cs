@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using Timers;
 using Prime31.MessageKit;
 
-public class MultiverseRescueEventManager : MonoBehaviour {
+public class EarthMagicEventManager : MonoBehaviour
+{
 
-    AudioSource backgroundMusic = null;
     AudioSource audioSource = null;
 
     // AudioClips to use for marking progress
@@ -15,28 +16,30 @@ public class MultiverseRescueEventManager : MonoBehaviour {
     public string almostDoneName = "YourAlmostThere1-Remix";
     public string introClipName = "OpeningDialogue_2_Remix";
     public string partyMusicName = "ISSIE Game Loop - Continuous Drums";
-    public string backgroundMusicName = "ISSIE open";
 
+    // State related info
     AudioClip achievementSound = null;
     AudioClip almostDoneSound = null;
-    AudioClip firstAchievementSound = null;
+    AudioClip firstAchievement = null;
     AudioClip intro = null;
     AudioClip partyMusic = null;
-   
-    void Start ()
-    {
-        achievementSound = Resources.Load<AudioClip>(achievementSoundName);
-        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
-        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementName);
-        intro = Resources.Load<AudioClip>(introClipName);
-        partyMusic = Resources.Load<AudioClip>(partyMusicName);
+    AudioClip timeDoneSound = null;
 
-        AudioSource[] audioSources = gameObject.GetComponents<AudioSource>();
-        audioSource = audioSources[1];
+    // Use this for initialization
+    void Start()
+    {
+        // Spatial Mapping
+        //SpatialMapping.Instance.Object.SetActive(false);
+        
+        audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.loop = false;
 
-        backgroundMusic = audioSources[2];
-        backgroundMusic.loop = true;
+        achievementSound = Resources.Load<AudioClip>(achievementSoundName);
+        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
+        firstAchievement = Resources.Load<AudioClip>(firstAchievementName);
+        intro = Resources.Load<AudioClip>(introClipName);
+        partyMusic = Resources.Load<AudioClip>(partyMusicName);
+        timeDoneSound = Resources.Load<AudioClip>(timeDoneSoundName);
 
         MessageKit.addObserver(MessageType.OnIntro, OnIntro);
         MessageKit.addObserver(MessageType.OnFirstAchievement, OnFirstAchievement);
@@ -53,7 +56,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnFirstAchievement()
     {
-        audioSource.clip = firstAchievementSound;
+        audioSource.clip = firstAchievement;
         audioSource.Play();
     }
 
@@ -64,8 +67,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnAlmostDone()
     {
-        audioSource.clip = almostDoneSound;
-        audioSource.Play();
+
     }
 
     void playClip(AudioClip clip)
@@ -78,10 +80,11 @@ public class MultiverseRescueEventManager : MonoBehaviour {
         GameObject[] alienFriends = GameObject.FindGameObjectsWithTag("Alien");
         Debug.Log("You got THIS many aliens rescued: " + alienFriends.Length);
 
-        backgroundMusic.Stop();
-        backgroundMusic.clip = partyMusic;
-        backgroundMusic.loop = false;
-        backgroundMusic.Play();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource.clip = partyMusic;
+        audioSource.loop = false;
+        audioSource.Play();
 
         foreach (GameObject alien in alienFriends)
         {
