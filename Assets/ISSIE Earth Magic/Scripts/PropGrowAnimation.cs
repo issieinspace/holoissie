@@ -53,6 +53,7 @@ public class PropGrowAnimation : MonoBehaviour {
             transform.localScale = newScale;
             if (newScale.magnitude >= nextScale.magnitude)
             {
+                transform.localScale = nextScale;
                 break;
             }
             yield return null;
