@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Prime31.MessageKit;
-using UnityEditor.VersionControl;
+
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -26,23 +26,35 @@ public class MoviePlayerManager : MonoBehaviour {
         // Turn off until we need it
 	    TurnOff();
         MessageKit<string>.addObserver(MessageType.OnReady, OnReady);
-	}
+        MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
+    }
 
     private void OnReady(string exerciseName)
     {
         Debug.Log("Video Player is ready for " + exerciseName);
         // Find the related Video and make the canvas visible
-        
+        UnityEngine.UI.Text text = this.GetComponentInChildren<UnityEngine.UI.Text>();
+        text.text = exerciseName;
+
         _videoPlayerClip = Resources.Load<VideoClip>(exerciseName);
+        videoPlayer.isLooping = true;
         TurnOn();
         videoPlayer.clip = _videoPlayerClip;
+        
         videoPlayer.Play();
-        isPlaying = true;
+
+         isPlaying = true;
         
     }
 
+    private void OnTimeDone()
+    {
+        TurnOff();
+    }
+
+
     // Update is called once per frame
-	void Update () {
+    void Update () {
 	    if (isPlaying)
 	    {
 	        if (!videoPlayer.isPlaying)

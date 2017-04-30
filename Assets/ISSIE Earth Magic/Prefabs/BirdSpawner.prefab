@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114241922919675106}
   - component: {fileID: 114323523158536568}
   m_Layer: 0
-  m_Name: BirdSpawnerPrefab
+  m_Name: BirdSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

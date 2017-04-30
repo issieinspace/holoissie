@@ -27,7 +27,7 @@ public class TransporterBehaviour : MonoBehaviour
     public Transform Camera;
   
     public DoorBehavior Door;
-    public CountDownDisplay CountDown;
+    public MultiverseRescueCountDownDisplay CountDown;
     public ExerciseTimer ExerciseTimer;
     public String MyExercise;
 
@@ -52,7 +52,7 @@ public class TransporterBehaviour : MonoBehaviour
         bleep = Resources.Load<AudioClip>("Computer04");
 
         Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
-        CountDown = GameObject.Find("Countdown").GetComponent<CountDownDisplay>();
+        CountDown = GameObject.Find("Countdown").GetComponent<MultiverseRescueCountDownDisplay>();
 
         MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
         MessageKit.addObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
