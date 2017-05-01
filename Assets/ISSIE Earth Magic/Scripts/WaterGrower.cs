@@ -13,13 +13,15 @@ public class WaterGrower : MonoBehaviour, IGrowable
     private float startingHeight;
     private float heightChange;
     private float nextHeight;
+    public float volume;
     private AudioSource audioSource;
 
 
     public void Activate()
     {
         MessageKit.addObserver(MessageType.OnMoveComplete, Raise);
-        
+
+        audioSource.volume = volume;
         audioSource.Play();
     }
 

@@ -26,7 +26,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
         randomDir = (Random.Range(0, 1) * 2) - 1;
     }
 
-    void Update()
+    /*void Update()
     {
         Ray camRay = cam.ViewportPointToRay(viewCenter);
         camRay.origin = new Vector3(camRay.origin.x, 0, camRay.origin.z);
@@ -47,7 +47,7 @@ public class PropGrowthManager : MonoBehaviour, IGrowable
 
         }
         Debug.DrawRay(camRay.origin, camRay.direction * 4, Color.blue);
-    }
+    }*/
 
     void CreateProp()
     {

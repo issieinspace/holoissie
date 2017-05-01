@@ -17,14 +17,14 @@ public class MoviePlayerManager : MonoBehaviour {
     private VideoClip _videoPlayerClip;
 
     // Use this for initialization
-	void Start ()
+	void Awake()
 	{
         // Get an instance of the Video Clip
 	    videoPlayer = this.GetComponentInChildren<VideoPlayer>();
 	    renderers = this.GetComponentsInChildren<CanvasRenderer>();
             
         // Turn off until we need it
-	    TurnOff();
+	    //TurnOff();
         MessageKit<string>.addObserver(MessageType.OnReady, OnReady);
         MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
     }

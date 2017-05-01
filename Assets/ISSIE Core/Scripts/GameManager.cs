@@ -29,16 +29,17 @@ public class GameManager : MonoBehaviour {
     public static float spacialFloorHeight = 0;
    
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.Object.SetActive(false);
         
         Score = GameObject.Find("Score");
-        //Score.GetComponent<TextMesh>().text = "";
+        Score.GetComponent<TextMesh>().text = "";
 
         Credits = GameObject.Find("Credits");
-        //Credits.SetActive(false);
+        Credits.SetActive(false);
 
         listeners = GameObject.FindGameObjectsWithTag("Triggerable");
 
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (ExerciseStageInProgress)
         {
             RunExerciseStage();
@@ -65,7 +67,8 @@ public class GameManager : MonoBehaviour {
     {
         if (RunIntro)
         {
-            MoveWorldToSpacialFloor(null, null);
+            StartCoroutine(VisibleAssetActivationDelay(8.0f));
+
             // Send a message to play the intro
             //Hashtable args = new Hashtable();
             //args.Add("methodName", "OnIntro");
@@ -119,6 +122,7 @@ public class GameManager : MonoBehaviour {
                 //args.Add("methodName", "OnGameOver");
                 //HandleEvent(args);
                 MessageKit.post(MessageType.OnGameOver);
+                Credits.SetActive(true);
                 GameOver = true;
             }
         }
@@ -179,6 +183,12 @@ public class GameManager : MonoBehaviour {
         spacialFloorHeight = hololensPlanes.FloorYPosition;
 #endif
         MessageKit.post(MessageType.OnSpacialMappingComplete);
+    }
+
+    IEnumerator VisibleAssetActivationDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        MoveWorldToSpacialFloor(null, null);
     }
     
 }
