@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 
-public class LaunchSceneScript : MonoBehaviour {
+public class GameSelectorScript : MonoBehaviour {
 
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-    
+
     public GameObject Loading;
     public GameObject MoCap;
-    
 
     Color selectedColor = Color.yellow;
 
@@ -22,14 +21,14 @@ public class LaunchSceneScript : MonoBehaviour {
     {
         Loading = GameObject.Find("Loading");
 
-        keywords.Add("Cycle", () =>
+        keywords.Add("Earth Magic", () =>
         {
-            StartGame("Cycle");
+            StartGame("Earth Magic");
         });
 
-        keywords.Add("Warmup", () =>
+        keywords.Add("Multiverse Rescue", () =>
         {
-            StartGame("Warmup");
+            StartGame("Multiverse Rescue");
         });
 
         keywords.Add("Show Capture", () =>
@@ -76,41 +75,29 @@ public class LaunchSceneScript : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetAxis("Jump") != 0.0f)
-        {
-            OnGo("Warmup");
-        }
 
-        if(Input.GetKey("1"))
+        if (Input.GetKey("1"))
         {
-            StartGame("Cycle");
+            StartGame("Earth Magic");
         }
 
         if (Input.GetKey("2"))
         {
-            StartGame("Warmup");
+            StartGame("Multiverse Rescue");
         }
 
     }
 
     public void OnGo(String ExerciseScene)
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        String pathToActiveScene = currentScene.path;
-        String folderOfActiveScene = pathToActiveScene.Substring(0, pathToActiveScene.Length - pathToActiveScene.LastIndexOf("/") + 1);
-        String sceneToLaunch = folderOfActiveScene + "/" + ExerciseScene +".unity";
-        Debug.Log("This launch scene has this path:" + pathToActiveScene + " Folder is " + folderOfActiveScene);
-        Debug.Log("This is what we launch:" + sceneToLaunch);
-
-        Loading.GetComponent<TextMesh>().text = "Loading ";// + ExerciseScene;
-        SceneManager.LoadScene(sceneToLaunch);
+        SceneManager.LoadScene(ExerciseScene);
     }
 
-    public void StartGame(String selectedRoutine)
+    public void StartGame(String selectedGame)
     {
-        SetSelectedColor(selectedRoutine);
-            
-        OnGo(selectedRoutine);
+        Loading.GetComponent<TextMesh>().text = "Loading " + selectedGame;
+        //SetSelectedColor(selectedRoutine);
+
+        OnGo(selectedGame + " Launch Menu");
     }
-     
 }
