@@ -8,21 +8,21 @@ using UnityEngine;
 public class PropActivator : MonoBehaviour
 {
     public string exerciseName;
-    private ITriggerable growable;
+    private ITriggerable triggerable;
 
     void Start()
     {
-        growable = GetComponent<ITriggerable>();
+        triggerable = GetComponent<ITriggerable>();
 
         MessageKit<string>.addObserver(MessageType.OnReady, (name) =>
         {
             if (name == exerciseName)
             {
-                growable.Activate();
+                triggerable.Activate();
             }
             else
             {
-                growable.Deactivate();
+                triggerable.Deactivate();
             }
         });
     }
