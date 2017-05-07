@@ -25,18 +25,9 @@ public class MultiverseRescueEventManager : MonoBehaviour {
    
     void Start ()
     {
-        achievementSound = Resources.Load<AudioClip>(achievementSoundName);
-        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
-        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementName);
-        intro = Resources.Load<AudioClip>(introClipName);
-        partyMusic = Resources.Load<AudioClip>(partyMusicName);
+        Debug.Log("RACE CONDITION: INTRO IS BEING POSTED before registration begins here. Setting the observers in MVREvtM");
 
-        AudioSource[] audioSources = gameObject.GetComponents<AudioSource>();
-        audioSource = audioSources[1];
-        audioSource.loop = false;
-
-        backgroundMusic = audioSources[2];
-        backgroundMusic.loop = true;
+        //InitializeAudio();
 
         MessageKit.addObserver(MessageType.OnIntro, OnIntro);
         MessageKit.addObserver(MessageType.OnFirstAchievement, OnFirstAchievement);
@@ -46,8 +37,29 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnIntro()
     {
+        Debug.Log("OnIntro is being called in MVR EvtMgr!");
+        if (audioSource == null)
+            InitializeAudio();
+
         audioSource.clip = intro;
         audioSource.Play();
+
+    }
+
+    private void InitializeAudio()
+    {
+        achievementSound = Resources.Load<AudioClip>(achievementSoundName);
+        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
+        firstAchievementSound = Resources.Load<AudioClip>(firstAchievementName);
+        intro = Resources.Load<AudioClip>(introClipName);
+        partyMusic = Resources.Load<AudioClip>(partyMusicName);
+
+        AudioSource[] audioSources = gameObject.GetComponents<AudioSource>();
+        audioSource = audioSources[0];
+        audioSource.loop = false;
+
+        backgroundMusic = audioSources[1];
+        backgroundMusic.loop = true;
 
     }
 

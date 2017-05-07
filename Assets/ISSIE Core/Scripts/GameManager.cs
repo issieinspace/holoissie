@@ -42,11 +42,12 @@ public class GameManager : MonoBehaviour {
         Credits.SetActive(false);
 
         listeners = GameObject.FindGameObjectsWithTag("Triggerable");
-
-
+        
         StartGame();
+
+#if !UNITY_EDITOR
         hololensPlanes.MakePlanesComplete += MoveWorldToSpacialFloor;
-        //MessageKit<string>.addObserver(MessageType.OnReady, (name) => MoveWorldToSpacialFloor());
+#endif
     }
 
     // Update is called once per frame
@@ -67,16 +68,17 @@ public class GameManager : MonoBehaviour {
     {
         if (RunIntro)
         {
+            Debug.Log("running the intro");
             StartCoroutine(VisibleAssetActivationDelay(8.0f));
 
-            // Send a message to play the intro
-            //Hashtable args = new Hashtable();
-            //args.Add("methodName", "OnIntro");
-            //HandleEvent(args);
-            MessageKit.post(MessageType.OnIntro);
-           
             // Wait for the appropriate time before starting
             TimersManager.SetTimer(this, TimeToWaitBeforeCommencingExercise, CommenceExerciseStage);
+
+            Debug.Log("sending the OnIntro message");
+            // Send a message to play the intro
+            MessageKit.post(MessageType.OnIntro);
+            HandleEvent("OnIntro");
+
             RunIntro = false;
         }
         else
@@ -160,6 +162,13 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(StartScene);        
     }
 
+    private void HandleEvent(string methodName)
+    {
+        Hashtable args = new Hashtable();
+        args.Add("methodName", methodName);
+        HandleEvent(args);
+    }
+
     public void HandleEvent(Hashtable args)
     {
         String methodName = (String)args["methodName"];
@@ -174,9 +183,13 @@ public class GameManager : MonoBehaviour {
 
     public void MoveWorldToSpacialFloor(object source, EventArgs args)
     {
-        
+
 #if UNITY_EDITOR
-        transform.position = new Vector3(0, -1.8f, 0);
+        if (SceneManager.GetActiveScene().path.Contains("Earth"))
+        {
+            transform.position = new Vector3(0, -1.8f, 0);
+        }
+
         spacialFloorHeight = -1.8f;
 #else
         transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);

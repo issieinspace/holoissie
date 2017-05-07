@@ -105,9 +105,11 @@ public class EarthMagicEventManager : MonoBehaviour
         audioSource.Play();
     }
 
+    // This should probably go somewhere else... Like on the countdown and score objects
     public void OnGameOver()
     {
-        HaveAParty();
+        GameObject.Find("Countdown").GetComponent<TextMesh>().text = "Game Over";
+        GameObject.Find("Score").GetComponent<TextMesh>().text = "You've restored the Earth";
     }
 
     public void OnAlmostDone()
@@ -115,16 +117,5 @@ public class EarthMagicEventManager : MonoBehaviour
         audioSource.clip = almostDoneSound;
         audioSource.Play();
     }
-    
-
-    void HaveAParty()
-    {
-        GameObject.Find("Countdown").GetComponent<TextMesh>().text = "Game Over";
-        GameObject.Find("Score").GetComponent<TextMesh>().text = "You've restored the Earth";
-        GameObject Credits = GameObject.Find("Credits");
-
-       // TimersManager.SetTimer(this, 5, delegate { Credits.SetActive(true); Credits.AddComponent<CreditsAnimation>(); });
-
-
-    }
+   
 }
