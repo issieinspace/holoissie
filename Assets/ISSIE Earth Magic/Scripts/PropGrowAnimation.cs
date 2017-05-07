@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PropGrowAnimation : MonoBehaviour, IGrowable
+public class PropGrowAnimation : MonoBehaviour, ITriggerable
 {
 
     public Vector3 StartSize = new Vector3(0,0,0);

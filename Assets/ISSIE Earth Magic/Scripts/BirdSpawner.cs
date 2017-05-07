@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Prime31.MessageKit;
 
-public class BirdSpawner : MonoBehaviour, IGrowable
+public class BirdSpawner : MonoBehaviour, ITriggerable
 {
     public GameObject Prop;
 

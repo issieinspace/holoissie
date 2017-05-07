@@ -4,7 +4,7 @@ using Academy.HoloToolkit.Unity;
 using UnityEngine;
 using Prime31.MessageKit;
 
-public class PropGrowthManager : MonoBehaviour, IGrowable
+public class PropGrowthManager : MonoBehaviour, ITriggerable
 {
 
     public GameObject propPrefab;

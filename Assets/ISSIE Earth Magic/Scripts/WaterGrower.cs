@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using Prime31.MessageKit;
 
-public class WaterGrower : MonoBehaviour, IGrowable
+public class WaterGrower : MonoBehaviour, ITriggerable
 {
     public float expectedHeightChange = 1f;
     public float maxHeightChange = 1.35f;

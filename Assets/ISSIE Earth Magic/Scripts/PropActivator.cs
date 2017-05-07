@@ -8,11 +8,11 @@ using UnityEngine;
 public class PropActivator : MonoBehaviour
 {
     public string exerciseName;
-    private IGrowable growable;
+    private ITriggerable growable;
 
     void Start()
     {
-        growable = GetComponent<IGrowable>();
+        growable = GetComponent<ITriggerable>();
 
         MessageKit<string>.addObserver(MessageType.OnReady, (name) =>
         {
