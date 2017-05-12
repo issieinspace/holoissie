@@ -4,7 +4,8 @@ using Timers;
 using System;
 using Prime31.MessageKit;
 
-public class TransporterBehaviour : MonoBehaviour
+
+public class TransporterBehaviour : MonoBehaviour, ITriggerable
 {
 
     public GameObject AlienPrefab;
@@ -18,26 +19,40 @@ public class TransporterBehaviour : MonoBehaviour
     Color downColor = Color.red;
     Color upColor = Color.red;
     Color doneColor = Color.green;
-
     
-    public bool TransporterActive = false;
-    public bool FlyInOnStart = false;
-    public bool FlyOutOnComplete = false;
-
     public Transform Camera;
   
     public DoorBehavior Door;
     public MultiverseRescueCountDownDisplay CountDown;
     public ExerciseTimer ExerciseTimer;
     public String MyExercise;
-
-
     public System.Collections.Generic.List<GameObject> Aliens;
+
+    public void Activate()
+    {
+        Debug.Log("TRANSPORTER ACTIVATED " + this.name);
+        MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
+        MessageKit.addObserver(MessageType.OnStart, OnStart);
+        MessageKit.addObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
+        MessageKit.addObserver(MessageType.OnMoveComplete, OnMoveComplete);
+        MessageKit.addObserver(MessageType.OnAchievement, OnAchievement);
+        MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
+    }
+
+    public void Deactivate()
+    {
+        MessageKit<string>.removeObserver(MessageType.OnReady, (name) => OnReady(name));
+        MessageKit.removeObserver(MessageType.OnStart, OnStart);
+        MessageKit.removeObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
+        MessageKit.removeObserver(MessageType.OnMoveComplete, OnMoveComplete);
+        MessageKit.removeObserver(MessageType.OnAchievement, OnAchievement);
+        MessageKit.removeObserver(MessageType.OnTimeDone, OnTimeDone);
+
+    }
 
     // Use this for initialization
     void Start()
     {
-
         Aliens = new System.Collections.Generic.List<GameObject>();
 
         // Add an AudioSource component and set up some defaults
@@ -54,36 +69,21 @@ public class TransporterBehaviour : MonoBehaviour
         Door = GameObject.Find("Door").GetComponent<DoorBehavior>();
         CountDown = GameObject.Find("Countdown").GetComponent<MultiverseRescueCountDownDisplay>();
 
-        MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
-        MessageKit.addObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
-        MessageKit.addObserver(MessageType.OnMoveComplete, OnMoveComplete);
-        MessageKit.addObserver(MessageType.OnAchievement, OnAchievement);
-        MessageKit.addObserver(MessageType.OnStart, OnStart);
-        MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
-        MessageKit<uint>.addObserver(MessageType.OnTick, (countDown) => OnTick(countDown));
+      
     }
 
     public void OnReady(string exerciseName)
     {
-        //setTransporterActiveByExercise((string)args["exerciseName"]);
-
-        //if ((string)args["exerciseName"] == MyExercise)
-        if (exerciseName == MyExercise)
-        {
-            if (FlyInOnStart)
-            {
-                Door.TriggerReady();
-                TimersManager.SetTimer(this, .5f, FlyIn);
-            }
-        }
-
+        Debug.Log("Hey transporter on ready is being called");
+        Door.TriggerReady();
+        TimersManager.SetTimer(this, .5f, FlyIn);
     }
 
     void SpawnAlien()
     {
         GameObject alien = GameObject.Instantiate(AlienPrefab);
         alien.transform.SetParent(this.transform);
-        alien.transform.localPosition = new Vector3(0, -7.5f, 0);
+        alien.transform.localPosition = new Vector3(0, 1.5f, 0);
         alien.transform.Rotate(0, -180, 0);
         alien.GetComponent<AlienBehaviour>().Target = Camera;
         alien.AddComponent<AlienScaleAnimation>();
@@ -94,45 +94,36 @@ public class TransporterBehaviour : MonoBehaviour
    
     public void OnDisplacementAchieved()
     {
-        if(TransporterActive)
-        {
-            Debug.Log("Down triggered on Transporter!");
+        Debug.Log("Down triggered on Transporter!");
 
-            audioSource.clip = bleep;
-            audioSource.Play();
+        audioSource.clip = bleep;
+        audioSource.Play();
 
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = downColor;
-        }
-        
+        // Let's see if we can live without the transporter color
+        //Renderer rend = GetComponent<Renderer>();
+        //rend.material.color = downColor;
      }
 
 
     public void OnMoveComplete()
     {
-        if (TransporterActive)
-        {
-            Debug.Log("Up triggered on Transporter!");
+        Debug.Log("Up triggered on Transporter!");
 
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = upColor;
+        //Renderer rend = this.GetComponentInChildren().GetComponent<Renderer>();
+        //rend.material.color = upColor;
 
-            audioSource.clip = bleep;
-            audioSource.Play();
-        }
+        audioSource.clip = bleep;
+        audioSource.Play();
     }
 
     public void OnAchievement()
     {
-        if (TransporterActive)
-        {
-            // Release the current alien
-            GameObject alien = getCurrentAlien();
-            alien.GetComponent<AlienBehaviour>().OnDrop();
+        // Release the current alien
+        GameObject alien = getCurrentAlien();
+        alien.GetComponent<AlienBehaviour>().OnDrop();
 
-            // Spawn a new alien
-            SpawnAlien();
-        }
+        // Spawn a new alien
+        SpawnAlien();
     }
 
     GameObject getCurrentAlien()
@@ -143,67 +134,35 @@ public class TransporterBehaviour : MonoBehaviour
     // Called when exercise starts
     public void OnStart()
     {
-        if (TransporterActive)
-        {
             audioSource.clip = startTransporter;
             audioSource.Play();
 
             SpawnAlien();
-        }        
     }
 
     void FlyIn()
     {
         Debug.Log("FLYING IN");
 
-        GameObject parent = transform.parent.gameObject;
-        parent.AddComponent<TransporterFlyInAnimation>();
+        this.gameObject.AddComponent<TransporterFlyInAnimation>();
 
-        Debug.Log("FLEW IN " + parent.name);
+        
     }
 
     public void OnTimeDone()
     {
-        if (TransporterActive)
-        {
-            Debug.Log("Transporter doing the timeDone thing");
+       // Renderer rend = GetComponent<Renderer>();
+       // rend.material.color = doneColor;
 
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = doneColor;
+        audioSource.clip = timeDone;
+        audioSource.Play();
 
-            audioSource.clip = timeDone;
-            audioSource.Play();
+        getCurrentAlien().GetComponent<AlienBehaviour>().OnDrop();
 
-            getCurrentAlien().GetComponent<AlienBehaviour>().OnDrop();
-
-            if (FlyOutOnComplete)
-            {
-                GameObject parent = transform.parent.gameObject;
-                parent.AddComponent<TransporterFlyOutAnimation>();
-            }
-        }
+        GameObject parent = transform.parent.gameObject;
+        this.gameObject.AddComponent<TransporterFlyOutAnimation>();
     }
-
-    internal void OnTick(uint countDown)
-    {
-        if (TransporterActive)
-        {
-            //CountDown.TriggerTick((uint)args["countDown"]);
-            CountDown.TriggerTick(countDown);
-        }
-    }
-
-    internal void setTransporterActiveByExercise(String exerciseName)
-    {
-        if (exerciseName == MyExercise)
-        {
-            TransporterActive = true;
-        }
-        else
-        {
-            TransporterActive = false;
-        }
-    }
+    
 }
 
 

@@ -13,8 +13,13 @@ public class PropActivator : MonoBehaviour
     void Start()
     {
         triggerable = GetComponent<ITriggerable>();
+        if(exerciseName.Length < 1)
+        {
+            exerciseName = gameObject.name;
+            Debug.Log("Exercise name was null so set it to " + exerciseName);
+        }
 
-        MessageKit<string>.addObserver(MessageType.OnReady, (name) =>
+        MessageKit<string>.addObserver(MessageType.OnPlayerReady, (name) =>
         {
             if (name == exerciseName)
             {

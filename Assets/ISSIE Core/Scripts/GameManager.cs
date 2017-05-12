@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.Object.SetActive(false);
         
@@ -104,7 +103,9 @@ public class GameManager : MonoBehaviour {
                 {
                     currentExerciseIndex++;
                     CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
-                    CurrentExercise.PlayerIsReady = true;
+                    Debug.Log("broadcasting Player ready within RunExercise");
+                    BroadcastPlayerReady(CurrentExercise.name);
+                    //CurrentExercise.PlayerIsReady = true;
                   
                     Debug.Log("Next exercise kicked off");
                 }
@@ -119,17 +120,19 @@ public class GameManager : MonoBehaviour {
             ExerciseStageInProgress = false;
             if (!GameOver)
             {
-                // Game is over now
-                //Hashtable args = new Hashtable();
-                //args.Add("methodName", "OnGameOver");
-                //HandleEvent(args);
                 MessageKit.post(MessageType.OnGameOver);
                 Credits.SetActive(true);
                 GameOver = true;
             }
         }
     }
-    
+
+    private void BroadcastPlayerReady(string exerciseName)
+    {
+        Debug.Log("Broadcasting Player Ready for " + exerciseName);
+        MessageKit<string>.post(MessageType.OnPlayerReady, exerciseName);
+        Debug.Log("Done broadcasting Player Ready for " + exerciseName);
+    }
 
     private void OutputDiagnostics(Exercise currentExercise)
     {
@@ -152,7 +155,9 @@ public class GameManager : MonoBehaviour {
         ExerciseStageInProgress = true;
 
         CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
-        CurrentExercise.PlayerIsReady = true;
+
+        Debug.Log("broadcasting Player ready within RunExercise");
+        BroadcastPlayerReady(CurrentExercise.name);
         Debug.Log("ExerciseStageStarted");   
     }
 

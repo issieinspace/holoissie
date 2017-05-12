@@ -4,7 +4,7 @@ using System;
 using Timers;
 using Prime31.MessageKit;
 
-public class Exercise : MonoBehaviour
+public class Exercise : MonoBehaviour, ITriggerable
 {
     // --- Configuration
     private string ExerciseName;
@@ -17,10 +17,9 @@ public class Exercise : MonoBehaviour
     // The move for this exercise
     public GameObject ExerciseMovePrefab;
     public System.Collections.Generic.List<ExerciseMove> Moves;
-    public bool ReckonStartPositionFromReadyPositions;
+    public bool ReckonStartPositionFromReadyPositions = true;
     public Vector3 OriginalPosition;
-
-
+    
     public bool PlayerIsReady = true;
     public int AchievementCount = 0;
     public bool ExerciseComplete = false;
@@ -76,26 +75,7 @@ public class Exercise : MonoBehaviour
                 StopExercise();
             }
         }
-        else
-        {
-            if (PlayerIsReady)
-            {
-                if (!CountDownStarted)
-                {
-                    ReadyExercise();
-                }
-
-                if (CountDownDone)
-                {
-                    if (!ExerciseComplete)
-                    {
-                        StartExercise();
-                    }
-                }
-            }
-
-           
-        }
+ 
     }
 
     void HandleMoveComplete()
@@ -125,19 +105,35 @@ public class Exercise : MonoBehaviour
         Move.TriggeredDisplacementAchieved = true;
     }
 
+    void PlayerReady()
+    {
+        if (!CountDownStarted)
+        {
+            ReadyExercise();
+        }
+
+        if (CountDownDone)
+        {
+            if (!ExerciseComplete)
+            {
+                StartExercise();
+            }
+        }
+    }
+
     // Ready exercise
     void ReadyExercise()
     {
         // Clear previous moves
         Moves = new System.Collections.Generic.List<ExerciseMove>();
-
-        BroadcastExerciseReady();
-
+        
         TimersManager.SetTimer(this, 1f, TicksToCountDown, TriggerTick);
         TimersManager.SetTimer(this, TicksToCountDown, StartExercise);
  
         CountDownStarted = true;
-        
+
+        BroadcastExerciseReady();
+
         Debug.Log(ExerciseName + ": Ready Exercise");
     }
 
@@ -236,10 +232,9 @@ public class Exercise : MonoBehaviour
 
     void BroadcastExerciseReady()
     {
+        Debug.Log("Broadcasting ExerciseReady" + ExerciseName);
         MessageKit<string>.post(MessageType.OnReady, ExerciseName);
-        //Hashtable args = packArgs(null, "methodName", "OnReady");
-        //args = packArgs(args, "exerciseName", ExerciseName);
-        //SendMessageUpwards("HandleEvent", args, SendMessageOptions.DontRequireReceiver);
+        Debug.Log("Broadcasted ExerciseReady" + ExerciseName);
     }
 
     void BroadcastAlmostDone()
@@ -282,4 +277,13 @@ public class Exercise : MonoBehaviour
         return args;
     }
 
+    public void Activate()
+    {
+        PlayerReady();
+    }
+
+    public void Deactivate()
+    {
+        //no-op;
+    }
 }

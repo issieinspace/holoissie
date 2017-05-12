@@ -949,7 +949,7 @@ MonoBehaviour:
   ExerciseStageInProgress: 0
   ExerciseStageDone: 0
   GameOver: 0
-  StartScene: Launch-Menu
+  StartScene: Game Selector
   Diagnostics: {fileID: 1853138657}
   Score: {fileID: 0}
   Credits: {fileID: 0}
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   timeDoneSoundName: SynthZap
   firstAchievementName: NICEWORK1-Remix
   almostDoneName: YourAlmostThere1-Remix
-  introClipName: OpeningDialogue_2_Remix
+  introClipName: Wind
   partyMusicName: ISSIE Game Loop - Continuous Drums
   badoopSoundName: Computer04
 --- !u!82 &1223757503

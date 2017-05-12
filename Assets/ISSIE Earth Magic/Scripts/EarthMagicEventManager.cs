@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using Timers;
 using Prime31.MessageKit;
+using System;
 
 public class EarthMagicEventManager : MonoBehaviour
 {
@@ -32,17 +33,8 @@ public class EarthMagicEventManager : MonoBehaviour
     {
         // Spatial Mapping
         //SpatialMapping.Instance.Object.SetActive(false);
-        
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.loop = false;
 
-        startSound = Resources.Load<AudioClip>(startSoundName);
-        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
-        firstAchievement = Resources.Load<AudioClip>(firstAchievementName);
-        intro = Resources.Load<AudioClip>(introClipName);
-        partyMusic = Resources.Load<AudioClip>(partyMusicName);
-        timeDoneSound = Resources.Load<AudioClip>(timeDoneSoundName);
-        bleep = Resources.Load<AudioClip>(badoopSoundName);
+        InitializeAudio();
 
         MessageKit.addObserver(MessageType.OnIntro, OnIntro);
         MessageKit.addObserver(MessageType.OnFirstAchievement, OnFirstAchievement);
@@ -58,8 +50,23 @@ public class EarthMagicEventManager : MonoBehaviour
        
     }
 
+    private void InitializeAudio()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.loop = false;
+
+        startSound = Resources.Load<AudioClip>(startSoundName);
+        almostDoneSound = Resources.Load<AudioClip>(almostDoneName);
+        firstAchievement = Resources.Load<AudioClip>(firstAchievementName);
+        intro = Resources.Load<AudioClip>(introClipName);
+        partyMusic = Resources.Load<AudioClip>(partyMusicName);
+        timeDoneSound = Resources.Load<AudioClip>(timeDoneSoundName);
+        bleep = Resources.Load<AudioClip>(badoopSoundName);
+    }
+
     public void OnIntro()
     {
+        InitializeAudio();
         audioSource.clip = intro;
         audioSource.Play();
 
