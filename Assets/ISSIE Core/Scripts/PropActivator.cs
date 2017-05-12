@@ -9,6 +9,7 @@ public class PropActivator : MonoBehaviour
 {
     public string exerciseName;
     private ITriggerable triggerable;
+    private bool isActive = false;
 
     void Start()
     {
@@ -16,11 +17,12 @@ public class PropActivator : MonoBehaviour
 
         MessageKit<string>.addObserver(MessageType.OnReady, (name) =>
         {
-            if (name == exerciseName)
+            if (name == exerciseName && !isActive)
             {
+                isActive = true;
                 triggerable.Activate();
             }
-            else
+            else if (isActive)
             {
                 triggerable.Deactivate();
             }

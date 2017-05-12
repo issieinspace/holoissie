@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunIntro: 1
-  TimeToWaitBeforeCommencingExercise: 8
+  TimeToWaitBeforeCommencingExercise: 10
   exercises: []
   currentExerciseIndex: 0
   CurrentExercise: {fileID: 0}

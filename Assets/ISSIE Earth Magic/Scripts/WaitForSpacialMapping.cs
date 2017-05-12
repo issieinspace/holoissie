@@ -8,8 +8,8 @@ public class WaitForSpacialMapping : MonoBehaviour
 
     void Start()
     {
-        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Activate);
         gameObject.SetActive(false);
+        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Activate);
     }
 
     void Activate()

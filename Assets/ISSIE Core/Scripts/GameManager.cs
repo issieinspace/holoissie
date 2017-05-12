@@ -9,10 +9,9 @@ using Academy.HoloToolkit.Unity;
 public class GameManager : MonoBehaviour {
 
     public bool RunIntro = true;
-    public int TimeToWaitBeforeCommencingExercise = 0;
+    public int TimeToWaitBeforeCommencingExercise = 10;
 
     public GameObject[] exercises;
-    private GameObject[] listeners;
     public int currentExerciseIndex = 0;
 
     public Exercise CurrentExercise;
@@ -40,8 +39,6 @@ public class GameManager : MonoBehaviour {
 
         Credits = GameObject.Find("Credits");
         Credits.SetActive(false);
-
-        listeners = GameObject.FindGameObjectsWithTag("Triggerable");
         
         StartGame();
 
@@ -69,7 +66,7 @@ public class GameManager : MonoBehaviour {
         if (RunIntro)
         {
             Debug.Log("running the intro");
-            StartCoroutine(VisibleAssetActivationDelay(8.0f));
+            StartCoroutine(VisibleAssetActivationDelay(TimeToWaitBeforeCommencingExercise));
 
             // Wait for the appropriate time before starting
             TimersManager.SetTimer(this, TimeToWaitBeforeCommencingExercise, CommenceExerciseStage);
@@ -77,7 +74,6 @@ public class GameManager : MonoBehaviour {
             Debug.Log("sending the OnIntro message");
             // Send a message to play the intro
             MessageKit.post(MessageType.OnIntro);
-            HandleEvent("OnIntro");
 
             RunIntro = false;
         }
@@ -120,9 +116,6 @@ public class GameManager : MonoBehaviour {
             if (!GameOver)
             {
                 // Game is over now
-                //Hashtable args = new Hashtable();
-                //args.Add("methodName", "OnGameOver");
-                //HandleEvent(args);
                 MessageKit.post(MessageType.OnGameOver);
                 Credits.SetActive(true);
                 GameOver = true;
@@ -160,25 +153,6 @@ public class GameManager : MonoBehaviour {
     {
         MessageKitManager.clearAllMessageTables();
         SceneManager.LoadScene(StartScene);        
-    }
-
-    private void HandleEvent(string methodName)
-    {
-        Hashtable args = new Hashtable();
-        args.Add("methodName", methodName);
-        HandleEvent(args);
-    }
-
-    public void HandleEvent(Hashtable args)
-    {
-        String methodName = (String)args["methodName"];
-        Debug.Log("About to execute " + methodName);
-
-        foreach (GameObject listener in listeners)
-        {
-            listener.SendMessage(methodName, args, SendMessageOptions.DontRequireReceiver);
-            Debug.Log("Sent " + methodName + " to " + listener.name + " with args " + args);
-        }
     }
 
     public void MoveWorldToSpacialFloor(object source, EventArgs args)

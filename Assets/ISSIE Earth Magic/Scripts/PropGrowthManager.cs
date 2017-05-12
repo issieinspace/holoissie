@@ -20,7 +20,6 @@ public class PropGrowthManager : MonoBehaviour, ITriggerable
 
     void Start()
     {
-        //Random.InitState(29);
         cam = Camera.main;
         spawnedLocations = new List<Vector3>();
         randomDir = (Random.Range(0, 1) * 2) - 1;
@@ -60,7 +59,8 @@ public class PropGrowthManager : MonoBehaviour, ITriggerable
         Vector3 spawnPoint = GetPointAlongRayWithinBounds(camRay);
         spawnedLocations.Add(spawnPoint);
 
-        spawnPoint.y = GameManager.spacialFloorHeight;
+        spawnPoint.y = Terrain.activeTerrain.transform.position.y +
+                       Terrain.activeTerrain.SampleHeight(spawnPoint) - 0.03f;
 
         GameObject prop = Instantiate(propPrefab,
             spawnPoint,
