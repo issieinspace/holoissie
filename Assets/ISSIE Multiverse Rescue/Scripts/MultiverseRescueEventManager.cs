@@ -27,7 +27,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
     {
         Debug.Log("RACE CONDITION: INTRO IS BEING POSTED before registration begins here. Setting the observers in MVREvtM");
 
-        //InitializeAudio();
+        InitializeAudio();
 
         MessageKit.addObserver(MessageType.OnIntro, OnIntro);
         MessageKit.addObserver(MessageType.OnFirstAchievement, OnFirstAchievement);
@@ -41,9 +41,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
         if (audioSource == null)
             InitializeAudio();
 
-        audioSource.clip = intro;
-        audioSource.Play();
-
+        playClip(intro);
     }
 
     private void InitializeAudio()
@@ -65,8 +63,7 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnFirstAchievement()
     {
-        audioSource.clip = firstAchievementSound;
-        audioSource.Play();
+        playClip(firstAchievementSound);
     }
 
     public void OnGameOver()
@@ -76,13 +73,13 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
     public void OnAlmostDone()
     {
-        audioSource.clip = almostDoneSound;
-        audioSource.Play();
+        playClip(almostDoneSound);
     }
 
     void playClip(AudioClip clip)
     {
-
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     void HaveAParty()

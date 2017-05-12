@@ -16,10 +16,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013311624324}
-  - 114: {fileID: 114000010518343526}
+  - component: {fileID: 4000013311624324}
+  - component: {fileID: 114000010518343526}
+  - component: {fileID: 114860129291608310}
   m_Layer: 0
   m_Name: ExercisePrefab
   m_TagString: Exercise
@@ -36,10 +37,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010518343526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,20 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f099eda0e4166640b512967b1a4ce79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransporterControl: {fileID: 0}
-  ExerciseName: 
   Order: 0
   TimeForExercise: 30
   MovesForAchievement: 0
   ExerciseMovePrefab: {fileID: 0}
   Moves: []
-  ReckonStartPositionFromReadyPositions: 0
-  achievementSoundName: EtherealAccent
-  timeDoneSoundName: SynthZap
-  firstAchievementSoundName: NICEWORK1-Remix
-  almostDoneSoundName: YourAlmostThere1-Remix
-  firstAchievementSound: {fileID: 0}
-  almostDoneSound: {fileID: 0}
+  ReckonStartPositionFromReadyPositions: 1
+  OriginalPosition: {x: 0, y: 0, z: 0}
   PlayerIsReady: 0
   AchievementCount: 0
   ExerciseComplete: 0
@@ -78,3 +72,15 @@ MonoBehaviour:
   TicksToCountDown: 6
   CountDown: 0
   ExerciseTimer: {fileID: 0}
+--- !u!114 &114860129291608310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011498705890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: 

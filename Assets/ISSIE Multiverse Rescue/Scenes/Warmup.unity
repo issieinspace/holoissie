@@ -278,7 +278,8 @@ Prefab:
       propertyPath: MyExercise
       value: Side Lunge Left
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &59124028
@@ -624,8 +625,42 @@ Transform:
   - {fileID: 733573631}
   - {fileID: 1247893048}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &252041867 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 180814, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
+  m_PrefabInternal: {fileID: 2007238957}
+--- !u!114 &252041868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252041867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: Side Lunge Left
+--- !u!114 &252041869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252041867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26526b2edd015740a64e56abfc7b385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlienPrefab: {fileID: 100076, guid: aff7ce3bcbd2c554b9f735ffac448ee1, type: 2}
+  Camera: {fileID: 11265764}
+  Door: {fileID: 0}
+  CountDown: {fileID: 0}
+  ExerciseTimer: {fileID: 0}
+  MyExercise: Side Lunge Left
+  Aliens: []
 --- !u!1 &282642934
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +691,7 @@ Transform:
   - {fileID: 2061535232}
   - {fileID: 92182333}
   m_Father: {fileID: 769925908}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &334317981
 GameObject:
@@ -728,6 +763,40 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013729430720, guid: 738302f768042a5429b787606d98df3f,
     type: 2}
   m_PrefabInternal: {fileID: 364476650}
+--- !u!1 &354745410 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 194236, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
+  m_PrefabInternal: {fileID: 1005897603}
+--- !u!114 &354745411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 354745410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: Reverse Lunge
+--- !u!114 &354745412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 354745410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26526b2edd015740a64e56abfc7b385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlienPrefab: {fileID: 100076, guid: aff7ce3bcbd2c554b9f735ffac448ee1, type: 2}
+  Camera: {fileID: 11265764}
+  Door: {fileID: 0}
+  CountDown: {fileID: 0}
+  ExerciseTimer: {fileID: 0}
+  MyExercise: Reverse Lunge
+  Aliens: []
 --- !u!1001 &364476650
 Prefab:
   m_ObjectHideFlags: 0
@@ -812,7 +881,8 @@ Prefab:
       propertyPath: MyExercise
       value: Side Lunge Right
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &379276282
@@ -916,6 +986,41 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: cc6f80547d24c0f4597c0fd470705003, type: 2}
   m_PrefabInternal: {fileID: 828649145}
+--- !u!1 &424879212 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 172142, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
+  m_PrefabInternal: {fileID: 1733851837}
+--- !u!114 &424879213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 424879212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: Squats
+--- !u!114 &424879214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 424879212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26526b2edd015740a64e56abfc7b385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlienPrefab: {fileID: 100076, guid: aff7ce3bcbd2c554b9f735ffac448ee1, type: 2}
+  Camera: {fileID: 11265764}
+  Door: {fileID: 0}
+  CountDown: {fileID: 0}
+  ExerciseTimer: {fileID: 0}
+  MyExercise: Squats
+  Aliens:
+  - {fileID: 0}
 --- !u!1 &431092347
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +1045,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 431092347}
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -1, y: -2, z: 0.5}
+  m_LocalPosition: {x: -1, y: 1.86, z: 0.5}
   m_LocalScale: {x: 0.01, y: 0.009999997, z: 0.009999997}
   m_Children: []
   m_Father: {fileID: 2065699865}
@@ -1096,6 +1201,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
+        type: 2}
+      propertyPath: ReckonStartPositionFromReadyPositions
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
   m_IsPrefabParent: 0
@@ -1190,6 +1300,40 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 424052, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
   m_PrefabInternal: {fileID: 2007238957}
+--- !u!1 &665901847 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 174790, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
+  m_PrefabInternal: {fileID: 92182332}
+--- !u!114 &665901848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665901847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: Side Lunge Right
+--- !u!114 &665901849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665901847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26526b2edd015740a64e56abfc7b385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlienPrefab: {fileID: 100076, guid: aff7ce3bcbd2c554b9f735ffac448ee1, type: 2}
+  Camera: {fileID: 11265764}
+  Door: {fileID: 0}
+  CountDown: {fileID: 0}
+  ExerciseTimer: {fileID: 0}
+  MyExercise: Side Lunge Right
+  Aliens: []
 --- !u!1 &666290696 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013729430720, guid: 738302f768042a5429b787606d98df3f,
@@ -1345,7 +1489,8 @@ Prefab:
       propertyPath: MyExercise
       value: Reverse Lunge
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &769925906
@@ -1376,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 1
+  RunIntro: 0
   TimeToWaitBeforeCommencingExercise: 8
   exercises: []
   currentExerciseIndex: 0
@@ -1399,14 +1544,13 @@ Transform:
   m_LocalPosition: {x: -0.225, y: 0.391, z: 0.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1223757501}
   - {fileID: 1067610373}
   - {fileID: 1116006747}
   - {fileID: 282642935}
   - {fileID: 2065699865}
   - {fileID: 399713642}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &769925911
 MonoBehaviour:
@@ -1495,6 +1639,11 @@ Prefab:
         type: 2}
       propertyPath: TimeForExercise
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
+        type: 2}
+      propertyPath: ReckonStartPositionFromReadyPositions
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
@@ -1940,7 +2089,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 769925908}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116006746
 GameObject:
@@ -1972,7 +2121,7 @@ Transform:
   - {fileID: 626733648}
   - {fileID: 1147682074}
   m_Father: {fileID: 769925908}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1144641444
 Prefab:
@@ -2068,7 +2217,8 @@ Prefab:
       propertyPath: MyExercise
       value: Squats
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000011328309700, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 738302f768042a5429b787606d98df3f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1144641445 stripped
@@ -2172,6 +2322,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
+        type: 2}
+      propertyPath: ReckonStartPositionFromReadyPositions
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2324,12 +2479,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1223757499}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.225, y: 0.391, z: 0.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 769925908}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1223757502
 MonoBehaviour:
@@ -2811,7 +2966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &1599193559 stripped
 Transform:
@@ -3195,7 +3350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1625f9ca5072db649b6821514e7d1d48, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1625f9ca5072db649b6821514e7d1d48, type: 2}
@@ -3235,7 +3390,7 @@ Transform:
   - {fileID: 1806274447}
   - {fileID: 1066208282}
   m_Father: {fileID: 769925908}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2097771062
 Prefab:
@@ -3406,6 +3561,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
+        type: 2}
+      propertyPath: ReckonStartPositionFromReadyPositions
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
