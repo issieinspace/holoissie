@@ -39,8 +39,8 @@ public class LandingSpot:MonoBehaviour{
             Gizmos.DrawLine(_thisT.position, landingChild._thisT.position);
         if (_thisT.rotation.eulerAngles.x != 0 || _thisT.rotation.eulerAngles.z != 0)
             _thisT.eulerAngles = new Vector3(0.0f, _thisT.eulerAngles.y, 0.0f);
-        Gizmos.DrawCube(new Vector3(_thisT.position.x, _thisT.position.y, _thisT.position.z), new Vector3(.2f, .2f, .2f));
-        Gizmos.DrawCube(_thisT.position + (_thisT.forward * .2f), new Vector3(.1f, .1f, .1f));
+        Gizmos.DrawCube(new Vector3(_thisT.position.x, _thisT.position.y, _thisT.position.z), Vector3.one * _controller._gizmoSize);
+        Gizmos.DrawCube(_thisT.position + (_thisT.forward *  _controller._gizmoSize), Vector3.one * _controller._gizmoSize *.5f);
         Gizmos.color = new Color(1.0f, 1.0f, 0.0f, .05f);
         Gizmos.DrawWireSphere(_thisT.position, _controller._maxBirdDistance);
     }
@@ -97,9 +97,18 @@ public class LandingSpot:MonoBehaviour{
                
             }
     		landingChild._damping += .01f;
-        } 
-    }
+        }
+		StraightenBird();
+
+	}
     
+	public void StraightenBird(){
+		if (landingChild._thisT.eulerAngles.x == 0) return;
+		Vector3 r = landingChild._thisT.eulerAngles;
+		r.z = 0;
+		landingChild._thisT.eulerAngles = r;
+	}
+
     public void RotateBird(){
     	if(_controller._randomRotate && _idle) return;
     	lerpCounter++;
@@ -162,7 +171,7 @@ public class LandingSpot:MonoBehaviour{
                 landing = true;
     			_controller._activeLandingSpots++;
                 landingChild._landing = true;
-                landingChild._thisT.position = _thisT.position;
+                landingChild._thisT.position = _thisT.position + landingChild._landingPosOffset;
                 landingChild._model.GetComponent<Animation>().Play(landingChild._spawner._idleAnimation);
 				landingChild._thisT.Rotate(Vector3.up, Random.Range(0f, 360f));
               if(_controller._autoDismountDelay.x > 0)  Invoke("ReleaseFlockChild", Random.Range(_controller._autoDismountDelay.x, _controller._autoDismountDelay.y));

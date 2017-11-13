@@ -1,18 +1,23 @@
+/**using UnityEngine;
+using System;
+using UnityEditor;
 /****************************************
 	Copyright Unluck Software	
  	www.chemicalbliss.com																															
-*****************************************/
-@CustomEditor (FlockChild)
+*****************************************
+[CustomEditor(typeof(FlockChild))]
 
-class FlockChildEditor extends Editor {
-    function OnInspectorGUI () {
-    	DrawDefaultInspector();
-    	if(!target._thisT || !target._model || !target._modelT){
-    		EditorGUILayout.LabelField("Find and fill empty variables", EditorStyles.boldLabel); 
+[System.Serializable]
+public class FlockChildEditor : Editor {
+    public override void OnInspectorGUI() {
+        var target_cs = (FlockChild)target;
+        DrawDefaultInspector();
+    	if((target_cs._thisT==null) || (target_cs._model==null) || (target_cs._modelT==null)){
+            EditorGUILayout.LabelField("Find and fill empty variables", EditorStyles.boldLabel);
 			if(GUILayout.Button("Click Me! ")) {
-			 	target.FindRequiredComponents();
+                target_cs.FindRequiredComponents();
 			}
 		}
-		if (GUI.changed)	EditorUtility.SetDirty (target);
+		if (GUI.changed)	EditorUtility.SetDirty (target_cs);
     }
-}
+}*/

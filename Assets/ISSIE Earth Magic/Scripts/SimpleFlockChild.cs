@@ -95,7 +95,7 @@ public class SimpleFlockChild : MonoBehaviour
     public void FindRequiredComponents()
     {
         if (_thisT == null) _thisT = transform;
-        if (_model == null) _model = _thisT.FindChild("Model").gameObject;
+        if (_model == null) _model = _thisT.Find("Model").gameObject;
         if (_modelT == null) _modelT = _model.transform;
     }
 

@@ -27,7 +27,9 @@ public class LandingSpotController:MonoBehaviour{
     
     public float _snapLandDistance = 0.1f;						// Increase this if landing spots are moving
     public float _landedRotateSpeed = 0.01f;
-    
+
+	public float _gizmoSize = 0.2f;
+
     public void Start() {
     	if(_thisT == null) _thisT = transform;
     	if(_flock == null){
