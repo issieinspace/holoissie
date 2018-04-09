@@ -140,22 +140,34 @@ public class GameManager : MonoBehaviour {
     void CommenceExerciseStage()
     {
         // Collect the exercises
-        exercises = GameObject.FindGameObjectsWithTag("Exercise");
+        exercises = CollectExercises();
+
+        if (exercises.Length > 0)
+        {
+            ExerciseStageInProgress = true;
+
+            CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
+
+            Debug.Log("broadcasting Player ready within RunExercise");
+            BroadcastPlayerReady(CurrentExercise.name);
+            Debug.Log("ExerciseStageStarted");
+        }
+        
+    }
+
+    private GameObject[] CollectExercises()
+    {
+        GameObject[] collected = GameObject.FindGameObjectsWithTag("Exercise");
         currentExerciseIndex = 0;
 
         Debug.Log("Found " + exercises.Length + " exercises.");
 
-        Array.Sort(exercises, delegate (GameObject ex1, GameObject ex2) {
+        Array.Sort(exercises, delegate (GameObject ex1, GameObject ex2)
+        {
             return ex1.GetComponent<Exercise>().Order.CompareTo(ex2.GetComponent<Exercise>().Order);
         });
 
-        ExerciseStageInProgress = true;
-
-        CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
-
-        Debug.Log("broadcasting Player ready within RunExercise");
-        BroadcastPlayerReady(CurrentExercise.name);
-        Debug.Log("ExerciseStageStarted");   
+        return collected;
     }
 
     public void RestartGame()
@@ -163,6 +175,8 @@ public class GameManager : MonoBehaviour {
         MessageKitManager.clearAllMessageTables();
         SceneManager.LoadScene(StartScene);        
     }
+
+
 
     public void MoveWorldToSpacialFloor(object source, EventArgs args)
     {
