@@ -719,6 +719,11 @@ Prefab:
       propertyPath: Debug
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
+        type: 2}
+      propertyPath: m_FontSize
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
   m_IsPrefabParent: 0
@@ -1226,7 +1231,10 @@ MonoBehaviour:
     speed: 0
     multiplier: 0
     elapse: 0
-  URL: http://issiepi.local:9000/rpm_read
+  URL: http://192.168.86.78:9000/rpm_read
+  Log: 'Log:
+
+'
 --- !u!4 &2080626047
 Transform:
   m_ObjectHideFlags: 0
