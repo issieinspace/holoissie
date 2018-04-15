@@ -30,6 +30,7 @@ public class ExerciseMove : MonoBehaviour {
     public bool TriggeredDisplacementAchieved { get; internal set; }
 
     void Start () {
+        setup();
         Debug.Log("Exercise move " + getMoveName() + " is setup");
     }
 
@@ -46,6 +47,11 @@ public class ExerciseMove : MonoBehaviour {
             // Advance the clock
             TimeElapsed += Time.deltaTime;
         }
+    }
+
+    protected virtual void setup()
+    {
+        return;
     }
 
     protected virtual bool checkForDisplacement()

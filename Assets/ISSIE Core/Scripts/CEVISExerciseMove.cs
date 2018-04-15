@@ -3,6 +3,14 @@ using System.Collections;
 
 public class CEVISExerciseMove : ExerciseMove {
 
+    CycleReadout CycleReadout;
+
+    protected override void setup()
+    {
+        base.setup();
+        //GameObject.Find("");
+    }
+
     protected override bool checkForDisplacement()
     {
 

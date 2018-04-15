@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1825752458995716}
+  m_IsPrefabParent: 1
+--- !u!1 &1825752458995716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4332076918964956}
+  - component: {fileID: 114906893385740750}
+  - component: {fileID: 114887700335573112}
+  m_Layer: 0
+  m_Name: Cycle
+  m_TagString: Exercise
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4332076918964956
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825752458995716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114887700335573112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825752458995716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836948a094ad5a54d944d09967c9e190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exerciseName: 
+--- !u!114 &114906893385740750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825752458995716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f099eda0e4166640b512967b1a4ce79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Order: 0
+  TimeForExercise: 30
+  MovesForAchievement: 3
+  ExerciseMovePrefab: {fileID: 1000011260312850, guid: ba978edd548b4304e84d7af3ae7aa3f5,
+    type: 2}
+  Moves: []
+  ReckonStartPositionFromReadyPositions: 1
+  OriginalPosition: {x: 0, y: 0, z: 0}
+  PlayerIsReady: 0
+  AchievementCount: 0
+  ExerciseComplete: 0
+  ExerciseInProgress: 0
+  TriggeredFirstAchievementAttained: 0
+  TriggeredAlmostDone: 0
+  CountDownDone: 0
+  CountDownStarted: 0
+  TimeLeft: 0
+  MovesCompleted: 0
+  TicksToCountDown: 6
+  CountDown: 0
+  ExerciseTimer: {fileID: 0}
