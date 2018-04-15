@@ -160,9 +160,9 @@ public class GameManager : MonoBehaviour {
         GameObject[] collected = GameObject.FindGameObjectsWithTag("Exercise");
         currentExerciseIndex = 0;
 
-        Debug.Log("Found " + exercises.Length + " exercises.");
+        Debug.Log("Found " + collected.Length + " exercises.");
 
-        Array.Sort(exercises, delegate (GameObject ex1, GameObject ex2)
+        Array.Sort(collected, delegate (GameObject ex1, GameObject ex2)
         {
             return ex1.GetComponent<Exercise>().Order.CompareTo(ex2.GetComponent<Exercise>().Order);
         });

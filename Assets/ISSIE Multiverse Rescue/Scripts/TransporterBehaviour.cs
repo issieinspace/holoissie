@@ -28,6 +28,8 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
     public String MyExercise;
     public System.Collections.Generic.List<GameObject> Aliens;
 
+    public bool isFlownIn = false;
+
     public void Activate()
     {
         Debug.Log("TRANSPORTER ACTIVATED " + this.name);
@@ -142,11 +144,13 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
 
     void FlyIn()
     {
-        Debug.Log("FLYING IN");
-
-        this.gameObject.AddComponent<TransporterFlyInAnimation>();
-
         
+        if (!this.isFlownIn)
+        {
+            Debug.Log("FLYING IN");
+            this.gameObject.AddComponent<TransporterFlyInAnimation>();
+            this.isFlownIn = true;
+        }
     }
 
     public void OnTimeDone()

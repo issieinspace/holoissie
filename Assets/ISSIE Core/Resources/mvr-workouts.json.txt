@@ -1,4 +1,0 @@
-{workouts: [
-{name: "Cycle",
-exercises: [{name: Cycle, timeForExercise: 10, exerciseMovePrefab }]}
-]}

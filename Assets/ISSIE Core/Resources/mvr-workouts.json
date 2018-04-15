@@ -1,0 +1,19 @@
+{
+    "workouts": [
+        {
+            "name": "Cycle",
+            "exercises": [
+                {
+                    "name": "Cycle",
+                    "timeForExercise": 10,
+                    "exerciseMovePrefab": "CEVISExerciseMovePrefab"
+                },
+                {
+                    "name": "Squats",
+                    "timeForExercise": 10,
+                    "exerciseMovePrefab": "SquatsExerciseMovePrefab"
+                }
+            ]
+        }
+    ]
+}

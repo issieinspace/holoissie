@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012259088832}
-  - 114: {fileID: 114000010055067516}
+  - component: {fileID: 4000012259088832}
+  - component: {fileID: 114000010055067516}
   m_Layer: 0
   m_Name: GamePrefab
   m_TagString: Untagged

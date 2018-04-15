@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012310847206}
-  - 114: {fileID: 114000012817528532}
+  - component: {fileID: 4000012310847206}
+  - component: {fileID: 114000012817528532}
   m_Layer: 0
   m_Name: CompositeExerciseMovePrefab
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.4477596, y: 0.59838986, z: 4.0532665}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012817528532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: 
-  TransporterControl: {fileID: 0}
   targetXDisplacement: 0
   targetYDisplacement: 0
   targetZDisplacement: 0
@@ -64,4 +63,5 @@ MonoBehaviour:
   xDisplacement: 0
   yDisplacement: 0
   zDisplacement: 0
-  Moves: []
+  MovePrefabs: []
+  CurrentMove: {fileID: 0}
