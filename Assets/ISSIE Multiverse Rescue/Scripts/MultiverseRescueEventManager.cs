@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using Timers;
-using Prime31.MessageKit;
+﻿using Prime31.MessageKit;
+using UnityEngine;
 
-public class MultiverseRescueEventManager : MonoBehaviour {
+public class MultiverseRescueEventManager : MonoBehaviour, IEventManager {
 
     AudioSource backgroundMusic = null;
     AudioSource audioSource = null;
@@ -22,10 +20,12 @@ public class MultiverseRescueEventManager : MonoBehaviour {
     AudioClip firstAchievementSound = null;
     AudioClip intro = null;
     AudioClip partyMusic = null;
+
+    bool Ready = false;
    
-    void Start ()
+    public void Setup ()
     {
-        Debug.Log("RACE CONDITION: INTRO IS BEING POSTED before registration begins here. Setting the observers in MVREvtM");
+        Debug.Log("EVENT MANAGER SETUP: Setting the observers in MVREvtM");
 
         InitializeAudio();
 
@@ -33,6 +33,8 @@ public class MultiverseRescueEventManager : MonoBehaviour {
         MessageKit.addObserver(MessageType.OnFirstAchievement, OnFirstAchievement);
         MessageKit.addObserver(MessageType.OnGameOver, OnGameOver);
         MessageKit.addObserver(MessageType.OnAlmostDone, OnAlmostDone);
+
+        Ready = true;
     }
 
     public void OnIntro()
@@ -110,4 +112,11 @@ public class MultiverseRescueEventManager : MonoBehaviour {
 
 
     }
+
+    public bool IsReady()
+    {
+        return Ready;
+    }
+
+
 }

@@ -1,13 +1,14 @@
 ﻿using BestHTTP;
+using HoloToolkit.Unity;
 using System;
 using UnityEngine;
 
-public class WebAPIBridge : MonoBehaviour
+public class WebAPIBridge : Singleton<WebAPIBridge>
 {
     public CycleReadout cycleReadout;
     public string TargetURL;
 
-    private void GetCycleReadout()
+    public void GetCycleReadout()
     {
         
         HTTPRequest request = new HTTPRequest(new Uri(TargetURL), OnRequestFinished);

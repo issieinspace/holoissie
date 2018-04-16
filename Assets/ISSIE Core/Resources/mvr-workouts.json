@@ -6,14 +6,22 @@
                 {
                     "name": "Cycle",
                     "timeForExercise": 10,
-                    "exerciseMovePrefab": "CEVISExerciseMovePrefab"
+                    "exerciseMovePrefab": "CEVISExerciseMovePrefab",
+                    "propClass": {
+                        "prefab": "TransporterGreen",
+                        "image": "Cycle",
+                        "video": ""
+                    }
                 },
                 {
                     "name": "Squats",
                     "timeForExercise": 10,
-                    "exerciseMovePrefab": "SquatsExerciseMovePrefab"
+                    "exerciseMovePrefab": "SquatsExerciseMovePrefab",
+                    "propClass": {
+                        "prefab": "TransporterGreen",
+                        "image": "Cycle",
+                        "video": ""
+                    }
                 }
-            ]
-        }
     ]
 }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
     public bool RunIntro = true;
     public int TimeToWaitBeforeCommencingExercise = 10;
+    public GameObject EventManagerGameObject = null;
+    public IEventManager EventManager = null;
 
     public GameObject[] exercises;
     public int currentExerciseIndex = 0;
@@ -38,6 +40,14 @@ public class GameManager : MonoBehaviour {
 
         Credits = GameObject.Find("Credits");
         Credits.SetActive(false);
+
+        if (EventManagerGameObject != null)
+        {
+            EventManager = EventManagerGameObject.GetComponent<IEventManager>();
+            Debug.Log("Setting up EventManager that was specified");
+            EventManager.Setup();
+            Debug.Log("Done setting up EventManager that was specified");
+        }
         
         StartGame();
 
@@ -62,6 +72,7 @@ public class GameManager : MonoBehaviour {
 
     private void StartGame()
     {
+        
         if (RunIntro)
         {
             Debug.Log("running the intro");
@@ -99,7 +110,7 @@ public class GameManager : MonoBehaviour {
                 {
                     currentExerciseIndex++;
                     CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
-                    Debug.Log("broadcasting Player ready within RunExercise");
+                    Debug.Log("Broadcasting Player ready within RunExercise");
                     BroadcastPlayerReady(CurrentExercise.name);
                     //CurrentExercise.PlayerIsReady = true;
                   
@@ -148,7 +159,7 @@ public class GameManager : MonoBehaviour {
 
             CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
 
-            Debug.Log("broadcasting Player ready within RunExercise");
+            Debug.Log("Broadcasting Player ready within CommenceExercise");
             BroadcastPlayerReady(CurrentExercise.name);
             Debug.Log("ExerciseStageStarted");
         }
