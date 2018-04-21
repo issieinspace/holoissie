@@ -2523,7 +2523,7 @@ MonoBehaviour:
   timeDoneSoundName: SynthZap
   firstAchievementName: NICEWORK1-Remix
   almostDoneName: YourAlmostThere1-Remix
-  introClipName: OpeningDialogue_2_Remix
+  introClipName: OpeningDialogue_2a_Remix
   partyMusicName: ISSIE Game Loop - Continuous Drums
   backgroundMusicName: ISSIE open
 --- !u!82 &1223757503

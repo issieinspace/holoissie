@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 0
+  RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 8
   EventManagerGameObject: {fileID: 1223757499}
   exercises: []
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ccb427561868a44b50783a6a3ae14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug: 1
+  Debug: 0
 --- !u!102 &1024074250
 TextMesh:
   serializedVersion: 3
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   timeDoneSoundName: SynthZap
   firstAchievementName: NICEWORK1-Remix
   almostDoneName: YourAlmostThere1-Remix
-  introClipName: OpeningDialogue_2_Remix
+  introClipName: OpeningDialogue_2a_Remix
   partyMusicName: ISSIE Game Loop - Continuous Drums
   backgroundMusicName: ISSIE open
 --- !u!82 &1223757503
@@ -3257,7 +3257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ccb427561868a44b50783a6a3ae14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug: 1
+  Debug: 0
 --- !u!1001 &2007238957
 Prefab:
   m_ObjectHideFlags: 0

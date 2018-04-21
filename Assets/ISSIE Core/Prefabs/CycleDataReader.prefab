@@ -57,4 +57,4 @@ MonoBehaviour:
     speed: 0
     multiplier: 0
     elapse: 0
-  TargetURL: http://issiepi.local:9000/rpm_read
+  TargetURL: http://192.168.86.78:9000/rpm_read

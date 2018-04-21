@@ -1198,7 +1198,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4110941507590020, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4110941507590020, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1236,17 +1236,22 @@ Prefab:
     - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
         type: 2}
       propertyPath: m_FontSize
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
         type: 2}
       propertyPath: m_Text
-      value: Checking CEVIS status...
+      value: "CEVIS is offline. \n\"Cycle\" games are not available at this time."
       objectReference: {fileID: 0}
     - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
         type: 2}
       propertyPath: m_Color.rgba
-      value: 4278515453
+      value: 4287561471
+      objectReference: {fileID: 0}
+    - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
+        type: 2}
+      propertyPath: m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
