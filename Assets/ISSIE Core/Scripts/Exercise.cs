@@ -37,14 +37,29 @@ public class Exercise : MonoBehaviour, ITriggerable
     public uint TicksToCountDown = 6;
     public uint CountDown;
     public ExerciseTimer ExerciseTimer;
+    public bool isSetup = false;
 
     void Start()
     {
+        Debug.Log("In Start() of Exercise, " + this.name);
+
+        if (!isSetup)
+        {
+            Setup();
+        }
+    }
+
+    public void Setup()
+    {
         ExerciseName = this.name;
-        
+
         TimeLeft = TimeForExercise;
 
         CountDown = TicksToCountDown;
+
+        this.GetComponent<PropActivator>().Setup();
+
+        isSetup = true;
     }
 
     void Update()
@@ -109,16 +124,19 @@ public class Exercise : MonoBehaviour, ITriggerable
     {
         if (!CountDownStarted)
         {
+            Debug.Log("In PlayerReady() of Exercise. CountDown not started, so performing ReadyExercise");
             ReadyExercise();
         }
 
-        if (CountDownDone)
-        {
-            if (!ExerciseComplete)
-            {
-                StartExercise();
-            }
-        }
+        //Timers handle the start now, so this code is obviated
+        //if (CountDownDone)
+        //{
+        //    if (!ExerciseComplete)
+        //    {
+        //        Debug.Log("In PlayerReady() of Exercise. CountDownDone is true and ExerciseComplete false, so performing ReadyExercise");
+        //        StartExercise();
+        //    }
+        //}
     }
 
     // Ready exercise
@@ -134,7 +152,7 @@ public class Exercise : MonoBehaviour, ITriggerable
 
         BroadcastExerciseReady();
 
-        Debug.Log(ExerciseName + ": Ready Exercise");
+        Debug.Log(ExerciseName + ": Ready Exercise has completed");
     }
 
     void TriggerTick()
@@ -265,17 +283,17 @@ public class Exercise : MonoBehaviour, ITriggerable
         //SendMessageUpwards("HandleEvent", packArgs(null, "methodName", "OnTimeDone"), SendMessageOptions.DontRequireReceiver);
     }
 
-    Hashtable packArgs(Hashtable args, String key, object value)
-    {
-        if (args == null)
-        {
-            args = new Hashtable();
-        }
+    //Hashtable packArgs(Hashtable args, String key, object value)
+    //{
+    //    if (args == null)
+    //    {
+    //        args = new Hashtable();
+    //    }
 
-        args.Add(key, value);
+    //    args.Add(key, value);
 
-        return args;
-    }
+    //    return args;
+    //}
 
     public void Activate()
     {

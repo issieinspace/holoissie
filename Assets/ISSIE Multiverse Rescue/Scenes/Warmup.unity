@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692522, g: 0.496787, b: 0.5750854, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.49641287, b: 0.5748173, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000001, guid: 75ce7d39aba8c8144aea51a0850bce2a,
+  m_LightingDataAsset: {fileID: 112000002, guid: 2510d19c943cf4342b36555a75985707,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -648,6 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Side Lunge Left
+  isSetup: 0
 --- !u!114 &252041869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +667,7 @@ MonoBehaviour:
   ExerciseTimer: {fileID: 0}
   MyExercise: Side Lunge Left
   Aliens: []
+  isFlownIn: 0
 --- !u!1 &282642934
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Reverse Lunge
+  isSetup: 0
 --- !u!114 &354745412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +805,7 @@ MonoBehaviour:
   ExerciseTimer: {fileID: 0}
   MyExercise: Reverse Lunge
   Aliens: []
+  isFlownIn: 0
 --- !u!1001 &364476650
 Prefab:
   m_ObjectHideFlags: 0
@@ -1009,6 +1013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Squats
+  isSetup: 0
 --- !u!114 &424879214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,6 +1033,7 @@ MonoBehaviour:
   MyExercise: Squats
   Aliens:
   - {fileID: 0}
+  isFlownIn: 0
 --- !u!1 &431092347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1195,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -1327,6 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Side Lunge Right
+  isSetup: 0
 --- !u!114 &665901849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1352,7 @@ MonoBehaviour:
   ExerciseTimer: {fileID: 0}
   MyExercise: Side Lunge Right
   Aliens: []
+  isFlownIn: 0
 --- !u!1 &666290696 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013729430720, guid: 738302f768042a5429b787606d98df3f,
@@ -1534,8 +1542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 0
+  RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 8
+  EventManagerGameObject: {fileID: 0}
   exercises: []
   currentExerciseIndex: 0
   CurrentExercise: {fileID: 0}
@@ -1651,7 +1660,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -2326,7 +2335,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
@@ -3574,7 +3583,7 @@ Prefab:
     - target: {fileID: 114000010518343526, guid: 4a64741951773a74d8e2a68a9399b201,
         type: 2}
       propertyPath: TimeForExercise
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1000011498705890, guid: 4a64741951773a74d8e2a68a9399b201, type: 2}
       propertyPath: m_IsActive

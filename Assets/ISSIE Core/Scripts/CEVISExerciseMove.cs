@@ -18,17 +18,25 @@ public class CEVISExerciseMove : ExerciseMove {
         // Wait for the appropriate time before starting
         Bridge = GameObject.Find("CycleDataReader").GetComponent<WebAPIBridge>();
         TimersManager.SetTimer(this, interval, loops, RefreshDistance);
+        WriteDiagnostics("Started timer");
+    }
+
+    private void WriteDiagnostics(string data)
+    {
+        GameObject.Find("Log").GetComponent<Monitor>().DisplayMessage(data);
     }
 
     void RefreshDistance()
     {
         Debug.Log("Refreshing distance");
+        WriteDiagnostics("Refreshing distance");
         Bridge.GetCycleReadout();
     }
 
     protected override bool checkForDisplacement()
     {
         bool complete = false;
+        zDisplacement = currentDistance;
 
         if (Input.GetAxis("Jump") > 0.0f)
         {
@@ -45,7 +53,8 @@ public class CEVISExerciseMove : ExerciseMove {
     protected override bool checkForCompletion()
     {
         bool complete = false;
-       
+        zDisplacement = currentDistance;
+
         if (Input.GetAxis("Jump") > 0.0f)
         {
             complete = true;

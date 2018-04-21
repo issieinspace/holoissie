@@ -10,7 +10,7 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
 
     public void GetCycleReadout()
     {
-        
+        WriteDiagnostics("Requesting " + TargetURL);
         HTTPRequest request = new HTTPRequest(new Uri(TargetURL), OnRequestFinished);
         request.Send();
         
@@ -20,13 +20,13 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
     {
         string data = response.DataAsText;
         cycleReadout = JsonUtility.FromJson<CycleReadout>(data);
-        WriteDiagnostics("Elapsed distance: " + cycleReadout.distance);
-        Debug.Log("Requested " + TargetURL + " Text received: " + response.DataAsText);
+        //WriteDiagnostics("Elapsed distance: " + cycleReadout.distance);
+        WriteDiagnostics("Requested " + TargetURL + "\n Text received: " + response.DataAsText);
     }
 
     private void WriteDiagnostics(string data)
     {
-       GameObject.Find("Diagnostic").GetComponent<Monitor>().DisplayMessage(data);
+       GameObject.Find("Log").GetComponent<Monitor>().DisplayMessage(data);
     }
 
     void Update()

@@ -32,8 +32,10 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
 
     public void Activate()
     {
+        
         Debug.Log("TRANSPORTER ACTIVATED " + this.name);
-        MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
+        OnReady();
+        //MessageKit<string>.addObserver(MessageType.OnReady, (name) => OnReady(name));
         MessageKit.addObserver(MessageType.OnStart, OnStart);
         MessageKit.addObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
         MessageKit.addObserver(MessageType.OnMoveComplete, OnMoveComplete);
@@ -43,7 +45,7 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
 
     public void Deactivate()
     {
-        MessageKit<string>.removeObserver(MessageType.OnReady, (name) => OnReady(name));
+        //MessageKit<string>.removeObserver(MessageType.OnReady, (name) => OnReady(name));
         MessageKit.removeObserver(MessageType.OnStart, OnStart);
         MessageKit.removeObserver(MessageType.OnDisplacementAchieved, OnDisplacementAchieved);
         MessageKit.removeObserver(MessageType.OnMoveComplete, OnMoveComplete);
@@ -74,7 +76,7 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
       
     }
 
-    public void OnReady(string exerciseName)
+    public void OnReady()
     {
         Debug.Log("Hey transporter on ready is being called");
         Door.TriggerReady();

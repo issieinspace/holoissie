@@ -10,8 +10,17 @@ public class PropActivator : MonoBehaviour
     public string exerciseName;
     private ITriggerable triggerable;
     private bool isActive = false;
+    public bool isSetup = false;
 
     void Start()
+    {
+        if (!isSetup)
+        {
+            Setup();
+        }
+    }
+
+    public void Setup()
     {
         triggerable = GetComponent<ITriggerable>();
         if(exerciseName.Length < 1)
@@ -32,6 +41,8 @@ public class PropActivator : MonoBehaviour
                 triggerable.Deactivate();
             }
         });
+
+        isSetup = true;
     }
 
 

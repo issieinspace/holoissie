@@ -178,6 +178,12 @@ public class GameManager : MonoBehaviour {
             return ex1.GetComponent<Exercise>().Order.CompareTo(ex2.GetComponent<Exercise>().Order);
         });
 
+        for (int i = 0; i < collected.Length; i++ )
+        {
+            Debug.Log("Setting up " + collected[i].name);
+            collected[i].GetComponent<Exercise>().Setup();
+        }
+
         return collected;
     }
 

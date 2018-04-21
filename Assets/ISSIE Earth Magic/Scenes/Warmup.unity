@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692522, g: 0.496787, b: 0.5750854, a: 1}
+  m_IndirectSpecularColor: {r: 0.4490844, g: 0.4991539, b: 0.57571286, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000001, guid: 75ce7d39aba8c8144aea51a0850bce2a,
+  m_LightingDataAsset: {fileID: 112000002, guid: eeccd71dd48de634f94e0d183d924bbc,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -950,6 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 10
+  EventManagerGameObject: {fileID: 0}
   exercises: []
   currentExerciseIndex: 0
   CurrentExercise: {fileID: 0}
@@ -1581,6 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Squats
+  isSetup: 0
 --- !u!114 &1340627762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,6 +1750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseName: Deadlift
+  isSetup: 0
 --- !u!1 &1507871143
 GameObject:
   m_ObjectHideFlags: 0
