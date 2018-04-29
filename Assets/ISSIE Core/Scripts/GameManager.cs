@@ -112,15 +112,12 @@ public class GameManager : MonoBehaviour {
                     CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
                     Debug.Log("Broadcasting Player ready within RunExercise");
                     BroadcastPlayerReady(CurrentExercise.name);
-                    //CurrentExercise.PlayerIsReady = true;
-                  
                     Debug.Log("Next exercise kicked off");
                 }
             }
 
-
             OutputDiagnostics(CurrentExercise);
-            // if all done, stage is done
+            
         }
         else
         {

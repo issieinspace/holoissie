@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 8
-  EventManagerGameObject: {fileID: 0}
+  EventManagerGameObject: {fileID: 1223757499}
   exercises: []
   currentExerciseIndex: 0
   CurrentExercise: {fileID: 0}
