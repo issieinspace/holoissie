@@ -1,27 +1,31 @@
 {
-    "workouts": [
+    "GameName": "Multiverse Rescue",
+    "Workouts": [
         {
-            "name": "Cycle",
-            "exercises": [
+            "Name": "Cycle",
+            "Exercises": [
                 {
-                    "name": "Cycle",
-                    "timeForExercise": 10,
-                    "exerciseMovePrefab": "CEVISExerciseMovePrefab",
-                    "propClass": {
+                    "Name": "Cycle",
+                    "TimeForExercise": 10,
+                    "ExerciseMovePrefab": "CEVISExerciseMovePrefab",
+                    "PropClass": {
                         "prefab": "TransporterGreen",
                         "image": "Cycle",
                         "video": ""
                     }
                 },
                 {
-                    "name": "Squats",
-                    "timeForExercise": 10,
-                    "exerciseMovePrefab": "SquatsExerciseMovePrefab",
-                    "propClass": {
+                    "Name": "Squats",
+                    "TimeForExercise": 10,
+                    "ExerciseMovePrefab": "SquatsExerciseMovePrefab",
+                    "PropClass": {
                         "prefab": "TransporterGreen",
-                        "image": "Cycle",
+                        "image": "Squats",
                         "video": ""
                     }
                 }
+            ]
+        }
+
     ]
 }

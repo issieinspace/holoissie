@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d14a4b2b384d6249a4af29f6ab419e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunIntro: 1
+  RunIntro: 0
   TimeToWaitBeforeCommencingExercise: 8
   EventManagerGameObject: {fileID: 1223757499}
   exercises: []
@@ -2718,6 +2718,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144cea2ce00a0514eb876a27f08cd4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1367236065
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -18.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504491288536080, guid: c76e18e64210e3448b01f37b2fdf28c5,
+        type: 2}
+      propertyPath: Workout
+      value: mvr-workout
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504491288536080, guid: c76e18e64210e3448b01f37b2fdf28c5,
+        type: 2}
+      propertyPath: GameFile
+      value: mvr-workouts
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504491288536080, guid: c76e18e64210e3448b01f37b2fdf28c5,
+        type: 2}
+      propertyPath: ChosenWorkout
+      value: Cycle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1451557955
 Prefab:
   m_ObjectHideFlags: 0
