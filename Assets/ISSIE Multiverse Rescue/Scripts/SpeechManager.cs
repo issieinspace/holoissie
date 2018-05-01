@@ -17,7 +17,7 @@ public class SpeechManager : MonoBehaviour
         keywords.Add("Restart", () =>
         {
             Debug.Log("Yo did someone say Restart?");
-            GameManager.RestartGame();
+            GameManager.RestartGame(GameManager.StartScene);
         });
             
         keywords.Add("Monitor", () =>

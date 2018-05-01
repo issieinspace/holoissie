@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
        
         if(Input.GetAxis("Cancel") != 0.0f)
         {
-            RestartGame();
+            RestartGame(StartScene);
         }
     }
 
@@ -184,10 +184,10 @@ public class GameManager : MonoBehaviour {
         return collected;
     }
 
-    public void RestartGame()
+    public static void RestartGame(string scene)
     {
         MessageKitManager.clearAllMessageTables();
-        SceneManager.LoadScene(StartScene);        
+        SceneManager.LoadScene(scene);        
     }
 
 

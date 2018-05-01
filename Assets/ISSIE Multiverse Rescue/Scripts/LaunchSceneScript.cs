@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 using UnityEngine.SceneManagement;
-using System;
-using System.Collections;
+using UnityEngine.Windows.Speech;
 
 public class LaunchSceneScript : MonoBehaviour {
 
@@ -12,7 +11,7 @@ public class LaunchSceneScript : MonoBehaviour {
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
     
     public GameObject Loading;
-    public GameObject MoCap;
+    public string StartScene;
     
 
     Color selectedColor = Color.yellow;
@@ -30,6 +29,16 @@ public class LaunchSceneScript : MonoBehaviour {
         keywords.Add("Warmup", () =>
         {
             StartGame("Warmup");
+        });
+
+        keywords.Add("Go Back", () =>
+        {
+            GameManager.RestartGame(StartScene);
+        });
+
+        keywords.Add("Restart", () =>
+        {
+            GameManager.RestartGame(StartScene);
         });
 
         keywords.Add("Show Capture", () =>
