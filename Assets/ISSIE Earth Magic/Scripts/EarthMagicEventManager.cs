@@ -5,7 +5,7 @@ using Timers;
 using Prime31.MessageKit;
 using System;
 
-public class EarthMagicEventManager : MonoBehaviour
+public class EarthMagicEventManager : MonoBehaviour, IEventManager
 {
 
     AudioSource audioSource = null;
@@ -27,12 +27,12 @@ public class EarthMagicEventManager : MonoBehaviour
     AudioClip partyMusic = null;
     AudioClip timeDoneSound = null;
     AudioClip bleep = null;
+    
+    bool Ready = false;
 
-    // Use this for initialization
-    void Start()
+    public void Setup()
     {
-        // Spatial Mapping
-        //SpatialMapping.Instance.Object.SetActive(false);
+        Debug.Log("EVENT MANAGER SETUP: Setting the observers in EMEvtM");
 
         InitializeAudio();
 
@@ -47,8 +47,15 @@ public class EarthMagicEventManager : MonoBehaviour
         MessageKit.addObserver(MessageType.OnAchievement, OnAchievement);
         MessageKit.addObserver(MessageType.OnStart, OnStart);
         MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
-       
+
+        Ready = true;
     }
+
+    public bool IsReady()
+    {
+        return Ready;
+    }
+
 
     private void InitializeAudio()
     {
@@ -74,7 +81,7 @@ public class EarthMagicEventManager : MonoBehaviour
 
     public void OnReady(string name)
     {
-        //intentionally blank
+        //intentionally no-op
         Debug.Log("EMEvtMgr is OnReady");
     }
 
@@ -124,5 +131,6 @@ public class EarthMagicEventManager : MonoBehaviour
         audioSource.clip = almostDoneSound;
         audioSource.Play();
     }
-   
+
+
 }

@@ -950,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RunIntro: 1
   TimeToWaitBeforeCommencingExercise: 10
-  EventManagerGameObject: {fileID: 0}
+  EventManagerGameObject: {fileID: 1223757499}
   exercises: []
   currentExerciseIndex: 0
   CurrentExercise: {fileID: 0}
@@ -1127,6 +1127,11 @@ Prefab:
     - target: {fileID: 4949068641852498, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504491288536080, guid: c76e18e64210e3448b01f37b2fdf28c5,
+        type: 2}
+      propertyPath: GameFile
+      value: em-workouts
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c76e18e64210e3448b01f37b2fdf28c5, type: 2}
