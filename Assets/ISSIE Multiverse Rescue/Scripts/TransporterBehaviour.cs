@@ -25,7 +25,6 @@ public class TransporterBehaviour : MonoBehaviour, ITriggerable
     public DoorBehavior Door;
     public MultiverseRescueCountDownDisplay CountDown;
     public ExerciseTimer ExerciseTimer;
-    public String MyExercise;
     public System.Collections.Generic.List<GameObject> Aliens;
 
     public bool isFlownIn = false;
