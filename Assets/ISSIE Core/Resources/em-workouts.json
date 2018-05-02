@@ -1,0 +1,41 @@
+{
+    "GameName": "Earth Magic",
+    "Workouts": [
+        {
+            "Name": "Warmup",
+            "Exercises": [
+                {
+                    "Name": "Deadlift",
+                    "TimeForExercise": 10,
+                    "ExerciseMovePrefab": "DeadliftMovePrefab",
+                    "PropClass": {
+                        "prefab": "Trees",
+                        "image": "Cycle",
+                        "video": ""
+                    }
+                },
+                {
+                    "Name": "Squats",
+                    "TimeForExercise": 10,
+                    "ExerciseMovePrefab": "SquatsExerciseMovePrefab",
+                    "PropClass": {
+                        "prefab": "Water",
+                        "image": "Squats",
+                        "video": ""
+                    }
+                },
+                {
+                    "Name": "Heel Raises",
+                    "TimeForExercise": 10,
+                    "ExerciseMovePrefab": "HeelRaiseMovePrefab",
+                    "PropClass": {
+                        "prefab": "Birds",
+                        "image": "Heel Raise",
+                        "video": ""
+                    }
+                }
+            ]
+        }
+
+    ]
+}
