@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 11265759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.5, z: -1}
+  m_LocalPosition: {x: 1, y: 1.5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -428,15 +428,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415104, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 415104, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 415104, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 121530, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_IsActive
@@ -460,15 +460,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 466546, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 455468, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 415104, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 150344, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
+      propertyPath: m_Name
+      value: Particle System SpeedLines
+      objectReference: {fileID: 0}
+    - target: {fileID: 150344, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dbc861d927e68a41a25e2b624e86a99, type: 2}
@@ -665,7 +673,6 @@ MonoBehaviour:
   Door: {fileID: 0}
   CountDown: {fileID: 0}
   ExerciseTimer: {fileID: 0}
-  MyExercise: Side Lunge Left
   Aliens: []
   isFlownIn: 0
 --- !u!1 &282642934
@@ -803,7 +810,6 @@ MonoBehaviour:
   Door: {fileID: 0}
   CountDown: {fileID: 0}
   ExerciseTimer: {fileID: 0}
-  MyExercise: Reverse Lunge
   Aliens: []
   isFlownIn: 0
 --- !u!1001 &364476650
@@ -1030,7 +1036,6 @@ MonoBehaviour:
   Door: {fileID: 0}
   CountDown: {fileID: 0}
   ExerciseTimer: {fileID: 0}
-  MyExercise: Squats
   Aliens:
   - {fileID: 0}
   isFlownIn: 0
@@ -1350,7 +1355,6 @@ MonoBehaviour:
   Door: {fileID: 0}
   CountDown: {fileID: 0}
   ExerciseTimer: {fileID: 0}
-  MyExercise: Side Lunge Right
   Aliens: []
   isFlownIn: 0
 --- !u!1 &666290696 stripped
@@ -1806,15 +1810,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 419246, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 419246, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 419246, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 106716, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
       propertyPath: m_IsActive
@@ -1859,6 +1863,14 @@ Prefab:
     - target: {fileID: 194236, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 153284, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
+      propertyPath: m_Name
+      value: Particle System SpeedLines
+      objectReference: {fileID: 0}
+    - target: {fileID: 153284, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f388b3297f10e54e8cdeb5e97b9d60a, type: 2}
@@ -3045,15 +3057,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 440752, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 440752, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 440752, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 10871328, guid: 780f6e4279b68da4e89aa66d2d1228de, type: 2}
       propertyPath: m_Enabled
@@ -3290,15 +3302,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424052, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 424052, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 424052, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 172258, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
       propertyPath: m_IsActive
@@ -3335,6 +3347,14 @@ Prefab:
     - target: {fileID: 180814, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 144740, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
+      propertyPath: m_Name
+      value: Particle System SpeedLines
+      objectReference: {fileID: 0}
+    - target: {fileID: 144740, guid: 9db785dc993e219449abc225c1231ab9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9db785dc993e219449abc225c1231ab9, type: 2}

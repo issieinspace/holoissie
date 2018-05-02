@@ -12,9 +12,11 @@ public class TransporterFlyInAnimation : MonoBehaviour {
     void Start()
     {
         Debug.Log("Started FLYIN thing");
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         starting = transform.localPosition;
-        target = new Vector3(1f, 2.5f, -3.0f);// was -.5 originally
-
+        target = new Vector3(1f, 2.5f, -3.0f);
+        Transform speedlines = transform.Find("Particle System SpeedLines");
+        speedlines.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
