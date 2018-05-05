@@ -853,7 +853,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1373626284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.332, y: 0.23518127, z: 2.083}
+  m_LocalPosition: {x: -0.332, y: 0.235, z: 2.083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 387170747}
@@ -1093,7 +1093,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1846604773}
   - component: {fileID: 1846604772}
-  - component: {fileID: 1846604771}
   - component: {fileID: 1846604770}
   - component: {fileID: 1846604769}
   m_Layer: 0
@@ -1111,13 +1110,6 @@ AudioListener:
   m_GameObject: {fileID: 1846604768}
   m_Enabled: 1
 --- !u!124 &1846604770
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1846604768}
-  m_Enabled: 1
---- !u!92 &1846604771
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1167,7 +1159,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846604768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalPosition: {x: 0, y: 1, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1189,6 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ea265a898bc5348b1e8530d9590561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _message: 
 --- !u!1001 &2086531405
 Prefab:
   m_ObjectHideFlags: 0
@@ -1241,7 +1234,7 @@ Prefab:
     - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
         type: 2}
       propertyPath: m_Text
-      value: "CEVIS is offline. \n\"Cycle\" games are not available at this time."
+      value: "CEVIS is offline. \n\"Cycle\" workouts are not available at this time."
       objectReference: {fileID: 0}
     - target: {fileID: 102522770978511600, guid: f0165559832ee2a489cc61ae73e66050,
         type: 2}
@@ -1253,7 +1246,12 @@ Prefab:
       propertyPath: m_Alignment
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1211348934752154, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
+      propertyPath: m_Name
+      value: CEVIS Message Display
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114313002133792420, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f0165559832ee2a489cc61ae73e66050, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2111842807

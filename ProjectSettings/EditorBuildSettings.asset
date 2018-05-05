@@ -38,9 +38,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Deprecated/ISSIE-Video.unity
     guid: f3c5f66e259fd904c873ec98fb021638
-  - enabled: 1
-    path: Assets/ISSIE Earth Magic/Scenes/Warmup.unity
+  - enabled: 0
+    path: Assets/ISSIE Earth Magic/Scenes/Warmup - original.unity
     guid: 97920a8083d40f14592c2d8819753fdf
+  - enabled: 0
+    path: Assets/ISSIE Multiverse Rescue/Scenes/Old.unity
+    guid: 0d82d3396e3269444b4d30fff3e38c46
   - enabled: 1
     path: Assets/ISSIE Multiverse Rescue/Scenes/Cycle.unity
-    guid: 0d82d3396e3269444b4d30fff3e38c46
+    guid: bb993d22868f143458f455278c3afcf8
+  - enabled: 1
+    path: Assets/ISSIE Earth Magic/Scenes/Warmup.unity
+    guid: 2d49039b1865dbe4e995fc8f1d448eaa

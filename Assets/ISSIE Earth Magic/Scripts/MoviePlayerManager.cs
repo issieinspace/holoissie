@@ -24,7 +24,6 @@ public class MoviePlayerManager : MonoBehaviour {
 	    renderers = this.GetComponentsInChildren<CanvasRenderer>();
             
         // Turn off until we need it
-	    //TurnOff();
         MessageKit<string>.addObserver(MessageType.OnReady, OnReady);
         MessageKit.addObserver(MessageType.OnTimeDone, OnTimeDone);
     }
@@ -43,7 +42,7 @@ public class MoviePlayerManager : MonoBehaviour {
         
         videoPlayer.Play();
 
-         isPlaying = true;
+        isPlaying = true;
         
     }
 

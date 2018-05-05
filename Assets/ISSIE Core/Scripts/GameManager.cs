@@ -202,9 +202,12 @@ public class GameManager : MonoBehaviour {
         }
 
         spacialFloorHeight = -1.8f;
+
 #else
+        
         transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);
         spacialFloorHeight = hololensPlanes.FloorYPosition;
+        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spacialFloorHeight);
 #endif
         MessageKit.post(MessageType.OnSpacialMappingComplete);
     }

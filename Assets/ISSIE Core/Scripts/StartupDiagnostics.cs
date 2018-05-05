@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StartupDiagnostics : MonoBehaviour {
 
+    public string _message;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,7 +17,7 @@ public class StartupDiagnostics : MonoBehaviour {
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
     {
         string data = response.DataAsText;
-        this.GetComponent<Monitor>().DisplayMessage("online");
-        this.GetComponent<Monitor>().DisplayMessage("");
+      
+        this.GetComponent<TextMesh>().text = _message;
     }
 }
