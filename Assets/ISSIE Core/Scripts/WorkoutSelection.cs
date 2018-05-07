@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using System.Linq;
 
 public class WorkoutSelection : MonoBehaviour {
     //Responsible for loading the list of exercises in a game and recording the choice of Workout
@@ -6,6 +8,7 @@ public class WorkoutSelection : MonoBehaviour {
     public string GameFile;
     public WorkoutCatalog WorkoutCatalog;
     public string ChosenWorkout;
+    public bool UseWorkoutSelection;
 
     public void Start()
     {
@@ -18,5 +21,19 @@ public class WorkoutSelection : MonoBehaviour {
         Debug.Log("Loading workouts from " + GameFile);
         TextAsset targetFile = Resources.Load<TextAsset>(GameFile);
         return targetFile.text;
+    }
+
+    public Exercise[] SetupExercises()
+    {
+        Exercise[] exerciseGameObjects = null;
+
+        WorkoutDefinition workoutDef = WorkoutCatalog.Workouts.Find(delegate(WorkoutDefinition w) { return w.Name == ChosenWorkout; });
+
+        foreach(ExerciseDefinition exerciseDef in workoutDef.Exercises)
+        {
+            //GameObject.Instantiate<GameObject>()
+        }
+
+        return exerciseGameObjects;
     }
 }

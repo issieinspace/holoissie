@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 using Timers;
 using Prime31.MessageKit;
 using Academy.HoloToolkit.Unity;
+using System.Linq;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+    
     public bool RunIntro = true;
     public int TimeToWaitBeforeCommencingExercise = 10;
     public GameObject EventManagerGameObject = null;
     public IEventManager EventManager = null;
 
-    public GameObject[] exercises;
+    public Exercise[] exercises;
     public int currentExerciseIndex = 0;
 
     public Exercise CurrentExercise;
@@ -68,6 +71,16 @@ public class GameManager : MonoBehaviour {
         {
             RestartGame(StartScene);
         }
+
+        if (Input.GetAxis("Skip") != 0.0f)
+        {
+            SkipExercise();
+        }
+    }
+
+    private void SkipExercise()
+    {
+        CurrentExercise.ExerciseComplete = true;
     }
 
     private void StartGame()
@@ -109,7 +122,7 @@ public class GameManager : MonoBehaviour {
                 else
                 {
                     currentExerciseIndex++;
-                    CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
+                    CurrentExercise = exercises[currentExerciseIndex];
                     Debug.Log("Broadcasting Player ready within RunExercise");
                     BroadcastPlayerReady(CurrentExercise.name);
                     Debug.Log("Next exercise kicked off");
@@ -154,7 +167,7 @@ public class GameManager : MonoBehaviour {
         {
             ExerciseStageInProgress = true;
 
-            CurrentExercise = exercises[currentExerciseIndex].GetComponent<Exercise>();
+            CurrentExercise = exercises[currentExerciseIndex];
 
             Debug.Log("Broadcasting Player ready within CommenceExercise");
             BroadcastPlayerReady(CurrentExercise.name);
@@ -163,25 +176,38 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    private GameObject[] CollectExercises()
+    private Exercise[] CollectExercises()
     {
-        GameObject[] collected = GameObject.FindGameObjectsWithTag("Exercise");
-        currentExerciseIndex = 0;
-
-        Debug.Log("Found " + collected.Length + " exercises.");
-
-        Array.Sort(collected, delegate (GameObject ex1, GameObject ex2)
+        GameObject workoutSelectionGameObject = GameObject.Find("WorkoutSelection");
+        
+        if (workoutSelectionGameObject != null)
         {
-            return ex1.GetComponent<Exercise>().Order.CompareTo(ex2.GetComponent<Exercise>().Order);
-        });
-
-        for (int i = 0; i < collected.Length; i++ )
-        {
-            Debug.Log("Setting up " + collected[i].name);
-            collected[i].GetComponent<Exercise>().Setup();
+            if (workoutSelectionGameObject.GetComponent<WorkoutSelection>().UseWorkoutSelection)
+                return workoutSelectionGameObject.GetComponent<WorkoutSelection>().SetupExercises();
         }
 
-        return collected;
+        return CollectExercisesByGameObject();
+    }
+
+    private Exercise[] CollectExercisesByGameObject()
+    {
+        GameObject[] found = GameObject.FindGameObjectsWithTag("Exercise");
+        currentExerciseIndex = 0;
+        List<Exercise> collected = new List<Exercise>();
+
+        Debug.Log("Found " + found.Length + " exercises.");
+
+        for (int i = 0; i < found.Length; i++)
+        {
+            Debug.Log("Setting up " + found[i].name);
+            Exercise exercise = found[i].GetComponent<Exercise>();
+            exercise.Setup();
+            collected.Add(exercise);
+        }
+
+        collected.Sort((ex1, ex2) => ex1.Order.CompareTo(ex2.Order));
+
+        return collected.ToArray();
     }
 
     public static void RestartGame(string scene)
