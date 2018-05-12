@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     public GameObject Credits;
     public SurfaceMeshesToPlanes hololensPlanes;
     [HideInInspector]
-    public static float spacialFloorHeight = 0;
+    public static float spatialFloorHeight = 0;
    
     // Use this for initialization
     void Start()
@@ -218,30 +218,31 @@ public class GameManager : MonoBehaviour {
 
 
 
-    public void MoveWorldToSpacialFloor(object source, EventArgs args)
+    public void MoveWorldToSpatialFloor(object source, EventArgs args)
     {
+        Vector3 spatialFloorPosition = new Vector3(0, 0, 0);
 
 #if UNITY_EDITOR
+        spatialFloorHeight = -1.8f;
+
         if (SceneManager.GetActiveScene().path.Contains("Earth"))
         {
-            transform.position = new Vector3(0, -1.8f, 0);
+            spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
         }
 
-        spacialFloorHeight = -1.8f;
-
 #else
-        
-        transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);
-        spacialFloorHeight = hololensPlanes.FloorYPosition;
-        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spacialFloorHeight);
+        spatialFloorHeight = hololensPlanes.FloorYPosition;
+        spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
+        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spatialFloorHeight);
 #endif
-        MessageKit.post(MessageType.OnSpacialMappingComplete);
+        transform.position = spatialFloorPosition;
+        MessageKit.post(MessageType.OnSpatialMappingComplete);
     }
 
     IEnumerator VisibleAssetActivationDelay(float time)
     {
         yield return new WaitForSeconds(time);
-        MoveWorldToSpacialFloor(null, null);
+        MoveWorldToSpatialFloor(null, null);
     }
     
 }

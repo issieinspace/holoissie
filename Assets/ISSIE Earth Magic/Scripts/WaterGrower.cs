@@ -35,13 +35,13 @@ public class WaterGrower : MonoBehaviour, ITriggerable
     {
         heightChange = expectedHeightChange / numOfSteps;
         audioSource = GetComponent<AudioSource>();
-        MessageKit.addObserver(MessageType.OnSpacialMappingComplete, Setup);
+        MessageKit.addObserver(MessageType.OnSpatialMappingComplete, Setup);
     }
 
     void Setup()
     {
         startingHeight = transform.position.y;
-        MessageKit.removeObserver(MessageType.OnSpacialMappingComplete, Setup);
+        MessageKit.removeObserver(MessageType.OnSpatialMappingComplete, Setup);
     }
 
     void Raise()

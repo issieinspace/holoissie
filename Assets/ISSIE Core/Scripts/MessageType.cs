@@ -17,7 +17,7 @@ public class MessageType
     // uint: count down
     public const int OnTick = 10;
 
-    public const int OnSpacialMappingComplete = 11;
+    public const int OnSpatialMappingComplete = 11;
 
     public const int OnPlayerReady = 12;
 }
