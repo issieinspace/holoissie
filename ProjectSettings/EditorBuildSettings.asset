@@ -47,6 +47,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ISSIE Multiverse Rescue/Scenes/Cycle.unity
     guid: bb993d22868f143458f455278c3afcf8
+  - enabled: 0
+    path: Assets/ISSIE Earth Magic/Scenes/Warmup - botched.unity
+    guid: 2d49039b1865dbe4e995fc8f1d448eaa
   - enabled: 1
     path: Assets/ISSIE Earth Magic/Scenes/Warmup.unity
-    guid: 2d49039b1865dbe4e995fc8f1d448eaa
+    guid: 60fc587942c70be48b71688f6b9e875d

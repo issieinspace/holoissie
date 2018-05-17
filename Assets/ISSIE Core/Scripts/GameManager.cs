@@ -31,13 +31,18 @@ public class GameManager : MonoBehaviour {
     public SurfaceMeshesToPlanes hololensPlanes;
     [HideInInspector]
     public static float spatialFloorHeight = 0;
+    public int spatialMappingCompleteCount = 0;
    
     // Use this for initialization
     void Start()
     {
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.Object.SetActive(false);
-        
+
+#if !UNITY_EDITOR
+        hololensPlanes.MakePlanesComplete += MoveWorldToSpatialFloor;
+#endif
+
         Score = GameObject.Find("Score");
         Score.GetComponent<TextMesh>().text = "";
 
@@ -54,9 +59,6 @@ public class GameManager : MonoBehaviour {
         
         StartGame();
 
-#if !UNITY_EDITOR
-        hololensPlanes.MakePlanesComplete += MoveWorldToSpacialFloor;
-#endif
     }
 
     // Update is called once per frame
@@ -213,30 +215,40 @@ public class GameManager : MonoBehaviour {
     public static void RestartGame(string scene)
     {
         MessageKitManager.clearAllMessageTables();
-        SceneManager.LoadScene(scene);        
+        SceneManager.LoadScene(scene);
     }
-
-
-
+    
     public void MoveWorldToSpatialFloor(object source, EventArgs args)
     {
-        Vector3 spatialFloorPosition = new Vector3(0, 0, 0);
+        spatialMappingCompleteCount++;
+#if UNITY_EDITOR
+        spatialMappingCompleteCount = 2;
+#endif
+
+        if (spatialMappingCompleteCount > 1)
+        {
+            Vector3 spatialFloorPosition = new Vector3(0, 0, 0);
 
 #if UNITY_EDITOR
-        spatialFloorHeight = -1.8f;
+            spatialFloorHeight = -1.8f;
 
-        if (SceneManager.GetActiveScene().path.Contains("Earth"))
-        {
-            spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
-        }
+            if (SceneManager.GetActiveScene().path.Contains("Earth"))
+            {
+                spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
+            }
 
 #else
         spatialFloorHeight = hololensPlanes.FloorYPosition;
         spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
         Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spatialFloorHeight);
 #endif
-        transform.position = spatialFloorPosition;
-        MessageKit.post(MessageType.OnSpatialMappingComplete);
+            //transform.position = spatialFloorPosition;
+            this.gameObject.AddComponent<FlyInAnimation>();
+            this.gameObject.GetComponent<FlyInAnimation>().Setup(spatialFloorPosition);
+            MessageKit.post(MessageType.OnSpatialMappingComplete);
+
+        }
+
     }
 
     IEnumerator VisibleAssetActivationDelay(float time)

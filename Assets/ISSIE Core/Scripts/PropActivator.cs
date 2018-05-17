@@ -35,10 +35,12 @@ public class PropActivator : MonoBehaviour
             {
                 isActive = true;
                 triggerable.Activate();
+                Debug.Log("Activated " + this.gameObject.name + " for " + exerciseName);
             }
             else if (isActive)
             {
                 triggerable.Deactivate();
+                Debug.Log("DEactivated " + this.gameObject.name + " for " + exerciseName);
             }
         });
 
