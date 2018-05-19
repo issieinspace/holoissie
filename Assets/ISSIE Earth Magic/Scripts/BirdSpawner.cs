@@ -23,7 +23,7 @@ public class BirdSpawner : MonoBehaviour, ITriggerable
     void CreateProp()
     {
         GameObject bird = GameObject.Instantiate(Prop);
-        bird.transform.position = new Vector3(0,0,0);
+        bird.transform.position = new Vector3(0,0,1);
     }
 
     void CreateManyProps()

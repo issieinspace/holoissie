@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limitScanningByTime: 1
-  scanTime: 3
+  scanTime: 5
   defaultMaterial: {fileID: 2100000, guid: 969e4200cbdb3604a855515bb57713c9, type: 2}
   secondaryMaterial: {fileID: 2100000, guid: 3b3f8f571210a1f4e88997eb069cae7a, type: 2}
   minimumFloors: 1
@@ -844,11 +844,10 @@ Transform:
   - {fileID: 1036552086}
   - {fileID: 1067610373}
   - {fileID: 1116006747}
-  - {fileID: 1366659620}
   - {fileID: 2065699865}
   - {fileID: 1390147432}
-  - {fileID: 1340627766}
   - {fileID: 1730187456}
+  - {fileID: 1340627766}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1704,19 +1703,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 769925908}
+    m_TransformParent: {fileID: 2065699865}
     m_Modifications:
     - target: {fileID: 4540898057977638, guid: aca6a885e7f66d0449d3958b08d2de73, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.744
       objectReference: {fileID: 0}
     - target: {fileID: 4540898057977638, guid: aca6a885e7f66d0449d3958b08d2de73, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.87
+      value: -0.923
       objectReference: {fileID: 0}
     - target: {fileID: 4540898057977638, guid: aca6a885e7f66d0449d3958b08d2de73, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.89
+      value: 0.0400002
       objectReference: {fileID: 0}
     - target: {fileID: 4540898057977638, guid: aca6a885e7f66d0449d3958b08d2de73, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1736,7 +1735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4540898057977638, guid: aca6a885e7f66d0449d3958b08d2de73, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224056378350320808, guid: aca6a885e7f66d0449d3958b08d2de73,
         type: 2}
@@ -1784,7 +1783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 769925908}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1390147433
 MonoBehaviour:
@@ -1798,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propPrefab: {fileID: 199518, guid: 17de3c1426f928b4e97bb2feeeb4d11e, type: 2}
-  minimumSpawnDistance: 3.7
+  minimumSpawnDistance: 5
   maximumSpawnDistance: 9
 --- !u!114 &1390147434
 MonoBehaviour:
@@ -1947,7 +1946,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 769925908}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
 --- !u!154 &1730187457
 TerrainCollider:
@@ -2497,7 +2496,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2065699863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.694, y: 1.793, z: 2.85}
+  m_LocalPosition: {x: -0.694, y: 2.36, z: 2.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431092348}
@@ -2505,8 +2504,9 @@ Transform:
   - {fileID: 1339550766}
   - {fileID: 1806274447}
   - {fileID: 1066208282}
+  - {fileID: 1366659620}
   m_Father: {fileID: 769925908}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2097771062
 Prefab:

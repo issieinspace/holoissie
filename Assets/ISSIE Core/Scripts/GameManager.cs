@@ -39,10 +39,6 @@ public class GameManager : MonoBehaviour {
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.Object.SetActive(false);
 
-#if !UNITY_EDITOR
-        hololensPlanes.MakePlanesComplete += MoveWorldToSpatialFloor;
-#endif
-
         Score = GameObject.Find("Score");
         Score.GetComponent<TextMesh>().text = "";
 
@@ -58,6 +54,11 @@ public class GameManager : MonoBehaviour {
         }
         
         StartGame();
+
+#if !UNITY_EDITOR
+        if (hololensPlanes != null)
+            hololensPlanes.MakePlanesComplete += MoveWorldToSpatialFloor;
+#endif
 
     }
 
