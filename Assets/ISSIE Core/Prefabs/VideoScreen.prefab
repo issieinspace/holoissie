@@ -90,8 +90,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4818607897769790}
-  - component: {fileID: 114229198155582006}
-  - component: {fileID: 114902252240476904}
   m_Layer: 0
   m_Name: VideoScreen
   m_TagString: Untagged
@@ -325,17 +323,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Demonstration
---- !u!114 &114229198155582006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462305834394374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72278ef1036a1b74c89f09d8eba494c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114377086530101018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,17 +386,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114902252240476904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462305834394374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0ea7b89c8c37434796a1f7b9205d829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222312057476527982
 CanvasRenderer:
   m_ObjectHideFlags: 1

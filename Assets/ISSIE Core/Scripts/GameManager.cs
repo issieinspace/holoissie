@@ -230,10 +230,14 @@ public class GameManager : MonoBehaviour {
         spacialFloorHeight = -1.8f;
 
 #else
-        
-        transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);
         spacialFloorHeight = hololensPlanes.FloorYPosition;
-        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spacialFloorHeight);
+        if (spacialFloorHeight < -1.6)
+            spacialFloorHeight = -1.6f;
+        Vector3 spatialFloorPosition = new Vector3(0, spacialFloorHeight, 0);
+        
+        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spacialFloorHeight + "\n Floor is hololensPlanes.FloorYPosition");
+        this.gameObject.AddComponent<FlyInAnimation>();
+        this.gameObject.GetComponent<FlyInAnimation>().Setup(spatialFloorPosition);
 #endif
         MessageKit.post(MessageType.OnSpatialMappingComplete);
     }
