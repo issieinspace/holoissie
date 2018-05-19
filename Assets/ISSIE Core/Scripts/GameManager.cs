@@ -30,15 +30,14 @@ public class GameManager : MonoBehaviour {
     public GameObject Credits;
     public SurfaceMeshesToPlanes hololensPlanes;
     [HideInInspector]
-    public static float spatialFloorHeight = 0;
-    public int spatialMappingCompleteCount = 0;
+    public static float spacialFloorHeight = 0;
    
     // Use this for initialization
     void Start()
     {
         // Call this when audio source finishes playing: SpatialMapping.Instance.DrawVisualMeshes = false;
         //SpatialMapping.Instance.Object.SetActive(false);
-
+        
         Score = GameObject.Find("Score");
         Score.GetComponent<TextMesh>().text = "";
 
@@ -56,10 +55,8 @@ public class GameManager : MonoBehaviour {
         StartGame();
 
 #if !UNITY_EDITOR
-        if (hololensPlanes != null)
-            hololensPlanes.MakePlanesComplete += MoveWorldToSpatialFloor;
+        hololensPlanes.MakePlanesComplete += MoveWorldToSpacialFloor;
 #endif
-
     }
 
     // Update is called once per frame
@@ -216,46 +213,35 @@ public class GameManager : MonoBehaviour {
     public static void RestartGame(string scene)
     {
         MessageKitManager.clearAllMessageTables();
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(scene);        
     }
-    
-    public void MoveWorldToSpatialFloor(object source, EventArgs args)
+
+
+
+    public void MoveWorldToSpacialFloor(object source, EventArgs args)
     {
-        spatialMappingCompleteCount++;
-#if UNITY_EDITOR
-        spatialMappingCompleteCount = 2;
-#endif
 
-        if (spatialMappingCompleteCount > 1)
+#if UNITY_EDITOR
+        if (SceneManager.GetActiveScene().path.Contains("Earth"))
         {
-            Vector3 spatialFloorPosition = new Vector3(0, 0, 0);
-
-#if UNITY_EDITOR
-            spatialFloorHeight = -1.8f;
-
-            if (SceneManager.GetActiveScene().path.Contains("Earth"))
-            {
-                spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
-            }
-
-#else
-        spatialFloorHeight = hololensPlanes.FloorYPosition;
-        spatialFloorPosition = new Vector3(0, spatialFloorHeight, 0);
-        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spatialFloorHeight);
-#endif
-            //transform.position = spatialFloorPosition;
-            this.gameObject.AddComponent<FlyInAnimation>();
-            this.gameObject.GetComponent<FlyInAnimation>().Setup(spatialFloorPosition);
-            MessageKit.post(MessageType.OnSpatialMappingComplete);
-
+            transform.position = new Vector3(0, -1.8f, 0);
         }
 
+        spacialFloorHeight = -1.8f;
+
+#else
+        
+        transform.position = new Vector3(0, hololensPlanes.FloorYPosition, 0);
+        spacialFloorHeight = hololensPlanes.FloorYPosition;
+        Diagnostics.GetComponent<Monitor>().DisplayMessage("moved to floor at y = " + spacialFloorHeight);
+#endif
+        MessageKit.post(MessageType.OnSpatialMappingComplete);
     }
 
     IEnumerator VisibleAssetActivationDelay(float time)
     {
         yield return new WaitForSeconds(time);
-        MoveWorldToSpatialFloor(null, null);
+        MoveWorldToSpacialFloor(null, null);
     }
     
 }
