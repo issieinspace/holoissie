@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour {
         
         if (workoutSelectionGameObject != null)
         {
-            if (workoutSelectionGameObject.GetComponent<WorkoutSelection>().UseWorkoutSelection)
+            if (workoutSelectionGameObject.GetComponent<WorkoutSelection>()._useWorkoutSelection)
                 return workoutSelectionGameObject.GetComponent<WorkoutSelection>().SetupExercises();
         }
 

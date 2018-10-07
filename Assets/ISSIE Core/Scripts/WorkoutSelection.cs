@@ -1,19 +1,23 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+
 
 public class WorkoutSelection : MonoBehaviour {
     //Responsible for loading the list of exercises in a game and recording the choice of Workout
 
-    public string GameFile;
-    public WorkoutCatalog WorkoutCatalog;
-    public string ChosenWorkout;
-    public bool UseWorkoutSelection;
+    public string _gameFile;
+    public WorkoutCatalog _workoutCatalog;
+    public string _chosenWorkout;
+    public bool _useWorkoutSelection;
+
+    public Dictionary<string, GameObject> _exercisePrefabs = new Dictionary<string, GameObject>();
+
+
 
     public void Start()
     {
-        string jsonText = LoadResourceTextFile(GameFile);
-        WorkoutCatalog = JsonUtility.FromJson<WorkoutCatalog>(jsonText);
+        string jsonText = LoadResourceTextFile(_gameFile);
+        _workoutCatalog = JsonUtility.FromJson<WorkoutCatalog>(jsonText);
     }
 
     private string LoadResourceTextFile(string GameFile)
@@ -27,7 +31,7 @@ public class WorkoutSelection : MonoBehaviour {
     {
         Exercise[] exerciseGameObjects = null;
 
-        WorkoutDefinition workoutDef = WorkoutCatalog.Workouts.Find(delegate(WorkoutDefinition w) { return w.Name == ChosenWorkout; });
+        WorkoutDefinition workoutDef = _workoutCatalog.Workouts.Find(delegate(WorkoutDefinition w) { return w.Name == _chosenWorkout; });
 
         foreach(ExerciseDefinition exerciseDef in workoutDef.Exercises)
         {
