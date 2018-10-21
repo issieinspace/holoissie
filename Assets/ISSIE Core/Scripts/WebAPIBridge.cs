@@ -19,6 +19,8 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
     {
         string data = response.DataAsText;
+        //data = System.Text.Encoding.UTF8.GetString(response.Data, 3, response.Data.Length - 3);
+        WriteDiagnostics("Requested " + TargetURL + "\n Text received: " + response.DataAsText);
         cycleReadout = JsonUtility.FromJson<CycleReadout>(data);
         //WriteDiagnostics("Elapsed distance: " + cycleReadout.distance);
         WriteDiagnostics("Requested " + TargetURL + "\n Text received: " + response.DataAsText);
@@ -26,14 +28,15 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
 
     private void WriteDiagnostics(string data)
     {
-       GameObject.Find("Log").GetComponent<Monitor>().DisplayMessage(data);
+        Debug.Log(data);
+       //GameObject.Find("Log").GetComponent<Monitor>().DisplayMessage(data);
     }
 
     void Update()
     {
-        if (Input.GetAxis("Fire1") > 0)
-        {
-            GetCycleReadout();
-        }
+        //if (Input.GetAxis("Fire1") > 0)
+        //{
+        //    GetCycleReadout();
+        //}
     }
 }

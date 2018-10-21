@@ -8,6 +8,7 @@ public class CycleReadout {
     public float speed;
     public float multiplier;
     public float elapse;
+    public float wheelc;
     //public DateTime timestamp;
 
 
