@@ -77,7 +77,7 @@ public class BicycleManager : MonoBehaviour {
             cycleReadOut.distance = WebAPIBridge.Instance.cycleReadout.distance;
             var Score = GameObject.Find("Score");
             Score.GetComponent<TextMesh>().text = "Distance: " + cycleReadOut.distance;
-            distanceSinceLastUpdate = 10;
+            distanceSinceLastUpdate = cycleReadOut.distance - distanceSinceLastUpdate;
             elapsedMillis = 0;
         }
         UpdateLeftPane();
