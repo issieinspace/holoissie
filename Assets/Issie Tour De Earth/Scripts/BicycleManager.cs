@@ -77,10 +77,12 @@ public class BicycleManager : MonoBehaviour {
             //cycleReadOut.distance += 10;
             //cycleReadOut.rpm = 20;
             //cycleReadOut.speed = 14;
+            cycleBridge.GetCycleReadout();
+            var lastDistance = cycleReadOut.distance;
             cycleReadOut.distance = cycleBridge.cycleReadout.distance;
             var Score = GameObject.Find("Score");
             Score.GetComponent<TextMesh>().text = "Distance: " + cycleReadOut.distance;
-            distanceSinceLastUpdate = cycleReadOut.distance - distanceSinceLastUpdate;
+            distanceSinceLastUpdate = cycleReadOut.distance - lastDistance;
             elapsedMillis = 0;
         }
         UpdateLeftPane();
