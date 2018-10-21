@@ -15,6 +15,9 @@ public class BicycleManager : MonoBehaviour {
     public GameObject FrontPane;
     public GameObject LeftPane;
     public GameObject RightPane;
+    public GameObject LeftPortal;
+    public GameObject RightPortal;
+
     public float DistancePerPhoto = 800;
     public float intervalMillis = 100;
     public GameObject pictureBucket;
@@ -51,15 +54,15 @@ public class BicycleManager : MonoBehaviour {
             // If the Raycast has succeeded and hit a hologram
             // hitInfo's point represents the position being gazed at
             // hitInfo's collider GameObject represents the hologram being gazed at
-        }
+            if (hitInfo.collider.gameObject.tag == "LeftPictureFrame")
+            {
+                lastActivePane = ViewingPane.LeftPane;
+            }
+            else if(hitInfo.collider.gameObject.tag == "RightPictureFrame")
+            {
+                lastActivePane = ViewingPane.RighPane;
+            }
 
-        if (hitInfo.collider.gameObject.tag == "LeftPictureFrame")
-        {
-            lastActivePane = ViewingPane.LeftPane;
-        }
-        else if(hitInfo.collider.gameObject.tag == "RightPictureFrame")
-        {
-            lastActivePane = ViewingPane.RighPane;
         }
 
         elapsedMillis += Time.deltaTime * 1000;
@@ -82,18 +85,20 @@ public class BicycleManager : MonoBehaviour {
         if(lastActivePane == ViewingPane.LeftPane)
         {
             leftPaneProgress += distanceSinceLastUpdate;
-            LeftPane.GetComponentInChildren<Image>().fillAmount = leftPaneProgress/DistancePerPhoto;
-            if(leftPaneProgress > DistancePerPhoto)
+            //LeftPane.GetComponentInChildren<Image>().fillAmount = leftPaneProgress/DistancePerPhoto;
+            LeftPortal.GetComponentInChildren<Image>().fillAmount = leftPaneProgress/DistancePerPhoto;
+
+            if (leftPaneProgress > DistancePerPhoto)
             {
                 leftPaneProgress = 0;
-                SetNextPicture(LeftPane.GetComponentInChildren<Image>(), pictureListManager.PictureSprites[(int)(Random.value * pictureListManager.PictureSprites.Count)]);
+                SetNextPicture(LeftPane, pictureListManager.PictureSprites[(int)(Random.value * pictureListManager.PictureSprites.Count)]);
             }
         }
     }
 
-    void SetNextPicture(Image image, Sprite sprite)
+    void SetNextPicture(GameObject Pane, Sprite sprite)
     {
-        image.sprite = sprite;
+        Pane.GetComponent<PictureSetter>().SetImage(sprite);
     }
 
     void UpdateRightPane()
@@ -101,7 +106,14 @@ public class BicycleManager : MonoBehaviour {
         if(lastActivePane == ViewingPane.RighPane)
         {
             rightPaneProgress += distanceSinceLastUpdate;
-            RightPane.GetComponentInChildren<Image>().fillAmount = rightPaneProgress / DistancePerPhoto;
+            //RightPane.GetComponentInChildren<Image>().fillAmount = rightPaneProgress / DistancePerPhoto;
+            RightPortal.GetComponentInChildren<Image>().fillAmount = rightPaneProgress / DistancePerPhoto;
+
+            if (rightPaneProgress > DistancePerPhoto)
+            {
+                rightPaneProgress = 0;
+                SetNextPicture(RightPane, pictureListManager.PictureSprites[(int)(Random.value * pictureListManager.PictureSprites.Count)]);
+            }
         }
     }
 

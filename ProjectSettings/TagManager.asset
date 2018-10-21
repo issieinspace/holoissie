@@ -8,6 +8,8 @@ TagManager:
   - Alien
   - Diagnostics
   - Triggerable
+  - RightPictureFrame
+  - LeftPictureFrame
   layers:
   - Default
   - TransparentFX
