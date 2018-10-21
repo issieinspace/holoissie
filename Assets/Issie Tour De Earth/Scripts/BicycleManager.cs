@@ -34,6 +34,7 @@ public class BicycleManager : MonoBehaviour {
 	void Start () {
         cycleReadOut = new CycleReadout();
         pictureListManager = pictureBucket.GetComponent<PictureListManager>();
+        distanceSinceLastUpdate = 0;
 	}
 	
 	// Update is called once per frame
@@ -66,9 +67,13 @@ public class BicycleManager : MonoBehaviour {
         if(elapsedMillis > intervalMillis)
         {
             // update RPM/Distance/Speed
-            cycleReadOut.distance += 10;
-            cycleReadOut.rpm = 20;
-            cycleReadOut.speed = 14;
+            //cycleReadOut.distance += 10;
+            //cycleReadOut.rpm = 20;
+            //cycleReadOut.speed = 14;
+            WebAPIBridge.Instance.GetCycleReadout();
+            cycleReadOut.distance = WebAPIBridge.Instance.cycleReadout.distance;
+            var Score = GameObject.Find("Score");
+            Score.GetComponent<TextMesh>().text = "Distance: " + cycleReadOut.distance;
             distanceSinceLastUpdate = 10;
             elapsedMillis = 0;
         }
