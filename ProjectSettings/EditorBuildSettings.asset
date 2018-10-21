@@ -17,16 +17,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Core/Scenes/Game Selector.unity
     guid: 11eddeb56420e0d46bbd344d6e62b24e
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Multiverse Rescue Launch Menu.unity
     guid: 5030db347157ddc419bf3f039f58f9f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Earth Magic/Scenes/Earth Magic Launch Menu.unity
     guid: 9cc655653ffd7144da6a6975a1d2ac07
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Warmup.unity
     guid: b2a97c9e32397364a8251f3fce243a2d
   - enabled: 0
@@ -44,12 +44,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Old.unity
     guid: 0d82d3396e3269444b4d30fff3e38c46
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Multiverse Rescue/Scenes/Cycle.unity
     guid: bb993d22868f143458f455278c3afcf8
   - enabled: 0
     path: Assets/ISSIE Earth Magic/Scenes/Warmup - botched.unity
     guid: 2d49039b1865dbe4e995fc8f1d448eaa
-  - enabled: 1
+  - enabled: 0
     path: Assets/ISSIE Earth Magic/Scenes/Warmup.unity
     guid: 60fc587942c70be48b71688f6b9e875d
+  - enabled: 1
+    path: Assets/Issie Tour De Earth/Tour De Earth cycle.unity
+    guid: 524daf80e2ca16c41941c114a49a1eef

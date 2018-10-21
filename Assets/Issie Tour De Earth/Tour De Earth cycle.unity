@@ -459,6 +459,7 @@ MonoBehaviour:
     elapse: 0
     wheelc: 0
   TargetURL: http://192.168.128.73:9000/rpm_read
+  TargetResetURL: http://192.168.128.73:9000/init
 --- !u!1 &254722572
 GameObject:
   m_ObjectHideFlags: 0

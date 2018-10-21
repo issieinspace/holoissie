@@ -25,6 +25,7 @@ public class BicycleManager : MonoBehaviour {
 
     private float elapsedMillis = 0;
     private CycleReadout cycleReadOut;
+    private WebAPIBridge cycleBridge;
 
     private float leftPaneProgress = 0;
     private float rightPaneProgress = 0;
@@ -36,8 +37,11 @@ public class BicycleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cycleReadOut = new CycleReadout();
+        cycleBridge = WebAPIBridge.Instance;
         pictureListManager = pictureBucket.GetComponent<PictureListManager>();
         distanceSinceLastUpdate = 0;
+        // Reset distance upon bootup
+        cycleBridge.ResetReadout();
 	}
 	
 	// Update is called once per frame
@@ -73,8 +77,7 @@ public class BicycleManager : MonoBehaviour {
             //cycleReadOut.distance += 10;
             //cycleReadOut.rpm = 20;
             //cycleReadOut.speed = 14;
-            WebAPIBridge.Instance.GetCycleReadout();
-            cycleReadOut.distance = WebAPIBridge.Instance.cycleReadout.distance;
+            cycleReadOut.distance = cycleBridge.cycleReadout.distance;
             var Score = GameObject.Find("Score");
             Score.GetComponent<TextMesh>().text = "Distance: " + cycleReadOut.distance;
             distanceSinceLastUpdate = cycleReadOut.distance - distanceSinceLastUpdate;

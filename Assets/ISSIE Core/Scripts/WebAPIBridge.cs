@@ -7,6 +7,7 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
 {
     public CycleReadout cycleReadout;
     public string TargetURL;
+    public string TargetResetURL;
 
     public void GetCycleReadout()
     {
@@ -14,6 +15,12 @@ public class WebAPIBridge : Singleton<WebAPIBridge>
         HTTPRequest request = new HTTPRequest(new Uri(TargetURL), OnRequestFinished);
         request.Send();
         
+    }
+
+    public void ResetReadout()
+    {
+        HTTPRequest request = new HTTPRequest(new Uri(TargetResetURL));
+        request.Send();
     }
 
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
